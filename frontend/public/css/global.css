@@ -1,0 +1,51 @@
+@charset 'utf-8';
+@font-face {
+    font-family: 'Mukta-Bold';
+    src: url('../fonts/Mukta-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-ExtraBold';
+    src: url('../fonts/Mukta-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-SemiBold';
+    src: url('../fonts/Mukta-SemiBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-Regular';
+    src: url('../fonts/Mukta-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-Light';
+    src: url('../fonts/Mukta-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-extraLight';
+    src: url('../fonts/Mukta-extraLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Mukta-Medium';
+    src: url('../fonts/Mukta-Medium.ttf') format('truetype');
+}
+
+:root{
+    /* Fonts */
+    --light: 'Mukta-Light';
+    --regular: 'Mukta-Regular';
+    --medium: 'Mukta-Medium';
+    --semi-bold: 'Mukta-SemiBold';
+    --bold: 'Mukta-Bold';
+    --extra-bold: 'Mukta-ExtraBold';
+    --extra-light: 'Mukta-extraLight';
+/* Colors */
+    --primary-color: #BCEAD5;
+    --secondary-color: #DEF5E5;
+    --tertiary-color: #9ED5C5;
+    --quaternary-color: #8EC3B0;    
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
