@@ -25,6 +25,7 @@ let UserSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
+    date_of_birth: { type: Date },
     email: {
       type: String,
       required: true,
