@@ -1,1 +1,118 @@
 @import 'global.css';
+
+body{
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    font-family: var(--regular);
+    
+    
+}
+.logo{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    width: 80px;
+
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    
+}
+span{
+    color: #fff;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+header{
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+
+.input-field .input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    border-radius: 30px;
+    color: rgb(66, 69, 69);
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+    margin: 10px;;
+}
+
+::-webkit-input-placeholder{
+    color: rgb(105,105,105);
+}
+.submit{
+    margin: 10px 0 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color: black;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s ;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+.two-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25%;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+label a{
+    text-decoration: none;
+    color: #fff;    
+}
+.userpass_logo{
+    height: 20px;
+    width: 20px;
+}
+.alternates{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#google{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+    padding: 8px 10px;
+    width: 100%;
+    font-size: medium;
+    background-color: rgb(255, 255, 255,0.7);
+    color: black;
+    border:none;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+#google-logo{
+    max-width: 32px;
+    width: 32px;
+}
