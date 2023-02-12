@@ -7,10 +7,7 @@ async function create_newUser({user}) {
     lastname: user.lastname,
     username: user.username,
     email: user.email,
-    // firstname: "Tuhin",
-    // lastname: "Das",
-    // username: "tuhinlund",
-    // email: "random@random.com",
+
   });
   try {
     await newUser.save();

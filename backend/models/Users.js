@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
+const findOrCreate = require("mongoose-findorcreate");
 
 let UserSchema = new mongoose.Schema(
   {
@@ -21,6 +23,12 @@ let UserSchema = new mongoose.Schema(
       unique: true,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
       index: true,
+    },
+    googleId: {
+      type: String,
+    },
+    password: {
+      type: String,
     },
     bio: {
       type: String,
@@ -48,5 +56,6 @@ let UserSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(findOrCreate);
 module.exports = mongoose.model("User", UserSchema);

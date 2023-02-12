@@ -1,7 +1,12 @@
-const router = require('express').Router();
+const router = require("express").Router();
+const passport = require("passport");
 
-const signUp = require('../controllers/signUpController');
+const signUp = require("../controllers/userController");
 
-router.route('/').get(signUp.signUpRender).post(signUp.signUpController);
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
+router.get("/google/login", passport.authenticate('google', { failureRedirect: '/login' }), (req, res)=>{
+    console.log("GoogleStrategy");
+});
 
 module.exports = router;
