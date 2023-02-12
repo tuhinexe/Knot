@@ -53,6 +53,11 @@ header{
     outline: none;
     margin: 10px;;
 }
+.input-field{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 ::-webkit-input-placeholder{
     color: rgb(105,105,105);
