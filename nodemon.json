@@ -1,0 +1,13 @@
+{
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/"
+    ],
+    "watch": [
+      ".css",
+      ".js",
+      "*.ejs"
+    ],
+    "exec": "node index.js"
+  }
