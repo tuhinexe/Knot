@@ -1,27 +1,27 @@
 const userModel = require("../models/Users");
 const postModel = require("../models/Posts");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 
-async function create_newUser({user}) {
-  const newUser = new userModel({
+async function create_newUser(user) {
+  const userData = {
     firstname: user.firstname,
     lastname: user.lastname,
     username: user.username,
-    email: user.email,
+    email: user.email
 
+  };
+  userModel.register(userData, user.password, (err, user) => {
+    if (err) {
+      console.log(err);
+      res.redirect('/signup');
+    } else {
+      passport.authenticate("local")(req, res, () => {
+        res.redirect("/profile");
+      });
+    }
   });
-  try {
-    await newUser.save();
-    console.log("user saved");
-  } catch (err) {
-    console.log(err);
-  }
-  const posts = await postModel.find();
-  try {
-    console.log(posts);
-  } catch (err) {
-    console.log(err);
-  }
-}
+};
 
 module.exports = create_newUser;
 
