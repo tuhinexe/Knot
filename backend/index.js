@@ -4,6 +4,10 @@ const path = require("path");
 const app = express();
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
+const passportSetup = require("./config/passportConfig");
+app.use(express.static(path.join(__dirname, "..","frontend", "public")));
+app.use(express.static("public"));
+app.use(express.json())
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
   
@@ -12,12 +16,7 @@ app.use(
     extended: false,
   })
 );
-app.use(express.json())
-app.use(express.static(path.join(__dirname, "..","frontend", "public")));
-app.use("/login", loginRouter);
 app.use("/signup", signUpRouter);
-app.use(bodyParser.json());
-app.use(express.static("public"));
 app.use("/auth", signUpRouter);
 
 (async () => {
@@ -25,10 +24,6 @@ app.use("/auth", signUpRouter);
 })();
 
 
-app.get("/create_user", (req, res) => {
-  // create_newUser();
-  res.send("done");
-});
 
 const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
