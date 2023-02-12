@@ -26,6 +26,7 @@
 @font-face {
     font-family: 'Mukta-Medium';
     src: url('../fonts/Mukta-Medium.ttf') format('truetype');
+    font-display: swap;
 }
 
 :root{
@@ -40,8 +41,8 @@
 /* Colors */
     --primary-color: #BCEAD5;
     --secondary-color: #DEF5E5;
-    --tertiary-color: #9ED5C5;
-    --quaternary-color: #8EC3B0; 
+    --ligh-color: #9ED5C5;
+    --dark-color: #8EC3B0; 
 }
 
 *, *::before, *::after {

@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 const connectDB = require("./config/dbConnection");
@@ -10,12 +9,12 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
+  express.urlencoded({
+    extended: false,
   })
 );
-app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.json())
+app.use(express.static(path.join(__dirname, "..","frontend", "public")));
 app.use("/login", loginRouter);
 app.use("/signup", signUpRouter);
 
