@@ -6,6 +6,7 @@ const session = require("express-session");
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
 const profileRouter = require("./routes/profile");
+const loginRouter = require("./routes/login");
 const passportSetup = require("./config/passportConfig");
 const passport = require("passport");
 app.use(express.static(path.join(__dirname, "..", "frontend", "public")));
@@ -33,6 +34,7 @@ app.use(passport.session());
 app.use("/signup", signUpRouter);
 app.use("/auth", signUpRouter);
 app.use("/profile", profileRouter);
+app.use("/login", loginRouter);
 
 (async () => {
   await connectDB(process.env.DB_URI);

@@ -3,6 +3,8 @@ const passport = require("passport");
 
 const signUp = require("../controllers/userController");
 
+router.get("/", signUp.signUpRender);
+
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get("/google/login", passport.authenticate('google', { failureRedirect: '/login' }), (req, res)=>{
