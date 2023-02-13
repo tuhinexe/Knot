@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
+const User = require("./models/Users");
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
@@ -30,6 +31,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use("/signup", signUpRouter);
 app.use("/auth", signUpRouter);

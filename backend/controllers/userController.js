@@ -1,32 +1,55 @@
 const express = require("express");
 const User = require("../models/Users");
-const create_newUser = require("../api/createUser");
+const passportSetup = require("../config/passportConfig");
 const passport = require("passport");
-passport.use(User.createStrategy());
+
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
+
 const signUpRender = (req, res) => {
   res.render("signUp");
 };
 
-const signUpController = async (req, res) => {
+// make a local mongoose strategy
+passport.use(User.createStrategy());
+
+//serialize and deserialize user
+passport.serializeUser((user, done) => {
+  console.log("serialized user");
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
+
+const signUpController = (req, res) => {
   const userData = {
     firstname: "raj",
     lastname: "dk",
-    username: "mehra",
-    email: "random@random.com"
-  }
-  User.register(userData, "blah", (err, user) => {
+    username: "heyy",
+    email: "random@random.com",
+  };
+  User.register(userData, "bhadwa", (err, user) => {
     if (err) {
       console.log(err);
-      res.redirect('/signup');
+      res.redirect("/register");
     } else {
-      passport.authenticate("local")(req, res, () => {
-        console.log("signed up");
-        res.redirect("/profile");
-      });
+      console.log("heree");
+      console.log(user.username);
+      passport.authenticate("local", { failureRedirect: "/login" })(
+        req,
+        res,
+        () => {
+          console.log(req.user);
+          res.redirect("/profile");
+        }
+      );
     }
   });
 };
- 
 
 const loginRender = (req, res) => {
   res.render("login");
