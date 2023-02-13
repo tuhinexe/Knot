@@ -1,6 +1,8 @@
 const express = require("express");
 const User = require("../models/Users");
+const passportSetup = require("../config/passportConfig");
 const passport = require("passport");
+
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
@@ -8,7 +10,7 @@ const signUpRender = (req, res) => {
   res.render("signUp");
 };
 
-//make a local mongoose strategy
+// make a local mongoose strategy
 passport.use(User.createStrategy());
 
 //serialize and deserialize user
@@ -27,7 +29,7 @@ const signUpController = (req, res) => {
   const userData = {
     firstname: "raj",
     lastname: "dk",
-    username: "helpmeebroooo",
+    username: "heyy",
     email: "random@random.com",
   };
   User.register(userData, "bhadwa", (err, user) => {
