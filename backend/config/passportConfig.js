@@ -27,6 +27,9 @@ passport.use(
         firstname: profile.name.givenName,
         lastname: profile.name.familyName,
         email: profile._json.email,
+        bio: "",
+        profilePic_url: "",
+
       };
       User.findOrCreate(userData, function (err, user) {
         return done(err, user);

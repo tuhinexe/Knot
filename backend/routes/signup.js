@@ -8,17 +8,6 @@ router
   .get(checkNotAuthorized, signUp.signUpRender)
   .post(signUp.signUpController);
 
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-router.get(
-  "/google/login",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/profile");
-  }
-);
 
 module.exports = router;
+

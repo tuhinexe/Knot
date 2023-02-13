@@ -5,6 +5,7 @@ const app = express();
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
+const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
@@ -33,14 +34,19 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+
 app.use("/signup", signUpRouter);
-app.use("/auth", signUpRouter);
+app.use("/auth", authRouter);
 app.use("/login", loginRouter);
 
 app.use(checkAuthorized);
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
-
+app.get("/getuser", (req, res) => {
+  res.json(req.user)
+});
 (async () => {
   await connectDB(process.env.DB_URI);
 })();
