@@ -9,6 +9,7 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
+const postRouter = require("./routes/addpost");
 const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
 const passport = require("passport");
@@ -44,9 +45,7 @@ app.use("/login", loginRouter);
 app.use(checkAuthorized);
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
-app.get("/getuser", (req, res) => {
-  res.json(req.user)
-});
+app.use("/addpost", postRouter);
 (async () => {
   await connectDB(process.env.DB_URI);
 })();

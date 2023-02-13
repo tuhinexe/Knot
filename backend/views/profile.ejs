@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Knot Sign in</title>
+</head>
+<body>
+    <div class="box">
+     <div class="container">
+        <div class="details">
+            <p>Hii I am <%=user.firstname%></p>
+            <p>My last name is <%=user.lastname%></p>
+            <p>Hii my bio is <%=user.bio%></p>
+            <p>Hii my email <%=user.email%></p>
+            <p>and my profile pic is <%=user.profilePic_url%></p>
+            <p>this is an add post button</p>
+        </div>
+        <a href="/addpost">
+        <div class="alternates">
+            <button type="submit" id="google" class="hovereffect">🔥 add post</button>
+        </div> </a>
+     </div>
+ </div>  
+ </body>
+</html>
