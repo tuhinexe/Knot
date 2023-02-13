@@ -17,20 +17,20 @@ const createPostController = async (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      User.findById(userId, (err, user) => {
-        if (err) {
-          console.log(err);
-        } else {
+      try {
+        findUser(req.user).then((user) => {
           user.posts.push(post._id);
           user.save((err, user) => {
             if (err) {
               console.log(err);
             } else {
-                res.redirect("/profile")
+              res.redirect("/profile");
             }
           });
-        }
-      });
+        });
+      } catch (err) {
+        res.send(err.message);
+      }
     }
   });
 };
