@@ -17,15 +17,18 @@
                 <img src="/images/knot.png" class="logo" alt="Logo">
                 <header>Sign up to Knot</header>
             </div>
+            <a href="signup/google">
             <div class="alternates">
                 <button type="submit" id="google" class="submit hovereffect"><img id="google-logo" src="/images/google.png" alt=""> Sign up with
                     Google</button>
             </div>
+        </a>
             <div class="withcredentials">
                 <label><a id="credentials" href="">Or, Signup with cedentials.</a></label>
             </div>
 
             <div class="hiddenform hidden">
+                <form action="/signup" method="post">
                 <div class="input-field">
                     <input type="text" class="input" placeholder="First Name" name="fname" id="">
                 </div>
@@ -45,6 +48,7 @@
                 <div class="input-field">
                     <input type="submit" class="submit hovereffect" value="Sign Up" id="">
                 </div>
+            </form>
             </div>
 
         </div>

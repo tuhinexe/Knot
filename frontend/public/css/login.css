@@ -6,6 +6,9 @@ body{
     
     
 }
+a{
+    text-decoration: none;
+}
 .logo{
     display: flex;
     margin-left: auto;
