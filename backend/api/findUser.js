@@ -2,7 +2,7 @@
 const userModel = require("../models/Users");
 
 async function findUser(user) {
-  const userFound = await userModel.findOne({username: user.username});
+  const userFound = await userModel.findById(user._id).populate("posts").exec();
   if (userFound) {
     return userFound;
   } else {
@@ -11,3 +11,5 @@ async function findUser(user) {
 }
 
 module.exports = findUser;
+
+

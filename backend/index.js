@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
+const userModel = require("./models/Users");
+const fetchUser = require("./api/findUser");
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
@@ -48,6 +50,11 @@ app.use(checkAuthorized);
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 app.use("/addpost", postRouter);
+app.get("/userdetails", (req, res) => {
+  fetchUser(req.user).then((user) => {
+    res.send(user);
+  });
+});
 (async () => {
   await connectDB(process.env.DB_URI);
 })();
