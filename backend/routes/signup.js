@@ -3,8 +3,9 @@ const passport = require("passport");
 
 const signUp = require("../controllers/userController");
 
-router.get("/", signUp.signUpRender);
-router.get("/register", signUp.signUpController);
+// router.get("/", signUp.signUpRender);
+// router.get("/register", signUp.signUpController);
+router.route("/").get(signUp.signUpRender).post(signUp.signUpController);
 
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
