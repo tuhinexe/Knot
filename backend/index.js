@@ -8,6 +8,7 @@ const signUpRouter = require("./routes/signup");
 const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
+const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
 const passport = require("passport");
 app.use(express.static(path.join(__dirname, "..", "frontend", "public")));
@@ -34,21 +35,19 @@ app.use(passport.session());
 
 app.use("/signup", signUpRouter);
 app.use("/auth", signUpRouter);
-app.use("/profile", profileRouter);
 app.use("/login", loginRouter);
+
+app.use(checkAuthorized);
+app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 
 (async () => {
   await connectDB(process.env.DB_URI);
 })();
 
-
-
-
-
 //use wildcard to catch all routes
 app.get("*", (req, res) => {
-  res.send("404 page not found")
+  res.send("404 page not found");
 });
 
 const PORT = process.env.PORT || 80;

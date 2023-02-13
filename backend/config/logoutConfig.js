@@ -1,4 +1,4 @@
-const passportSetup = require("../config/passportConfig");
+const passportSetup = require("./passportConfig");
 const passport = require("passport");
 
 const initializeLogout = async (req, res) => {
