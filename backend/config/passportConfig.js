@@ -2,22 +2,21 @@ const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 const User = require("../models/Users");
 
+passport.use(User.createStrategy());
 
-
-
-passport.serializeUser((user, done)=>{
-    done(null, user.id);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
 });
 
-passport.deserializeUser((id, done)=>{
-    User.findById(id).then((user)=>{
-        done(null, user);
-    })
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
 });
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.CLIENT_ID, 
+      clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: process.env.CALLBACK_URL,
     },

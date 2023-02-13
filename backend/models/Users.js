@@ -6,13 +6,11 @@ let UserSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
-      required: true,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
       index: true,
     },
     lastname: {
       type: String,
-      required: true,
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
       index: true,
     },
@@ -36,7 +34,6 @@ let UserSchema = new mongoose.Schema(
     date_of_birth: { type: Date },
     email: {
       type: String,
-      required: true,
       index: true,
     },
     profilePic_url: {
