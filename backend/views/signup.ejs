@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Knot signup</title>
 </head>
+
 <body>
-    
+    <div class="box">
+        <div class="container">
+
+            <div class="top">
+                <img src="/images/knot.png" class="logo" alt="Logo">
+                <header>Sign up to Knot</header>
+            </div>
+            <div class="alternates">
+                <button type="submit" id="google" class="submit hovereffect"><img id="google-logo" src="/images/google.png" alt=""> Sign up with
+                    Google</button>
+            </div>
+            <div class="withcredentials">
+                <label><a id="credentials" href="">Or, Signup with cedentials.</a></label>
+            </div>
+
+            <div class="hiddenform hidden">
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="First Name" name="fname" id="">
+                </div>
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="Last Name" name="lname" id="">
+                </div>
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="Username" name="username" id="">
+                </div>
+                <div class="input-field">
+                    <input type="email" class="input" placeholder="Email Address" name="email" id="">
+                </div>
+                <div class="input-field">
+                    <input type="Password" class="input" placeholder="Password" name="pass" id="">
+                </div>
+
+                <div class="input-field">
+                    <input type="submit" class="submit hovereffect" value="Sign Up" id="">
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
+<script src="/js/script.js"></script>
+
 </html>
