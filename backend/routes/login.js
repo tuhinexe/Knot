@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const controller = require('../controllers/userController');
+const checkNotAuthorized = require("../middlewares/notAuth.js");
 
-// const login = require('../controllers/loginController');
 
-
-router.route('/').get(controller.loginRender).post(controller.loginController);
+router.route('/').get(checkNotAuthorized, controller.loginRender).post(controller.loginController);
 
 module.exports = router;
 

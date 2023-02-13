@@ -3,6 +3,7 @@ const passport = require("passport");
 
 router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
+    console.log(req.user);
     res.send("You are logged in");
   } else {
     res.redirect("/login");

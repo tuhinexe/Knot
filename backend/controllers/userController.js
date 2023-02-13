@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/Users");
 const passportSetup = require("../config/passportConfig");
+const initializeSignup = require("../config/passportLocalConfig");
 const passport = require("passport");
 
 
@@ -8,28 +9,14 @@ const signUpRender = (req, res) => {
   res.render("signUp");
 };
 
-
-const signUpController = (req, res) => {
+const signUpController = async (req, res) => {
   const userData = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     username: req.body.username,
     email: req.body.email,
   };
-  User.register(userData, req.body.password, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.redirect("/register");
-    } else {
-      passport.authenticate("local", { failureRedirect: "/login" })(
-        req,
-        res,
-        () => {
-          res.redirect("/profile");
-        }
-      );
-    }
-  });
+  await initializeSignup(userData, req.body.password, req, res);
 };
 
 const loginRender = (req, res) => {
