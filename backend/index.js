@@ -16,6 +16,21 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+
+// make a local mongoose strategy
+passport.use(User.createStrategy());
+
+//serialize and deserialize user
+passport.serializeUser((user, done) => {
+  console.log("serialized user");
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user);
+  });
+});
 app.use(
   express.urlencoded({
     extended: false,
@@ -37,6 +52,7 @@ app.use("/signup", signUpRouter);
 app.use("/auth", signUpRouter);
 app.use("/profile", profileRouter);
 app.use("/login", loginRouter);
+
 
 (async () => {
   await connectDB(process.env.DB_URI);
