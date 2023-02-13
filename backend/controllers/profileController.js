@@ -8,7 +8,6 @@ const viewProfileRender = async (req, res)=>{
 }
 
 
-module.exports = {viewProfileRender};
 
 
 
@@ -22,3 +21,10 @@ module.exports = {viewProfileRender};
 
 
 // ----------------
+const editProfileRender = async (req, res) => {
+    const user = await findUser(req.user._id);
+    res.render("editProfile", { user });
+}
+
+module.exports = {viewProfileRender,
+editProfileRender};
