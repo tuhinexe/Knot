@@ -23,26 +23,28 @@
                     Google</button>
             </div>
         </a>
-            <div class="withcredentials">
+            <div class="insignin">
+                <label>Already user?<a href="/login"> Sign in here</a></label>
                 <label><a id="credentials" href="">Or, Signup with cedentials.</a></label>
+
             </div>
 
             <div class="hiddenform hidden">
                 <form action="/signup" method="post">
                 <div class="input-field">
-                    <input type="text" class="input" placeholder="First Name" name="firstname" id="">
+                    <input type="text" class="input" placeholder="First Name" name="firstname" id="" required>
                 </div>
                 <div class="input-field">
-                    <input type="text" class="input" placeholder="Last Name" name="lastname" id="">
+                    <input type="text" class="input" placeholder="Last Name" name="lastname" id="" required>
                 </div>
                 <div class="input-field">
-                    <input type="text" class="input" placeholder="Username" name="username" id="">
+                    <input type="text" class="input" placeholder="Username" name="username" id="" required>
                 </div>
                 <div class="input-field">
-                    <input type="email" class="input" placeholder="Email Address" name="email" id="">
+                    <input type="email" class="input" placeholder="Email Address" name="email" id="" required>
                 </div>
                 <div class="input-field">
-                    <input type="Password" class="input" placeholder="Password" name="password" id="">
+                    <input type="Password" class="input" placeholder="Password" name="password" id="" required>
                 </div>
 
                 <div class="input-field">

@@ -86,10 +86,22 @@ header{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 25%;
     color: #fff;
     font-size: 14px;
     margin-top: 10px;
+}
+.insignin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+
 }
 
 label a{
