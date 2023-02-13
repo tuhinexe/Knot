@@ -1,12 +1,9 @@
-const router = require("express").Router();
-const passport = require("passport");
 
-router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.send("You are logged in: " + req.user.username);
-  } else {
-    res.redirect("/login");
-  }
-});
+const router = require('express').Router();
+const controller = require('../controllers/profileController');
+const checkAuthorized = require("../middlewares/checkAuth.js");
+
+
+router.route('/').get(checkAuthorized, controller.profileController);
 
 module.exports = router;

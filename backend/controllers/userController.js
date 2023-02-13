@@ -4,7 +4,7 @@ const passportSetup = require("../config/passportConfig");
 const initializeSignup = require("../config/passportLocalConfig");
 const initializeLogin = require("../config/loginConfig");
 const initializeLogout = require("../config/logoutConfig");
-const passport = require("passport");
+
 
 
 const signUpRender = (req, res) => {
