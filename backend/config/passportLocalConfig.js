@@ -8,7 +8,7 @@ const initializeSignup = async (userData, password, req, res) => {
       console.log(err);
       res.redirect("/signup");
     } else {
-      passport.authenticate("local", { failureRedirect: "/login" })(
+      passport.authenticate("local", { failureRedirect: "/signup" })(
         req,
         res,
         () => {

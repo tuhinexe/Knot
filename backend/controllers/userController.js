@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/Users");
 const passportSetup = require("../config/passportConfig");
 const initializeSignup = require("../config/passportLocalConfig");
+const initializeLogin = require("../config/loginConfig");
 const passport = require("passport");
 
 
@@ -24,8 +25,11 @@ const loginRender = (req, res) => {
 };
 
 const loginController = async (req, res) => {
-  console.log("signed up");
-  res.redirect("/login");
+  const userData = {
+    username: req.body.username,
+    password: req.body.password
+  }
+  await initializeLogin(userData, req, res);
 };
 
 module.exports = {
