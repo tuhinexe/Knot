@@ -26,7 +26,7 @@ const viewProfileRender = async (req, res) => {
 const editProfileRender = async (req, res) => {
     const user = await findUser(req.user._id);
     res.render("editProfile", { existingdata: user });
-    console.log(user)
+    
 }
 const editProfileController = async (req, res) => {
     const id = req.body.id
