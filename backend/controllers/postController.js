@@ -1,4 +1,6 @@
 const findUser = require("../api/findUser");
+const findPosts = require("../api/getPosts");
+const likeCounter = require("../api/likeCounter");
 const postModel = require("../models/Posts");
 const User = require("../models/Users");
 
@@ -35,4 +37,23 @@ const createPostController = async (req, res) => {
   });
 };
 
-module.exports = { createPostRender, createPostController };
+const viewPostRender = async (req, res) => {
+  const postData = await findPosts(req.user);
+  res.render("viewpost", { posts: postData[0] });
+};
+
+const viewPostController = async (req, res) => {};
+
+const likeCountController = async (req, res) => {
+  console.log("like count increased");
+  // await likeCounter(post);
+  res.send("post liked");
+};
+
+module.exports = {
+  createPostRender,
+  createPostController,
+  viewPostRender,
+  viewPostController,
+  likeCountController,
+};

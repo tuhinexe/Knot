@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const app = express();
-const userModel = require("./models/Users");
-const fetchUser = require("./api/findUser");
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
 const signUpRouter = require("./routes/signup");
@@ -11,7 +9,8 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
-const postRouter = require("./routes/addpost");
+const postRouter = require("./routes/post");
+const devApiRouter = require("./routes/devApi");
 const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
 const passport = require("passport");
@@ -37,24 +36,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
 app.use("/signup", signUpRouter);
 app.use("/auth", authRouter);
 app.use("/login", loginRouter);
-
+app.use("/devapi", devApiRouter);
 app.use(checkAuthorized);
-
 
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
-app.use("/addpost", postRouter);
-app.get("/userdetails", (req, res) => {
-  fetchUser(req.user).then((user) => {
-    res.send(user);
-  });
-});
+app.use("/post", postRouter);
+
 (async () => {
   await connectDB(process.env.DB_URI);
 })();

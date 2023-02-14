@@ -29,10 +29,15 @@ passport.use(
         email: profile._json.email,
         bio: "",
         profilePic_url: "",
-
       };
-      User.findOrCreate(userData, function (err, user) {
-        return done(err, user);
+      User.findOne({ googleId: profile.id }, function (err, user) {
+        if (user) {
+          return done(err, user);
+        } else {
+          User.create(userData, function (err, user) {
+            return done(err, user);
+          });
+        }
       });
     }
   )
