@@ -28,7 +28,7 @@ passport.use(
         lastname: profile.name.familyName,
         email: profile._json.email,
         bio: "",
-        profilePic_url: "",
+        profilePic_url: `https://api.dicebear.com/5.x/lorelei-neutral/svg?seed=${profile.id}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
       };
       User.findOne({ googleId: profile.id }, function (err, user) {
         if (user) {
