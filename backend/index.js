@@ -44,12 +44,7 @@ app.use(checkAuthorized);
 
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
-app.use("/addpost", postRouter);
-app.get("/userdetails", (req, res) => {
-  fetchUser(req.user).then((user) => {
-    res.send(user);
-  });
-});
+app.use("/post", postRouter);
 (async () => {
   await connectDB(process.env.DB_URI);
 })();
