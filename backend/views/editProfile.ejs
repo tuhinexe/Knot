@@ -7,6 +7,28 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <form action="/profile/update" method="post">
+            <div>
+                <input type="text" class="input" placeholder="First Name" name="firstname" value="<%=existingdata.firstname%>" id="" required>
+            </div>
+            <div>
+                <input type="text" class="input" placeholder="Last Name" name="lastname" value="<%=existingdata.lastname%>" id="" required>
+            </div>
+            <div>
+                <input type="text" class="input" placeholder="Username" name="username" value="<%=existingdata.username%>" id="" required>
+            </div>
+            <div>
+                <input type="date" class="input" placeholder="Date of birth" name="dob" value="<%=existingdata.date_of_birth%>" id="" required>
+            </div>
+            <div>
+                <input type="email" class="input" placeholder="Email Address" name="email" value="<%=existingdata.email%>" id="" required>
+            </div>
+            <div>
+                <input type="submit" class="submit hovereffect" value="Submit" id="">
+            </div>
+        </form>
+    </div>
     
 </body>
 </html>
