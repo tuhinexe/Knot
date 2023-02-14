@@ -39,6 +39,8 @@
     --extra-bold: 'Mukta-ExtraBold';
     --extra-light: 'Mukta-extraLight';
 /* Colors */
+    --body-color: #16213E;
+    --secondary-body-color: #1D2D44;
     --primary-color: #BCEAD5;
     --secondary-color: #DEF5E5;
     --ligh-color: #9ED5C5;
@@ -49,6 +51,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+body{
+    background-color: var(--body-color);
 }
 img{
     object-fit: cover;

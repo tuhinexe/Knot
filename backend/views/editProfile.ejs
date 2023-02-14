@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Knot</title>
 </head>
+
 <body>
-    
+    <div>
+        <form action="/profile/update" method="post">
+            <input type="text" class="input" placeholder="First Name" name="firstname"
+                value="<%=existingdata.firstname%>" id="" required>
+            <input type="text" class="input" placeholder="Last Name" name="lastname" value="<%=existingdata.lastname%>"
+                id="" required>
+            <input type="text" class="input" placeholder="Username" name="username" value="<%=existingdata.username%>"
+                id="" required>
+            <input type="date" class="input" placeholder="Date of birth" name="dob"
+                value="<%=existingdata.date_of_birth%>" id="" required>
+            <input type="email" class="input" placeholder="Email Address" name="email" value="<%=existingdata.email%>"
+                id="" required>
+            <input type="hidden" name="id" value="<%=existingdata._id%>" id="">
+            <input type="submit" class="submit hovereffect" value="Submit" id="">
+        </form>
+    </div>
 </body>
+
 </html>
