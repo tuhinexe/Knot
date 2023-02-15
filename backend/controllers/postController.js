@@ -45,10 +45,28 @@ const viewPostRender = async (req, res) => {
 const viewPostController = async (req, res) => {};
 
 const likeCountController = async (req, res) => {
-  console.log("like count increased");
-  // await likeCounter(post);
-  res.send("post liked");
+  if (!req.body.upvotes) return res.status(401).send("Unauthorized");
+  try {
+    const postId = req.body.postId;
+    const currentLike = parseInt(req.body.upvotes);
+    const currentDisLike = parseInt(req.body.downvotes);
+    await likeCounter.increaseLike(postId, currentLike, currentDisLike);
+  } catch (err) {
+    console.log(err);
+  }
 };
+const dislikeCountController = async (req, res) => {
+  if (!req.body.downvotes) return res.status(401).send("Unauthorized");
+  try {
+    const postId = req.body.postId;
+    const currentLike = parseInt(req.body.upvotes);
+    const currentDisLike = parseInt(req.body.downvotes);
+    await likeCounter.decreaseLike(postId, currentLike, currentDisLike);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
 module.exports = {
   createPostRender,
@@ -56,4 +74,5 @@ module.exports = {
   viewPostRender,
   viewPostController,
   likeCountController,
+  dislikeCountController
 };

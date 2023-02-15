@@ -1,11 +1,20 @@
 const userModel = require("../models/Users");
 const postModel = require("../models/Posts");
 
-async function increaseLike(post) {
-  const postFound = await postModel.findOneAndUpdate(
-    { _id: post._id },
-    { stats: { upvotes: post.stats.upvotes + 1 } }
-  );
+async function increaseLike(postId, currentLike, currentDisLike) {
+  const postFound = await postModel.findByIdAndUpdate(postId, {
+    stats: { upvotes: currentLike + 1, downvotes: currentDisLike },
+  });
+  if (postFound) {
+    return postFound.posts;
+  } else {
+    console.log("posts not found");
+  }
+}
+async function decreaseLike(postId, currentLike, currentDislike) {
+  const postFound = await postModel.findByIdAndUpdate(postId, {
+    stats: { upvotes: currentLike, downvotes: currentDislike + 1 },
+  });
   if (postFound) {
     return postFound.posts;
   } else {
@@ -13,4 +22,4 @@ async function increaseLike(post) {
   }
 }
 
-module.exports = increaseLike;
+module.exports = { increaseLike, decreaseLike };

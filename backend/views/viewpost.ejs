@@ -15,17 +15,21 @@
             <div id="post" data-postid="<%=posts._id%>">
                 <p>Post created by: <%=posts.creator%>
                 </p>
-                <P>Post says: <%=posts.content%>
-                </P>
+                <p>Post says: <%=posts.content%>
+                </p>
+                <p>Post likes: <%=posts.stats.upvotes%>
+                </p>
+                <p>Post dislikes: <%=posts.stats.downvotes%>
+                </p>
             </div>
-            <a href="#">
+            <a href="">
                 <div class="alternates">
-                    <button id="likeButton" class="hovereffect" onclick="">Like 👌</button>
+                    <button id="likeButton" class="hovereffect" data-postid="<%=posts._id%>" data-upvotes="<%=posts.stats.upvotes%>" data-downvotes="<%=posts.stats.downvotes%>">Like 👌</button>
                 </div>
             </a>
-            <a href="#">
+            <a href="">
                 <div class="alternates">
-                    <button id="dislikButton" class="hovereffect">Dislike 🤢</button>
+                    <button id="dislikeButton" class="hovereffect" data-postid="<%=posts._id%>" data-upvotes="<%=posts.stats.upvotes%>" data-downvotes="<%=posts.stats.downvotes%>">Dislike 🤢</button>
                 </div>
             </a>
         </div>
