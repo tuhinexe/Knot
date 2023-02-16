@@ -22,7 +22,7 @@ const signUpController = async (req, res) => {
 };
 
 const loginRender = (req, res) => {
-  res.render("login");
+  res.render("login",{pageTitle: 'Knot - Login'});
 };
 
 const loginController = async (req, res) => {
