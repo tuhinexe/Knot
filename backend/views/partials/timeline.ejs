@@ -4,14 +4,33 @@
 
 <div class="post-container">
     <div class="post-creator">
-        <img class="post-profile" src="<%= profilePic %>" alt="">
-        <a href="">Ami create korlam</a>
+        <img class="post-profile" src="<%= post.creator.profilePic_url %>" alt="">
         <div class="post-creator-name">
-            <p>hii</p>
+            <a href=""><%= post.creator.firstname + ' ' + post.creator.lastname %></a>
+            <small>Today 07:26</small>
         </div>
     </div>
     <div class="post-content">
-        <p>hii</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia omnis necessitatibus cumque laudantium aperiam delectus minima nostrum illo voluptatum. Unde iusto et ab enim cupiditate eligendi dolorem sed nulla minus.</p>
+        <img class="post-image" src="<%= post.creator.profilePic_url %>" alt="">
+    </div>
+    <div class="interaction">
+        <div class="like">
+            <i class='bx bx-sm bx-upvote '></i>
+            <span>Upvote</span>
+        </div>
+        <div class="like">
+            <i class='bx bx-sm bx-downvote'></i>
+            <span>Downvote</span>
+        </div>
+        <div class="comment">
+            <i class='bx bx-sm bx-comment'></i>
+            <span>Comment</span>
+        </div>
+        <div class="share">
+            <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
+            <span>Share</span>
+        </div>
     </div>
 </div>
 </div>

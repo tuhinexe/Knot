@@ -1,20 +1,122 @@
+@import 'global.css';
+
+a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+.post-section{
+    padding-top: 5rem;
+}
 .posts{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 15px;
 }
 .post-container{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
     background-color: var(--secondary-body-color);
-    width: 60%;
+    width: 35%;
     height: 100%;
+    padding: 1.5rem 1.5rem 0.7rem 1.5rem;
+    border-radius: 10px;
+    gap: 1rem;
+    color: var(--secondary-color);
+    font-family: var(--regular);
+}
+.post-creator{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    
+}
+.post-creator-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+.post-content{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem;
+    background-color: var(--body-color);
+    border-radius: 10px;
+    gap: 0.8rem;
+    font-size: large;
+}
+.post-image{
+    width: 100%;
+    max-width: 80%;
+    border-radius: 10px;
+}
+.post-creator-name small{
+    color: var(--dark-color);
+}
+.interaction, .like, .comment, .share{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: small;
+}
+.interaction-icons{
+    font-size: 0.5rem;
 }
 
 .post-profile{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+.like, .comment, .share{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/* .share i{
+    margin-left: auto;
+} */
+
+/* Media queries */
+@media screen and (max-width: 1120px) and (min-width: 768px){
+    .post-section{
+        padding-top: 5rem;
+    }
+    .interaction span{
+        display: none;
+    }
+    .like, .comment, .share{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 767px){
+    .post-container{
+        width: 100%;
+    }
+    .interaction{
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .interaction span{
+        display: none;
+    }
+    .like, .comment, .share{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .post-section{
+        padding-top: 0;
+    }
+
 }

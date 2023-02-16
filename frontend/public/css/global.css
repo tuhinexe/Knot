@@ -54,9 +54,25 @@
 }
 body{
     background-color: var(--body-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-color) var(--body-color);
 }
 img{
     object-fit: cover;
     max-width: 100%;
     width: 100%;
 }
+::-webkit-scrollbar { width: 1rem; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--dark-color);
+  border-radius: 1rem;
+  border: .3rem solid var(--body-color);
+ 
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+  }
+::-webkit-scrollbar-track {
+  background-color: var(--body-color);
+}
+

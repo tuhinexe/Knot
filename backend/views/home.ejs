@@ -1,10 +1,11 @@
 <%- include ('partials/header',{pageTitle: pageInfo.title}) %>
 <%- include ('partials/nav',{profilePic: "https://api.dicebear.com/5.x/lorelei-neutral/svg?seed=107603638938447097106&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear", pageName: pageInfo.pagename }) %>
 
-<%- include ('partials/timeline',{profilePic: pageInfo.profilePic}) %>
 
-<% posts.map(post =>{ %>
-    <p style="color: aliceblue;"><%= post.content %></p>
-    <p style="color: aliceblue;">Created By <%= post.creator.firstname + ' ' + post.creator.lastname %></p>
-    
-<% }) %>
+<section class="post-section">
+
+    <% posts.map(post =>{ %>
+        <%- include ('partials/timeline',{post: post}) %>
+        
+    <% }) %>
+</section>
