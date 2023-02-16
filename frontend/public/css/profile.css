@@ -1,1 +1,61 @@
-@import 'global.css';
+@import "global.css";
+
+.profileDetails {
+  font-family: var(--light);
+  font-size: smaller;
+  color: var(--secondary-color);
+}
+
+.followers,
+.followings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.connections {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+.bioAndConnections {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.bio {
+  margin-right: auto;
+}
+
+.profileCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: var(--secondary-body-color);
+    height: 100%;
+    gap: 10%;
+    margin-inline: auto;
+}
+
+.profilePic {
+  max-width: 10rem;
+  max-height: 10rem;
+  min-width: 10rem;
+  min-height: 10rem;
+  border-radius: 50%;
+}
+.bioAndConnections h3 {
+  font-family: var(--light);
+  font-size: large;
+  color: var(--dark-color);
+}
+.bioAndConnections p {
+  font-family: var(--extra-light);
+  font-size: large;
+  color: var(--light-color);
+}

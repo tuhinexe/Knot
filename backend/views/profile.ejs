@@ -1,28 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
-    <title>Knot Sign in</title>
-</head>
-<body>
-    <div class="box">
-     <div class="container">
-        <div class="details">
-            <p>Hii I am <%=user.firstname%></p>
-            <p>My last name is <%=user.lastname%></p>
-            <p>Hii my bio is <%=user.bio%></p>
-            <p>Hii my email <%=user.email%></p>
-            <img style="border-radius: 50%;" src="<%=user.profilePic_url%>" alt="">
-            <p>this is an add post button</p>
-        </div>
-        <a href="/post/add">
-        <div class="alternates">
-            <button type="submit" id="google" class="hovereffect">🔥 add post</button>
-        </div> </a>
-     </div>
- </div>  
- </body>
-</html>
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: profilePic, pageName: "" }) %>
+        <div class="profileCard">
+            <div class="profileDetails">
+                <h1 class="fullName">
+                    <%=user.firstname%>
+                        <%=user.lastname%>
+                </h1>
+            </div>
+            <div>
+                <img src="<%=profilePic%>" alt="" class="profilePic">
+            </div>
+            <div class="bioAndConnections">
+                <div class="connections">
+                    <div class="followers">
+                        <p>
+                            <%=user.followers.length%>
+                        </p>
+                        <h3>Followers</h3>
+                    </div>
+                    <div class="followings">
+                        <p>
+                            <%=user.followers.length%>
+                        </p>
+                        <h3>Following</h3>
+                    </div>
+                </div>
+                <div class="bio">
+                    <h3>Bio</h3>
+                    <p>
+                        <%=user.bio%>
+                    </p>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="box">
+            <div class="container">
+                <div class="details">
+                    <p>Hii I am <%=user.firstname%>
+                    </p>
+                    <p>My last name is <%=user.lastname%>
+                    </p>
+                    <p>Hii my bio is <%=user.bio%>
+                    </p>
+                    <p>Hii my email <%=user.email%>
+                    </p>
+                    <img style="border-radius: 50%;" src="<%=user.profilePic_url%>" alt="">
+                    <p>this is an add post button</p>
+                </div>
+                <a href="/post/add">
+                    <div class="alternates">
+                        <button type="submit" id="google" class="hovereffect">🔥 add post</button>
+                    </div>
+                </a>
+            </div>
+        </div> -->

@@ -1,28 +1,14 @@
 const findUser = require('../api/findUser');
 const updateUser = require('../api/updateUser');
 
-// ----------------
-
 const viewProfileRender = async (req, res) => {
     const userData = await findUser(req.user);
-    res.render("profile", { user: userData })
+    let profilePic = req.user.profilePic_url;
+    res.render("profile", { user: userData, profilePic: profilePic, pageTitle: 'Knot - Profile' })
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// ----------------
 const editProfileRender = async (req, res) => {
     const user = await findUser(req.user._id);
     res.render("editProfile", { existingdata: user });
