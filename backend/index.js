@@ -53,7 +53,7 @@ app.use("/post", postRouter);
 
 //use wildcard to catch all routes
 app.get("*", (req, res) => {
-  res.send("404 page not found");
+  res.render("404");
 });
 
 const PORT = process.env.PORT || 80;
