@@ -60,6 +60,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 ::-webkit-input-placeholder{
@@ -146,4 +147,8 @@ label a{
 
 .credentials{
     font-size: 16px;
+}
+#eyeicon{
+    position: absolute;
+    right: 1.5rem;
 }

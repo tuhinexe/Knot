@@ -1,5 +1,6 @@
 <%- include ('partials/header', {pageTitle: pageTitle}) %>
     <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js" defer></script>
 </head>
 
 <body>
@@ -37,7 +38,8 @@
                     <input type="email" class="input" placeholder="Email Address" name="email" id="" required>
                 </div>
                 <div class="input-field">
-                    <input type="Password" class="input" placeholder="Password" name="password" id="" required>
+                    <input type="password" class="input" placeholder="Password" name="password" id="password" required>
+                    <img src="/images/closedeye.png" class="userpass_logo" id="eyeicon" alt="">
                 </div>
 
                 <div class="input-field">
