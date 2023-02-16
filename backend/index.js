@@ -4,6 +4,7 @@ const path = require("path");
 const app = express();
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
+const homeRouter = require("./routes/home");
 const signUpRouter = require("./routes/signup");
 const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
@@ -42,6 +43,7 @@ app.use("/login", loginRouter);
 app.use("/devapi", devApiRouter);
 app.use(checkAuthorized);
 
+app.use("/", homeRouter)
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);

@@ -62,7 +62,19 @@ a{
 .nav-item-effect:hover .nav-item{
     color: var(--secondary-color);
 }
+.active{
+    background-color: var(--secondary-body-color);
+    transform:translateX(10%)  rotateZ(4deg); 
+}
+.active .nav-item{
+    color: var(--secondary-color);
+}
 
+.profile-logo{
+    max-width: 48px;
+    max-height: 48px;
+    border-radius: 50%;
+}
 
 
 

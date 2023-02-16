@@ -1,3 +1,10 @@
-<%- include ('partials/header') %>
-<title>Knot - Home</title>
-<%- include ('partials/nav') %>
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+<%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+<%- include ('partials/timeline',{profilePic: pageInfo.profilePic}) %>
+
+<% posts.map(post =>{ %>
+    <p style="color: aliceblue;"><%= post.content %></p>
+    <p style="color: aliceblue;">Created By <%= post.creator.firstname + ' ' + post.creator.lastname %></p>
+    
+<% }) %>
