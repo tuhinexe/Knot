@@ -46,15 +46,15 @@ header{
 
 .input-field .input{
     height: 45px;
-    width: 87%;
+    width: 100%;
     border: none;
     border-radius: 30px;
     color: rgb(66, 69, 69);
     font-size: 15px;
     padding: 0 0 0 45px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255, 0.1);
     outline: none;
-    margin: 10px;;
+    margin: 10px 0 10px 10px;
 }
 .input-field{
     display: flex;
