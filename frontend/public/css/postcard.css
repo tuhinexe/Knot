@@ -59,7 +59,7 @@ a{
 .post-creator-name small{
     color: var(--dark-color);
 }
-.interaction, .like, .comment, .share{
+.interaction, .like, .comment, .share, .dislike{
     display: flex;
     justify-content: flex-start;
     width: 100%;
@@ -76,7 +76,7 @@ a{
     height: 50px;
     border-radius: 50%;
 }
-.like, .comment, .share{
+.like, .dislike, .comment, .share{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -114,7 +114,7 @@ a{
     .interaction span{
         display: none;
     }
-    .like, .comment, .share{
+    .like, .comment, .share, .dislike{
         display: flex;
         justify-content: center;
         align-items: center;

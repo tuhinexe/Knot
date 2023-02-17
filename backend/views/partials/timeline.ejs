@@ -14,13 +14,13 @@
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia omnis necessitatibus cumque laudantium aperiam delectus minima nostrum illo voluptatum. Unde iusto et ab enim cupiditate eligendi dolorem sed nulla minus.</p>
         <img class="post-image" src="<%= post.creator.profilePic_url %>" alt="">
     </div>
-    <div class="interaction">
-        <div class="like">
-            <i class='bx bx-sm bx-upvote '></i>
+    <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>" data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>">
+        <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
+            <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
             <span>Upvote</span>
         </div>
-        <div class="like">
-            <i class='bx bx-sm bx-downvote'></i>
+        <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
+            <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
             <span>Downvote</span>
         </div>
         <div class="comment">

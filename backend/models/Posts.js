@@ -13,14 +13,14 @@ const postSchema = mongoose.Schema(
     },
     timestamp: { type: Date, default: Date.now },
     stats: {
-      upvotes: { type: Number, default: 0 },
-      downvotes: { type: Number, default: 0 },
+      upvoted_by: { type: Array, default: [] },
+      downvoted_by: { type: Array, default: [] },
       shares: { type: Number, default: 0 },
+      commented_by: { type: Array, default: [] },
       comments: { type: Number, default: 0 },
     },
   },
   { timestamps: true }
 );
-
 
 module.exports = mongoose.model("Post", postSchema);

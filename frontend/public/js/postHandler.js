@@ -1,37 +1,62 @@
-// import GlobalEvenListener from ("../utils/eventListener.js");
+import { likePost, dislikePost } from "../utils/postReaction.js";
+import { globalEvent } from "../utils/eventListener.js";
+async function likePostEvent(e) {
+  if (Array.from(e.target.parentElement.classList).includes("liked")) {
+    console.log("already liked");
+    return;
+  }
+  const postId =
+    e.target.parentElement.parentElement.getAttribute("data-post-id");
+  const currentLike =
+    e.target.parentElement.parentElement.getAttribute("data-upvotes");
+  const currentDisLike =
+    e.target.parentElement.parentElement.getAttribute("data-downvotes");
+  const userId =
+    e.target.parentElement.parentElement.getAttribute("data-user-id");
+    if (e.target.classList.length > 0) {
+      e.target.classList.toggle("bxs-upvote");
+    } else {
+      return
+    }
+  e.target.parentElement.classList.add("liked");
+  e.target.parentElement.nextElementSibling.firstElementChild.classList.remove(
+    "bxs-downvote"
+  );
+  e.target.parentElement.nextElementSibling.classList.remove("disliked");
+  e.target.parentElement.nextElementSibling.firstElementChild.classList.add(
+    "bx-downvote"
+  );
+  await likePost(e, postId, currentLike, currentDisLike, userId);
+}
 
-let likeButton = document.getElementById("likeButton");
-let dislikeButton = document.getElementById("dislikeButton");
+async function dislikePostEvent(e) {
+  if (Array.from(e.target.parentElement.classList).includes("disliked")) {
+    console.log("already disliked");
+    return;
+  }
+  const postId =
+    e.target.parentElement.parentElement.getAttribute("data-post-id");
+  const currentLike =
+    e.target.parentElement.parentElement.getAttribute("data-upvotes");
+  const currentDisLike =
+    e.target.parentElement.parentElement.getAttribute("data-downvotes");
+  const userId =
+    e.target.parentElement.parentElement.getAttribute("data-user-id");
+    if (e.target.classList.length > 0) {
+      e.target.classList.toggle("bxs-downvote");
+    } else {
+      return
+    }
+  e.target.parentElement.classList.add("disliked");
+  e.target.parentElement.previousElementSibling.firstElementChild.classList.remove(
+    "bxs-upvote"
+  );
+  e.target.parentElement.previousElementSibling.classList.remove("liked");
+  e.target.parentElement.previousElementSibling.firstElementChild.classList.add(
+    "bx-upvote"
+  );
+  await dislikePost(e, postId, currentLike, currentDisLike, userId);
+}
 
-likeButton.addEventListener("click", likePost);
-dislikeButton.addEventListener("click", dislikePost);
-
-async function likePost(e) {
-  e.preventDefault();
-  const postId = document.getElementById("likeButton").dataset.postid;
-  const currentLike = document.getElementById("likeButton").dataset.upvotes;
-  const currentDisLike = document.getElementById("likeButton").dataset.downvotes;
-  await fetch(`http://localhost/devapi/upvote`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ postId: postId, upvotes: currentLike, downvotes: currentDisLike }),
-  });
-};
-
-async function dislikePost(e) {
-  e.preventDefault();
-  const postId = document.getElementById("dislikeButton").dataset.postid;
-  const currentLike = document.getElementById("likeButton").dataset.upvotes;
-  const currentDisLike = document.getElementById("dislikeButton").dataset.downvotes;
-  await fetch(`http://localhost/devapi/downvote`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ postId: postId, upvotes: currentLike, downvotes: currentDisLike }),
-  });
-};
+globalEvent("click", ".like", likePostEvent);
+globalEvent("click", ".dislike", dislikePostEvent);

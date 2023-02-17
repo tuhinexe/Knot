@@ -1,14 +1,16 @@
 <%- include ('partials/header',{pageTitle: pageTitle}) %>
     <%- include ('partials/nav',{profilePic: profilePic, pageName: "" }) %>
         <div class="profileCard">
-            <div class="profileDetails">
-                <h1 class="fullName">
-                    <%=user.firstname%>
-                        <%=user.lastname%>
-                </h1>
-            </div>
-            <div>
-                <img src="<%=profilePic%>" alt="" class="profilePic">
+            <div class="nameAndDp">
+                <div class="profileDetails">
+                    <h1 class="fullName">
+                        <%=user.firstname%>
+                            <%=user.lastname%>
+                    </h1>
+                </div>
+                <div>
+                    <img src="<%=profilePic%>" alt="" class="profilePic">
+                </div>
             </div>
             <div class="bioAndConnections">
                 <div class="connections">
@@ -20,18 +22,27 @@
                     </div>
                     <div class="followings">
                         <p>
-                            <%=user.followers.length%>
+                            <%=user.following.length%>
                         </p>
                         <h3>Following</h3>
                     </div>
+                    <div class="points">
+                        <p>
+                            <%=user.points%>
+                        </p>
+                        <h3>Points</h3>
+                    </div>
                 </div>
-                <div class="bio">
-                    <h3>Bio</h3>
-                    <p>
-                        <%=user.bio%>
+                <div class="bioAndUsername">
+                    <p class="profile-bio">
+                        I am a very good boy
+                    </p>
+                    <p class="profile-username">
+                        <%=user.username%>
                     </p>
                 </div>
             </div>
+        </div>
 
 
 
@@ -44,7 +55,7 @@
 
 
 
-            <!-- <div class="box">
+        <!-- <div class="box">
             <div class="container">
                 <div class="details">
                     <p>Hii I am <%=user.firstname%>

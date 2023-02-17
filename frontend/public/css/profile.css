@@ -2,12 +2,41 @@
 
 .profileDetails {
   font-family: var(--light);
-  font-size: smaller;
+  font-size: clamp(1rem, 2vmin, 1.5rem);
   color: var(--secondary-color);
+}
+.profileCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: var(--secondary-body-color);
+  height: 100%;
+  width: 40%;
+  gap: clamp(1rem, 7vmin, 4rem);
+  border-radius: 0px 0px 10px 10px;
+  padding: 6rem 0rem 2rem 0rem;
+  margin-inline: auto;
+}
+.nameAndDp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.bioAndConnections {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: clamp(0.01rem, 5vmin, 0.4rem);
 }
 
 .followers,
-.followings {
+.followings,
+.points {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,44 +47,57 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  gap: 1rem;
+  gap: clamp(0.8rem, 2.5vmin, 2rem);
 }
-.bioAndConnections {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-.bio {
+.bioAndUsername {
   margin-right: auto;
 }
-
-.profileCard{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    background-color: var(--secondary-body-color);
-    height: 100%;
-    gap: 10%;
-    margin-inline: auto;
+.profile-bio {
+  font-family: var(--light);
+  font-size: clamp(0.8rem, 2vmin, 1.5rem);
+  color: var(--light-color);
+  letter-spacing: 0.2px;
+}
+.profile-username {
+  font-family: var(--light);
+  font-size: clamp(0.6rem, 80vmin, 1.2rem);
+  color: var(--light-color);
 }
 
 .profilePic {
-  max-width: 10rem;
-  max-height: 10rem;
-  min-width: 10rem;
-  min-height: 10rem;
+  --size: 6rem;
+  max-width: clamp(var(--size), 15vmin, 12rem);
+  max-height: clamp(var(--size), 15vmin, 12rem);
+  min-width: clamp(var(--size), 15vmin, 12rem);
+  min-height: clamp(var(--size), 15vmin, 12rem);
   border-radius: 50%;
 }
 .bioAndConnections h3 {
-  font-family: var(--light);
-  font-size: large;
+  font-family: var(--extra-light);
+  font-size: clamp(1rem, 2.2vmin, 2rem);
   color: var(--dark-color);
+  letter-spacing: 1px;
 }
 .bioAndConnections p {
   font-family: var(--extra-light);
-  font-size: large;
+  font-size: clamp(0.8rem, 2vmin, 1.5rem);
   color: var(--light-color);
+}
+
+@media screen and (max-width: 1400px) {
+  .profileCard {
+    padding: 1.6rem 0.5rem 1rem 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .profileDetails {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1400px)   {
+  .profileCard {
+    padding: 7rem 0rem 2rem 0rem;
+  }
 }

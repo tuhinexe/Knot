@@ -21,6 +21,7 @@ const signUpController = async (req, res) => {
   await initializeSignup(userData, req.body.password, req, res);
 };
 
+
 const loginRender = (req, res) => {
   res.render("login",{pageTitle: 'Knot - Login'});
 };

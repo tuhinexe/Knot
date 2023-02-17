@@ -6,6 +6,7 @@ const feedController = async (req,res) => {
         title: 'Knot - Home',
         pagename : 'home',
         profilePic: req.user.profilePic_url,
+        userId: req.user._id,
     }
 
 try{
