@@ -81,6 +81,9 @@ a{
     justify-content: flex-start;
     align-items: flex-start;
 }
+.interaction i,.interaction span{
+    cursor: pointer;
+}
 /* .share i{
     margin-left: auto;
 } */

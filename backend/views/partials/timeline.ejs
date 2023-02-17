@@ -7,7 +7,7 @@
         <img class="post-profile" src="<%= post.creator.profilePic_url %>" alt="">
         <div class="post-creator-name">
             <a href=""><%= post.creator.firstname + ' ' + post.creator.lastname %></a>
-            <small>Today 07:26</small>
+            <small><%= new Intl.RelativeTimeFormat('en',{style: 'long'}).format((((post.timestamp.valueOf()) - Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %></small>
         </div>
     </div>
     <div class="post-content">
