@@ -11,6 +11,7 @@ const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const postRouter = require("./routes/post");
+const pollsRouter = require("./routes/polls");
 const devApiRouter = require("./routes/devApi");
 const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
@@ -47,6 +48,7 @@ app.use("/", homeRouter)
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
+app.use("/poll",pollsRouter);
 (async () => {
   await connectDB(process.env.DB_URI);
 })();
