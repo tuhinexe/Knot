@@ -11,7 +11,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
+    margin-top: 15px;
 }
 .post-container{
     display: flex;
@@ -42,19 +42,22 @@ a{
 }
 .post-content{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 0.6rem;
     background-color: var(--body-color);
     border-radius: 10px;
+    width: 100%;
     gap: 0.8rem;
     font-size: large;
 }
+
 .post-image{
     width: 100%;
-    max-width: 90%;
+    max-width: 100%;
     border-radius: 10px;
+    margin-inline: auto;
 }
 .post-creator-name small{
     color: var(--dark-color);
@@ -125,5 +128,13 @@ a{
     .post-section{
         padding-top: 0;
     }
+    .posts{
+        margin: 15px;
+    }
 
 }
+@media screen and (min-width: 769px) and (max-width: 1400px)   {
+    .post-container {
+      width: 60%;
+    }
+  }

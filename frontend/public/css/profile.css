@@ -12,10 +12,10 @@
   flex-wrap: nowrap;
   background-color: var(--secondary-body-color);
   height: 100%;
-  width: 40%;
+  width: 35%;
   gap: clamp(1rem, 7vmin, 4rem);
   border-radius: 0px 0px 10px 10px;
-  padding: 6rem 0rem 2rem 0rem;
+  padding: 6rem 1.5rem 0.7rem 1.5rem;
   margin-inline: auto;
 }
 .nameAndDp {
@@ -84,6 +84,21 @@
   color: var(--light-color);
 }
 
+/* styling the profile navigation */
+.profileNav-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  background-color: var(--secondary-body-color);
+  gap: clamp(5rem, 25vmin, 10rem);
+  margin-top: 1rem;
+  width: 35%;
+  margin-inline: auto;
+  padding: 1rem;
+  border-radius: 10px;
+}
 @media screen and (max-width: 1400px) {
   .profileCard {
     padding: 1.6rem 0.5rem 1rem 0.5rem;
@@ -94,10 +109,20 @@
   .profileDetails {
     display: none;
   }
+  .profileNav-items {
+    border-radius: 0px 0px 10px 10px;
+    padding: 1rem;
+    width: 100%;
+  }
 }
-
-@media screen and (min-width: 769px) and (max-width: 1400px)   {
+@media screen and (min-width: 769px) and (max-width: 1400px) {
   .profileCard {
     padding: 7rem 0rem 2rem 0rem;
+
+    width: 60%;
+  }
+  .profileNav-items {
+    width: 60%;
+    padding: 1rem;
   }
 }

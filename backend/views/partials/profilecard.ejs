@@ -1,0 +1,43 @@
+<div class="profileCard">
+    <div class="nameAndDp">
+        <div class="profileDetails">
+            <h1 class="fullName">
+                <%=user.firstname%>
+                    <%=user.lastname%>
+            </h1>
+        </div>
+        <div>
+            <img src="<%=profilePic%>" alt="" class="profilePic">
+        </div>
+    </div>
+    <div class="bioAndConnections">
+        <div class="connections">
+            <div class="followers">
+                <p>
+                    <%=user.followers.length%>
+                </p>
+                <h3>Followers</h3>
+            </div>
+            <div class="followings">
+                <p>
+                    <%=user.following.length%>
+                </p>
+                <h3>Following</h3>
+            </div>
+            <div class="points">
+                <p>
+                    <%=user.points%>
+                </p>
+                <h3>Points</h3>
+            </div>
+        </div>
+        <div class="bioAndUsername">
+            <p class="profile-bio">
+                I am a very good boy
+            </p>
+            <p class="profile-username">
+                <%=user.username%>
+            </p>
+        </div>
+    </div>
+</div>

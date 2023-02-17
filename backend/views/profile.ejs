@@ -1,48 +1,24 @@
 <%- include ('partials/header',{pageTitle: pageTitle}) %>
     <%- include ('partials/nav',{profilePic: profilePic, pageName: "" }) %>
-        <div class="profileCard">
-            <div class="nameAndDp">
-                <div class="profileDetails">
-                    <h1 class="fullName">
-                        <%=user.firstname%>
-                            <%=user.lastname%>
-                    </h1>
-                </div>
-                <div>
-                    <img src="<%=profilePic%>" alt="" class="profilePic">
-                </div>
+        <%- include ('partials/profilecard',{user: user }) %>
+    
+<div class="profileNavigation">
+    <ul class="profileNav-items">
+        <!-- <li class=""><a class="" href=""><i class='bx bx-md bx-news'></i></a></li>
+        <li class=""><a class="" href=""><i class='bx bx-md bx-target-lock'></i></a></li>
+        <li class=""><a class="" href=""><i class='bx bx-md bx-poll'></i></a></li>
+        <li class=""><a class="" href=""><i class='bx bx-md bxs-user'></i></a></li> -->
+        <li class=""><a class="" href=""><i class='bx bx-md bxs-customize'></i></a></li>
+        <li class=""><a class="" href=""><i class='bx bx-md bxs-widget'></i></a></li>
+        <li class=""><a class="" href=""><i class='bx bx-md bxs-edit'></i></a></li>
+    </ul>
+</div>
+            <div class="ownPosts">
+                <% posts.map(post=>{ %>
+                    <%- include ('partials/timeline',{post: post, userId: user._id, creatorDetails: creatorDetails}) %>
+
+                        <% }) %>
             </div>
-            <div class="bioAndConnections">
-                <div class="connections">
-                    <div class="followers">
-                        <p>
-                            <%=user.followers.length%>
-                        </p>
-                        <h3>Followers</h3>
-                    </div>
-                    <div class="followings">
-                        <p>
-                            <%=user.following.length%>
-                        </p>
-                        <h3>Following</h3>
-                    </div>
-                    <div class="points">
-                        <p>
-                            <%=user.points%>
-                        </p>
-                        <h3>Points</h3>
-                    </div>
-                </div>
-                <div class="bioAndUsername">
-                    <p class="profile-bio">
-                        I am a very good boy
-                    </p>
-                    <p class="profile-username">
-                        <%=user.username%>
-                    </p>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -55,7 +31,9 @@
 
 
 
-        <!-- <div class="box">
+
+
+            <!-- <div class="box">
             <div class="container">
                 <div class="details">
                     <p>Hii I am <%=user.firstname%>
