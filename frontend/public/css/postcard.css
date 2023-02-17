@@ -106,6 +106,9 @@ a{
     }
 }
 @media screen and (max-width: 767px){
+    .post-section{
+        padding-bottom: 4rem;
+    }
     .post-container{
         width: 100%;
         padding: 1rem;

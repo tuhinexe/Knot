@@ -1,7 +1,8 @@
 const findUser = require("../api/findUser");
 const findPosts = require("../api/getPosts");
 const likeCounter = require("../api/likeCounter");
-const postModel = require("../models/Posts");
+const imageUploader = require("../api/imageUploader");
+const addPost = require("../api/addPost");
 const User = require("../models/Users");
 
 const createPostRender = async (req, res) => {
@@ -9,32 +10,16 @@ const createPostRender = async (req, res) => {
 };
 
 const createPostController = async (req, res) => {
-  const userId = req.user._id;
+  const user = req.user;
   const content = req.body.content;
-  const newPost = new postModel({
-    content: content,
-    creator: userId,
-  });
-  newPost.save((err, post) => {
-    if (err) {
-      console.log(err);
-    } else {
-      try {
-        findUser(req.user).then((user) => {
-          user.posts.push(post._id);
-          user.save((err, user) => {
-            if (err) {
-              console.log(err);
-            } else {
-              res.redirect("/profile");
-            }
-          });
-        });
-      } catch (err) {
-        res.send(err.message);
-      }
-    }
-  });
+  const imageUrlMaker = req.body.basedImage;
+  const imageUrl = imageUrlMaker? await imageUploader(req.body.basedImage): '';
+  try {
+    await addPost(user, content, imageUrl);
+    res.redirect("/profile");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const viewPostRender = async (req, res) => {

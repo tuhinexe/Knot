@@ -17,7 +17,7 @@
             <p>
                 <%=post.content%>
             </p>
-            <img class="post-image" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+            <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
         </div>
         <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
             data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>">
