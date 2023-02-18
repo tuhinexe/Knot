@@ -12,7 +12,7 @@ const initializeSignup = async (userData, password, req, res) => {
         req,
         res,
         () => {
-          res.redirect("/profile");
+          res.redirect("/");
         }
       );
     }

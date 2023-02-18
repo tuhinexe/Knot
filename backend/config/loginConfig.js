@@ -13,7 +13,7 @@ const initializeLogin = async (userData, req, res) => {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, () => {
-        res.redirect("/profile");
+        res.redirect("/");
       });
     }
   });

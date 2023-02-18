@@ -11,7 +11,7 @@ router.get(
   "/google/login",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.redirect("/profile");
+    res.redirect("/");
   }
 );
 
