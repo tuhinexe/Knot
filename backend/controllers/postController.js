@@ -1,7 +1,5 @@
-const findUser = require("../api/findUser");
 const findPosts = require("../api/getPosts");
 const likeCounter = require("../api/likeCounter");
-const imageUploader = require("../api/imageUploader");
 const addPost = require("../api/addPost");
 const User = require("../models/Users");
 
@@ -12,11 +10,9 @@ const createPostRender = async (req, res) => {
 const createPostController = async (req, res) => {
   const user = req.user;
   const content = req.body.content;
-  const imageUrlMaker = req.body.basedImage;
-  const imageUrl = imageUrlMaker? await imageUploader(req.body.basedImage): '';
+  const imageUrl = req.body.imgUrl;
   try {
     await addPost(user, content, imageUrl);
-    res.redirect("/profile");
   } catch (err) {
     console.log(err);
   }

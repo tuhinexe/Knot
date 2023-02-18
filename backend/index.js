@@ -41,7 +41,6 @@ app.use(passport.session());
 app.use("/signup", signUpRouter);
 app.use("/auth", authRouter);
 app.use("/login", loginRouter);
-app.use("/devapi", devApiRouter);
 app.use(checkAuthorized);
 
 app.use("/", homeRouter)
@@ -49,6 +48,7 @@ app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
 app.use("/poll",pollsRouter);
+app.use("/api/v1", devApiRouter);
 (async () => {
   await connectDB(process.env.DB_URI);
 })();

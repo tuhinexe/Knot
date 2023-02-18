@@ -1,7 +1,7 @@
 async function likePost(event, postId, currentLike, currentDisLike, userId) {
   event.preventDefault();
   try {
-    await fetch(`http://localhost/devapi/upvote`, {
+    await fetch(`/api/v1/post/upvote`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -22,7 +22,7 @@ async function likePost(event, postId, currentLike, currentDisLike, userId) {
 async function dislikePost(event, postId, currentLike, currentDisLike, userId) {
   event.preventDefault();
   try {
-    await fetch(`http://localhost/devapi/downvote`, {
+    await fetch(`/api/v1/post/downvote`, {
       method: "POST",
       headers: {
         Accept: "application/json",

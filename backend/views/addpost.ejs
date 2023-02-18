@@ -15,13 +15,14 @@
 
 
             <div class="">
-                <form action="/post/add" method="post">
+                <form action="/post/add" class="submit-post" method="post">
                 <div class="input-field">
                     <input type="text" class="input" placeholder="Enter Post Content" name="content" id="content" required>
                 </div>
                 <div class="input-field">
-                    <input type="file" class="input" placeholder="Enter Post Content" name="postImage" id="input-file" required>
+                    <input type="file" class="input" accept="image/png, image/jpeg" placeholder="Enter Post Content" name="postImage" id="input-file" required>
                 </div>
+                <img class="image-preview" src="" alt="">
 
 
                     <div class="input-field">
@@ -34,6 +35,5 @@
     </div>
 </body>
 <script src="/js/addPostHandler.js"></script>
-<!-- <script src="/js/script.js"></script> -->
 
 </html>

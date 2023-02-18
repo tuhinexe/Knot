@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const controller = require("../controllers/postController");
-const checkAuthorized = require("../middlewares/checkAuth.js");
+const getSignature = require("../api/getSignature");
 
-router.route("/upvote").post(controller.likeCountController);
-router.route("/downvote").post(controller.dislikeCountController);
+router.route("/post/upvote").post(controller.likeCountController);
+router.route("/post/downvote").post(controller.dislikeCountController);
+router.route("/get-signature").post(getSignature);
 
 module.exports = router;
