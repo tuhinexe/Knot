@@ -4,15 +4,22 @@ const addPost = require("../api/addPost");
 const User = require("../models/Users");
 
 const createPostRender = async (req, res) => {
-  res.render("addpost");
+  const pageInfo = {
+    user: req.user,
+    title: 'Knot - New Post',
+    pagename : '',
+    profilePic: req.user.profilePic_url,
+}
+  res.render("addpost", {pageInfo: pageInfo});
 };
 
 const createPostController = async (req, res) => {
   const user = req.user;
   const content = req.body.content;
   const imageUrl = req.body.imgUrl;
+  const imageId = req.body.uploadedImgId
   try {
-    await addPost(user, content, imageUrl);
+    await addPost(user, content, imageUrl, imageId,res);
   } catch (err) {
     console.log(err);
   }

@@ -1,39 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include
+('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename })
+%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
-    <title>Knot create post</title>
-</head>
-
-<body>
-    <div class="box">
-        <div class="container">
-
-
-            <div class="">
-                <form action="/post/add" class="submit-post" method="post">
-                <div class="input-field">
-                    <input type="text" class="input" placeholder="Enter Post Content" name="content" id="content" required>
-                </div>
-                <div class="input-field">
-                    <input type="file" class="input" accept="image/png, image/jpeg" placeholder="Enter Post Content" name="postImage" id="input-file" required>
-                </div>
-                <img class="image-preview" src="" alt="">
-
-
-                    <div class="input-field">
-                        <input type="submit" class="submit hovereffect" value="Post now" id="">
-                    </div>
-                </form>
-            </div>
-
+<section class="post-section">
+  <div class="posts">
+    <div class="post-container">
+      <div class="post-creator">
+        <img
+          class="post-profile"
+          src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>"
+          alt=""
+        />
+        <div class="post-creator-name">
+          <a href="/profile"
+            ><%- pageInfo.user.firstname==undefined ? creatorDetails.creator :
+            pageInfo.user.firstname + ' ' + pageInfo.user.lastname %></a
+          >
         </div>
+      </div>
+      <form action="/post/add" class="submit-post" method="post">
+        <input
+          type="text"
+          placeholder="Be creative with the caption!"
+          name="content"
+          id="content"
+          autocomplete="off"
+        />
+        <span id="error-span"></span>
+        <input
+          type="file"
+          accept="image/png, image/jpeg"
+          placeholder="Enter Post Content"
+          name="postImage"
+          id="input-file"
+        />
+        <img class="image-preview" src="" alt="" />
+          <input type="submit" value="Post" id="post-submit-btn" />
+      </form>
     </div>
-</body>
-<script src="/js/addPostHandler.js"></script>
-
-</html>
+  </div>
+</section>

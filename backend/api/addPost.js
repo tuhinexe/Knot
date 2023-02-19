@@ -1,11 +1,12 @@
 const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
-const addPost = async (user, content, imageUrl) => {
+const addPost = async (user, content, imageUrl,imageId,res) => {
   const newPost = new postModel({
     content: content,
     creator: user._id,
     imagePath: imageUrl,
+    imageId: imageId
   });
   newPost.save((err, post) => {
     if (err) {
@@ -18,7 +19,7 @@ const addPost = async (user, content, imageUrl) => {
             if (err) {
               console.log(err);
             } else {
-              return
+              res.redirect("/")
             }
           });
         });

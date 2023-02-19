@@ -14,11 +14,3 @@ const getSignature = async (req, res) => {
 }
 
 module.exports = getSignature;
-
-// // Upload image to cloudinary
-// const uploadImage = async (image) => {
-//     const result = await cloudinary.uploader.upload(image);
-//     return result.url;
-//     };
-
-// module.exports = uploadImage;

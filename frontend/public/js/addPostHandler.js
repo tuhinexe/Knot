@@ -1,3 +1,13 @@
+const contentChanged = document.querySelector("#content");
+contentChanged.addEventListener("keypress", (e) => {
+    let errorSpan = document.querySelector("#error-span");
+    errorSpan.innerHTML = "";
+    if (e.target.value.length > 200) {
+        errorSpan.innerHTML = "Sorry! but bloggin is not allowed here";
+    }
+});
+
+
 // Listening to image field change
 
 const imageFieldChanegd = document.querySelector("#input-file");
@@ -51,8 +61,15 @@ const submitBtn = document.querySelector(".submit-post");
 submitBtn.addEventListener("submit", async (e) => {
     e.preventDefault();
     const url = location.href;
+    const errorSpan = document.querySelector("#error-span");
 
     const content = document.querySelector("#content").value || '';
+    if(content.length <= 0){
+        let randomNumber = Math.floor(Math.random() * 2);
+        errorSpan.style.textAlign = "center";
+        errorSpan.innerHTML = randomNumber === 0 ?`Please add content <br> "Something" is better than "Nothing" 🤞`: `Please add content <br> We need to hear something from you! 🤞`;
+        return;
+    }
     const isImage =  imageFieldChanegd.files.length <= 0? false : true;
     
     const postInfo = {
@@ -78,7 +95,7 @@ submitBtn.addEventListener("submit", async (e) => {
             body: JSON.stringify(postInfo),
         });
         if(response.redirected === true){
-            location.reload();
+            location.href = response.url;
             return;
         }
 
