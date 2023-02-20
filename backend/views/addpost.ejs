@@ -19,13 +19,13 @@
         </div>
       </div>
       <form action="/post/add" class="submit-post" method="post">
-        <input
-          type="text"
+        <textarea
           placeholder="Be creative with the caption!"
           name="content"
           id="content"
           autocomplete="off"
-        />
+          rows="6"
+        ></textarea>
         <span id="error-span"></span>
         <input
           type="file"
@@ -35,7 +35,7 @@
           id="input-file"
         />
         <img class="image-preview" src="" alt="" />
-          <input type="submit" value="Post" id="post-submit-btn" />
+        <input type="submit" value="Post" id="post-submit-btn" />
       </form>
     </div>
   </div>

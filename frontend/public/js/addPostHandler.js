@@ -2,9 +2,6 @@ const contentChanged = document.querySelector("#content");
 contentChanged.addEventListener("keypress", (e) => {
     let errorSpan = document.querySelector("#error-span");
     errorSpan.innerHTML = "";
-    if (e.target.value.length > 200) {
-        errorSpan.innerHTML = "Sorry! but bloggin is not allowed here";
-    }
 });
 
 
@@ -68,6 +65,11 @@ submitBtn.addEventListener("submit", async (e) => {
         let randomNumber = Math.floor(Math.random() * 2);
         errorSpan.style.textAlign = "center";
         errorSpan.innerHTML = randomNumber === 0 ?`Please add content <br> "Something" is better than "Nothing" 🤞`: `Please add content <br> We need to hear something from you! 🤞`;
+        return;
+    }
+    if (content.length > 200) {
+        errorSpan.style.textAlign = "center";
+        errorSpan.innerHTML = "Sorry! but bloggin is not allowed here <br> Keep your content short and sweet 🤞";
         return;
     }
     const isImage =  imageFieldChanegd.files.length <= 0? false : true;

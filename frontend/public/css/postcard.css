@@ -150,7 +150,7 @@ a{
     width: 100%;
     max-width: 100%;
 }
-.submit-post input{
+.submit-post input, .submit-post textarea{
     width: 100%;
     max-width: 100%;
     padding: 0.5rem;
@@ -162,9 +162,8 @@ a{
     color: var(--secondary-color);
 }
 #content{
-    text-align: center;
-    font-size: medium;
-    height: 100px;
+    /* text-align: left; */
+    font-size: small;
     resize: none;
 }
 #post-submit-btn{
