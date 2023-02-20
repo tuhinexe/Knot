@@ -50,7 +50,7 @@ app.use("/", homeRouter)
 app.use("/profile", profileRouter);
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
-app.use("/poll",pollsRouter);
+app.use("/polls",pollsRouter);
 app.use("/api/v1", devApiRouter);
 (async () => {
   await connectDB(process.env.DB_URI);

@@ -1,6 +1,6 @@
 const userModel = require("../models/Users");
 
-async function findPolls(user) {
+async function getPolls(user) {
   const userFound = await userModel.findById(user._id).populate("polls").exec();
   if (userFound) {
     return userFound.polls;
@@ -9,5 +9,5 @@ async function findPolls(user) {
   }
 }
 
-module.exports = findPolls;
+module.exports = getPolls;
 

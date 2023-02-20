@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Knot Sign in</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="container">
+            <div id="post" data-postid="<%=posts._id%>">
+                <p>Post created by: <%=posts.creator%>
+                </p>
+                <p>Post says: <%=posts.content%>
+                </p>
+                <p>Post likes: <%=posts.stats.upvotes%>
+                </p>
+                <p>Post dislikes: <%=posts.stats.downvotes%>
+                </p>
+            </div>
+            <a href="">
+                <div class="alternates">
+                    <button id="likeButton" class="hovereffect" data-postid="<%=posts._id%>" data-upvotes="<%=posts.stats.upvotes%>" data-downvotes="<%=posts.stats.downvotes%>">Like 👌</button>
+                </div>
+            </a>
+            <a href="">
+                <div class="alternates">
+                    <button id="dislikeButton" class="hovereffect" data-postid="<%=posts._id%>" data-upvotes="<%=posts.stats.upvotes%>" data-downvotes="<%=posts.stats.downvotes%>">Dislike 🤢</button>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/postHandler.js"></script>
+
+</html>

@@ -4,16 +4,16 @@ a{
     text-decoration: none;
     color: var(--secondary-color);
 }
-.post-section{
+.post-section,.poll-section{
     padding-top: 5rem;
 }
-.posts{
+.posts,.polls{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
 }
-.post-container{
+.post-container,.poll-container{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -40,7 +40,7 @@ a{
     align-items: center;
     gap: 0.3rem;
 }
-.post-content{
+.post-content,.poll-content{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -94,7 +94,7 @@ a{
 
 /* Media queries */
 @media screen and (max-width: 1120px) and (min-width: 768px){
-    .post-section{
+    .post-section,.poll-section{
         padding-top: 5rem;
     }
     .like, .comment, .share{
@@ -104,10 +104,10 @@ a{
     }
 }
 @media screen and (max-width: 767px){
-    .post-section{
+    .post-section,.poll-section{
         padding-bottom: 5rem;
     }
-    .post-container{
+    .post-container,.poll-container{
         width: 100%;
         padding: 1rem;
     }
@@ -123,16 +123,16 @@ a{
         justify-content: center;
         align-items: center;
     }
-    .post-section{
+    .post-section,.poll-section{
         padding-top: 0;
     }
-    .posts{
+    .posts,.polls{
         margin: 15px;
     }
 
 }
 @media screen and (min-width: 769px) and (max-width: 1400px)   {
-    .post-container {
+    .post-container,.poll-container {
       width: 60%;
     }
   }

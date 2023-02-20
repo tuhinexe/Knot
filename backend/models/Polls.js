@@ -8,7 +8,7 @@ const pollsSchema = mongoose.Schema({
         {
             
             optionsName: String,
-            votesCount: Number
+            voted_by: [{type:mongoose.Schema.Types.ObjectId,ref: "User" }]
         }
     ]
 });
