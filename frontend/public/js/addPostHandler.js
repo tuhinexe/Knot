@@ -61,18 +61,18 @@ submitBtn.addEventListener("submit", async (e) => {
     const errorSpan = document.querySelector("#error-span");
 
     const content = document.querySelector("#content").value || '';
-    if(content.length <= 0){
-        let randomNumber = Math.floor(Math.random() * 2);
-        errorSpan.style.textAlign = "center";
-        errorSpan.innerHTML = randomNumber === 0 ?`Please add content <br> "Something" is better than "Nothing" 🤞`: `Please add content <br> We need to hear something from you! 🤞`;
-        return;
-    }
-    if (content.length > 200) {
+    if (content.length > 500) {
         errorSpan.style.textAlign = "center";
         errorSpan.innerHTML = "Sorry! but bloggin is not allowed here <br> Keep your content short and sweet 🤞";
         return;
     }
     const isImage =  imageFieldChanegd.files.length <= 0? false : true;
+    if(content.length <= 0 && !isImage){
+        let randomNumber = Math.floor(Math.random() * 2);
+        errorSpan.style.textAlign = "center";
+        errorSpan.innerHTML = randomNumber === 0 ?`Please add content <br> "Something" is better than "Nothing" 🤞`: `Please add content <br> We need to hear something from you! 🤞`;
+        return;
+    }
     
     const postInfo = {
         content,

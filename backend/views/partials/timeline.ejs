@@ -23,11 +23,11 @@
             data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>">
             <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
                 <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
-                <span><%= post.stats.upvoted_by.length %></span>
+                <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
             </div>
             <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
                 <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
-                <span><%= post.stats.downvoted_by.length %></span>
+                <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
             </div>
             <div class="comment">
                 <i class='bx bx-sm bx-comment'></i>

@@ -15,6 +15,12 @@ async function likePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-upvote");
+      let upvoteCount = document.querySelector("#upvote-count");
+      let downvoteCount = document.querySelector("#downvote-count");
+      let downCount = Number(downvoteCount.innerText);
+      let count = Number(upvoteCount.innerText);
+      upvoteCount.innerText = String(count + 1);
+      downvoteCount.innerText = String(downCount - 1);
     } else {
       return
     }
@@ -44,6 +50,12 @@ async function dislikePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-downvote");
+      let upvoteCount = document.querySelector("#upvote-count");
+      let downvoteCount = document.querySelector("#downvote-count");
+      let downCount = Number(downvoteCount.innerText);
+      let count = Number(upvoteCount.innerText);
+      upvoteCount.innerText = String(count - 1);
+      downvoteCount.innerText = String(downCount + 1);
     } else {
       return
     }

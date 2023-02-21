@@ -52,16 +52,17 @@ app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
 app.use("/polls",pollsRouter);
 app.use("/api/v1", devApiRouter);
-(async () => {
-  await connectDB(process.env.DB_URI);
-})();
 
 //use wildcard to catch all routes
 app.get("*", (req, res) => {
   res.render("404");
 });
 
-const PORT = process.env.PORT || 80;
+
+(async () => {
+  await connectDB(process.env.DB_URI);
+  const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log("listening on port 80");
 });
+})();
