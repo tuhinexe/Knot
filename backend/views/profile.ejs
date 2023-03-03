@@ -4,10 +4,6 @@
     
 <div class="profileNavigation">
     <ul class="profileNav-items">
-        <!-- <li class=""><a class="" href=""><i class='bx bx-md bx-news'></i></a></li>
-        <li class=""><a class="" href=""><i class='bx bx-md bx-target-lock'></i></a></li>
-        <li class=""><a class="" href=""><i class='bx bx-md bx-poll'></i></a></li>
-        <li class=""><a class="" href=""><i class='bx bx-md bxs-user'></i></a></li> -->
         <li class=""><a class="" href=""><i class='bx bx-md bxs-customize'></i></a></li>
         <li class=""><a class="" href=""><i class='bx bx-md bxs-widget'></i></a></li>
         <li class=""><a class="" href=""><i class='bx bx-md bxs-edit'></i></a></li>
@@ -15,7 +11,7 @@
 </div>
             <div class="ownPosts">
                 <% posts.map(post=>{ %>
-                    <%- include ('partials/timeline',{post: post, userId: user._id, creatorDetails: creatorDetails}) %>
+                    <%- include ('partials/timeline',{post: post, userId: user._id, creatorDetails: creatorDetails, pageName: pageName}) %>
 
                         <% }) %>
             </div>

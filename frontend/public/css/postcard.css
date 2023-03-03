@@ -29,10 +29,19 @@ a{
 }
 .post-creator{
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     align-items: center;
     gap: 1rem;
+    width: 100%;
     
+}
+.delete-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--primary-color);
+    margin-left: auto;
 }
 .post-creator-name{
     display: flex;
@@ -104,7 +113,7 @@ a{
     }
 }
 @media screen and (max-width: 767px){
-    .post-section,.poll-section{
+    .post-section,.poll-section,.ownPosts{
         padding-bottom: 5rem;
     }
     .post-container,.poll-container{

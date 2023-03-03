@@ -12,6 +12,11 @@
                         Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
                 </small>
             </div>
+            <% if(pageName === "profile"){ %>
+                <div class="delete-icon">
+                    <i class='bx bx-sm bx-trash'></i>
+                </div>
+            <% } %>
         </div>
         <div class="post-content">
             <p>

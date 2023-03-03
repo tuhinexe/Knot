@@ -8,5 +8,7 @@ router.route('/add').get(checkAuthorized, controller.createPostRender).post(chec
 
 router.route('/view').get(checkAuthorized, controller.viewPostRender).post(checkAuthorized, controller.viewPostController);
 
+router.route('/delete').post(checkAuthorized, controller.deletPostController);
+
 
 module.exports = router;

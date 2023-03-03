@@ -5,7 +5,7 @@
 <section class="post-section">
 
     <% posts.map(post =>{ %>
-        <%- include ('partials/timeline',{post: post, userId: pageInfo.userId}) %>
+        <%- include ('partials/timeline',{post: post, userId: pageInfo.userId, pageName: ''}) %>
         
     <% }) %>
 </section>

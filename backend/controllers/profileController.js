@@ -11,7 +11,7 @@ const viewProfileRender = async (req, res) => {
         profilePic_url: req.user.profilePic_url
     }
 
-    res.render("profile", { user: userData, profilePic: profilePic, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails})
+    res.render("profile", { user: userData, profilePic: profilePic, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails, pageName: 'profile'})
 }
 
 

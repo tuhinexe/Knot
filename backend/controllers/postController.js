@@ -1,6 +1,7 @@
 const findPosts = require("../api/getPosts");
 const likeCounter = require("../api/likeCounter");
 const addPost = require("../api/addPost");
+const deletePost = require("../api/deletePost");
 const User = require("../models/Users");
 
 const createPostRender = async (req, res) => {
@@ -58,11 +59,24 @@ const dislikeCountController = async (req, res) => {
 };
 
 
+const deletPostController = async (req, res) => {
+  const postId = req.body.postId;
+  const user = req.user;
+  try {
+    await deletePost(postId, user);
+    res.redirect("/profile");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
 module.exports = {
   createPostRender,
   createPostController,
   viewPostRender,
   viewPostController,
   likeCountController,
-  dislikeCountController
+  dislikeCountController,
+  deletPostController
 };
