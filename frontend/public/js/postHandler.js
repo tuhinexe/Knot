@@ -20,7 +20,7 @@ async function likePostEvent(e) {
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
       upvoteCount.innerText = String(count + 1);
-      downvoteCount.innerText = String(downCount - 1);
+      downCount > 0 ? (downvoteCount.innerText = String(downCount - 1)) : null;
     } else {
       return
     }
@@ -54,7 +54,7 @@ async function dislikePostEvent(e) {
       let downvoteCount = document.querySelector("#downvote-count");
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
-      upvoteCount.innerText = String(count - 1);
+      count > 0 ? (upvoteCount.innerText = String(count - 1)) : null;
       downvoteCount.innerText = String(downCount + 1);
     } else {
       return

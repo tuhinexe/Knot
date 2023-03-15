@@ -13,7 +13,7 @@
                 </small>
             </div>
             <% if(pageName === "profile"){ %>
-                <div class="delete-icon">
+                <div class="delete-icon" data-post-id="<%= post._id %>">
                     <i class='bx bx-sm bx-trash'></i>
                 </div>
             <% } %>

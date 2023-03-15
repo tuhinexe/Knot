@@ -1,9 +1,3 @@
-const contentChanged = document.querySelector("#content");
-contentChanged.addEventListener("keypress", (e) => {
-    let errorSpan = document.querySelector("#error-span");
-    errorSpan.innerHTML = "";
-});
-
 
 // Listening to image field change
 
@@ -57,6 +51,7 @@ try{
 const submitBtn = document.querySelector(".submit-post");
 submitBtn.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const postBtn = document.querySelector("#post-submit-btn");
     const url = location.href;
     const errorSpan = document.querySelector("#error-span");
 
@@ -72,6 +67,10 @@ submitBtn.addEventListener("submit", async (e) => {
         errorSpan.style.textAlign = "center";
         errorSpan.innerHTML = randomNumber === 0 ?`Please add content <br> "Something" is better than "Nothing" 🤞`: `Please add content <br> We need to hear something from you! 🤞`;
         return;
+    } else{
+        errorSpan.innerHTML = '';
+        postBtn.disabled = true;
+        postBtn.value = "Posting...";
     }
     
     const postInfo = {

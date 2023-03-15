@@ -1,8 +1,8 @@
-const deleteBtn = document.querySelector('.delete-icon');
+import { globalEvent } from '../utils/eventListener.js';
 
-deleteBtn.addEventListener('click', async (e) => {
+const deletePost = async (e) => {
     e.preventDefault();
-    const postId = document.querySelector('.interaction').getAttribute('data-post-id');
+    const postId = e.target.parentElement.getAttribute('data-post-id');
     const post = await fetch(`/post/delete`, {
         method: 'POST',
         headers: {
@@ -15,4 +15,6 @@ deleteBtn.addEventListener('click', async (e) => {
     if (post.redirected === true) {
         window.location = post.url;
     }
-});
+};
+
+globalEvent('click', '.delete-icon', deletePost);

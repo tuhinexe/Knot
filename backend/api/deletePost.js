@@ -1,12 +1,14 @@
 const Posts = require('../models/Posts');
-const findUser = require('./findUser');
+const deleteImage = require('./deleteImage');
 
 const deletePost = async (postId,user) => {
     await Posts.findByIdAndDelete(postId);
-    await findUser(user).then((user) => {
-        user.posts.pull(postId);
-        user.save();
-    });
+    const imageId = await Posts.findById(postId).select('imageId');
+    if(imageId !== null){
+        await deleteImage(imageId);
+    }
+    user.posts.pull(postId)
+    await user.save();
 }
 
 module.exports = deletePost;

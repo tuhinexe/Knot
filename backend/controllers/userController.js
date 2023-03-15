@@ -17,6 +17,8 @@ const signUpController = async (req, res) => {
     lastname: req.body.lastname,
     username: req.body.username,
     email: req.body.email,
+    bio: "",
+    profilePic_url: `https://api.dicebear.com/5.x/lorelei-neutral/svg?seed=${req.body.username}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
   };
   await initializeSignup(userData, req.body.password, req, res);
 };
