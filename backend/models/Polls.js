@@ -6,7 +6,6 @@ const pollsSchema = mongoose.Schema({
     timestamp: { type: Date, default: Date.now } ,
     options: [
         {
-            
             optionsName: String,
             voted_by: [{type:mongoose.Schema.Types.ObjectId,ref: "User" }]
         }

@@ -18,13 +18,15 @@
                                 </small>
                             </div>
                         </div>
-                        <div class="poll-content">
-                            <p>
-                                <%=poll.content%>
-                            </p>
-                         <% poll.options.map(option =>{%>
-                            <p><%=option.optionsName%></p>
-                            <%})%>
+                        <p class="poll-title">
+                            <%=poll.content%>
+                        </p>
+                        <div class="poll-options">
+                            <% poll.options.map(option=>{%>
+                                <p>
+                                    <%=option.optionsName%>
+                                </p>
+                                <%})%>
 
                         </div>
                     </div>
