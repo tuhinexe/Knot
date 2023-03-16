@@ -1,4 +1,4 @@
-import { likePost, dislikePost } from "../utils/postReaction.js";
+import { likePost, dislikePost,sharePost } from "../utils/postReaction.js";
 import { globalEvent } from "../utils/eventListener.js";
 async function likePostEvent(e) {
   if (Array.from(e.target.parentElement.classList).includes("liked")) {
@@ -15,12 +15,12 @@ async function likePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-upvote");
-      let upvoteCount = document.querySelector("#upvote-count");
-      let downvoteCount = document.querySelector("#downvote-count");
+      let upvoteCount = e.target.nextElementSibling
+      let downvoteCount = e.target.parentElement.nextElementSibling.firstElementChild.nextElementSibling
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
       upvoteCount.innerText = String(count + 1);
-      downCount > 0 ? (downvoteCount.innerText = String(downCount - 1)) : null;
+      downCount !== 0 ? downvoteCount.innerText = String(downCount - 1) : downvoteCount.innerText = String(downCount);
     } else {
       return
     }
@@ -50,12 +50,12 @@ async function dislikePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-downvote");
-      let upvoteCount = document.querySelector("#upvote-count");
-      let downvoteCount = document.querySelector("#downvote-count");
+      let upvoteCount = e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling
+      let downvoteCount = e.target.nextElementSibling
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
-      count > 0 ? (upvoteCount.innerText = String(count - 1)) : null;
       downvoteCount.innerText = String(downCount + 1);
+      count !== 0 ? upvoteCount.innerText = String(count - 1) : upvoteCount.innerText = String(count);
     } else {
       return
     }
@@ -70,5 +70,14 @@ async function dislikePostEvent(e) {
   await dislikePost(e, postId, currentLike, currentDisLike, userId);
 }
 
+async function sharePostEvent(e) {
+  const postId =
+    e.target.parentElement.parentElement.getAttribute("data-post-id");
+  const currentShare =
+    e.target.parentElement.parentElement.getAttribute("data-shares");
+  await sharePost(e, postId, currentShare);
+}
+
 globalEvent("click", ".like", likePostEvent);
 globalEvent("click", ".dislike", dislikePostEvent);
+globalEvent("click", ".share", sharePostEvent);

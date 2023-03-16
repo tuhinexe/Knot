@@ -40,4 +40,26 @@ async function dislikePost(event, postId, currentLike, currentDisLike, userId) {
   }
 }
 
-export { likePost, dislikePost };
+async function sharePost(event, postId, currentShare) {
+  event.preventDefault();
+  try {
+    const res = await fetch(`/api/v1/post/share`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        postId: postId,
+        shares: currentShare,
+      }),
+    })
+    if(res.redirected === true){
+      window.location = res.url;
+    }
+  } catch (err) {
+    return;
+  }
+}
+
+export { likePost, dislikePost, sharePost };

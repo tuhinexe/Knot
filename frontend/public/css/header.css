@@ -48,6 +48,7 @@ a{
     border-radius: 20%;
     transition: all 0.4s ease-in-out;
     transform:translateX(0,0);
+    cursor: pointer;
     
 }
 .knot-logo{

@@ -1,6 +1,7 @@
 const findPosts = require("../api/getPosts");
 const likeCounter = require("../api/likeCounter");
 const addPost = require("../api/addPost");
+const sharePost = require("../api/sharePost");
 const deletePost = require("../api/deletePost");
 const User = require("../models/Users");
 
@@ -58,6 +59,19 @@ const dislikeCountController = async (req, res) => {
   }
 };
 
+const sharePostController = async (req, res) => {
+  if (!req.body.shares) return;
+  try {
+    const postId = req.body.postId;
+    const currentShare = parseInt(req.body.shares);
+    const user = req.user;
+    await sharePost(postId, currentShare, user);
+    res.redirect("/profile");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
 const deletPostController = async (req, res) => {
   const postId = req.body.postId;
@@ -78,5 +92,6 @@ module.exports = {
   viewPostController,
   likeCountController,
   dislikeCountController,
+  sharePostController,
   deletPostController
 };

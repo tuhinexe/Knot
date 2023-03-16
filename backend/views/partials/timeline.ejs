@@ -25,7 +25,7 @@
             <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
         </div>
         <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
-            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>">
+            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>" data-shares="<%= post.stats.shares %>"> 
             <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
                 <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
                 <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
