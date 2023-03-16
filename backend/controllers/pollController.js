@@ -21,7 +21,7 @@ const pollsRender = async (req, res) => {
 }
 
 
-const pollsController = async (req, res) => {
+const createPollsController = async (req, res) => {
     const id = req.user._id;
     const title = req.body.title;
     const [option1, option2, option3, option4] = req.body.option;
@@ -80,7 +80,7 @@ const pollsController = async (req, res) => {
 
 const viewPollsRender = async (req, res) => {
     const postData = await getPolls(req.user);
-    res.render("viewpolls", { polls: postData[0] });
+    res.render("viewPolls", { polls: postData[0] });
 };
 
 const createPollsRender = async (req, res) => {
@@ -91,7 +91,7 @@ const createPollsRender = async (req, res) => {
 
 module.exports = {
     pollsRender,
-    pollsController,
+    createPollsController,
     viewPollsRender,
     createPollsRender
 };

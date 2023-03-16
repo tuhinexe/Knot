@@ -23,9 +23,15 @@
                         </p>
                         <div class="poll-options">
                             <% poll.options.map(option=>{%>
-                                <p>
-                                    <%=option.optionsName%>
-                                </p>
+                                <div class="option">
+                                    <p>
+                                        <%=option.optionsName%>
+                                        
+                                    </p>
+                                    <span>
+                                        <%=option.voted_by.length%> 
+                                    </span>
+                                </div>
                                 <%})%>
 
                         </div>

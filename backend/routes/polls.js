@@ -4,7 +4,7 @@ const checkAuthorized = require("../middlewares/checkAuth.js");
 
 router.route('/').get(checkAuthorized, pollsController.pollsRender)
 
-router.route('/create').get(checkAuthorized,pollsController.createPollsRender).post(checkAuthorized, pollsController.pollsController);
+router.route('/create').get(checkAuthorized,pollsController.createPollsRender).post(checkAuthorized, pollsController.createPollsController);
 
 
 module.exports = router;
