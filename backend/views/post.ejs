@@ -1,3 +1,7 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+<%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+<section class="post-section" style="padding-bottom: 0;">
 <div class="posts">
 
 
@@ -12,11 +16,6 @@
                         Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
                 </small>
             </div>
-            <% if(pageName === "profile"){ %>
-                <div class="delete-icon" data-post-id="<%= post._id %>">
-                    <i class='bx bx-sm bx-trash'></i>
-                </div>
-            <% } %>
         </div>
         
         <div class="post-content">
@@ -25,24 +24,22 @@
                 <%=post.content%>
             </p>
             <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
-            </a>
+        </a>
         </div>
     
         <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
-            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>" data-shares="<%= post.stats.shares %>"> 
-            <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
-                <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
+            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=pageInfo.userId%>" data-shares="<%= post.stats.shares %>"> 
+            <div class='like <%-post.stats.upvoted_by.includes(pageInfo.userId)? "liked" : ""%> '>
+                <i class='bx bx-sm <%-post.stats.upvoted_by.includes(pageInfo.userId)? "bxs-upvote" : "bx-upvote"%> '></i>
                 <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
             </div>
-            <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
-                <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
+            <div class='dislike <%-post.stats.downvoted_by.includes(pageInfo.userId)? "disliked" : ""%> '>
+                <i class='bx bx-sm <%-post.stats.downvoted_by.includes(pageInfo.userId)? "bxs-downvote" : "bx-downvote"%> '></i>
                 <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
             </div>
             <div class="comment">
-                <a class="comment" href="/post/<%=post._id %>">
                 <i class='bx bx-sm bx-comment'></i>
                 <span><%= post.stats.comments.length %></span>
-            </a>
             </div>
             <div class="share">
                 <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
@@ -51,3 +48,28 @@
         </div>
     </div>
 </div>
+</section>
+<section class="comments" style="padding-bottom: 4rem;">
+    <div class="posts">
+        <div class="post-container">
+            <div class="post-content">
+                    <form class="submit-comment" action="/post/<%= post._id %>/comment" method="post" >
+                    <input id="comment" type="text" name="comment" placeholder="Comment Here" required>
+                    <input id="comment-btn" type="submit" value="Comment">
+                </form>
+                </div>
+
+        </div>
+    </div>
+    <div class="posts">
+    <div class="post-container">
+        <% comments.map((comment) =>{ %>
+            <div class="post-content">
+                <p><%= comment.content %></p>
+            </div>
+       <% }) %>
+
+    </div>
+</div>
+ 
+</section>

@@ -3,7 +3,6 @@ const schema = mongoose.Schema;
 
 const commentSchema = mongoose.Schema({
     content: { type: String, required: true },
-    commentId: { type: String, required: true },
     commentor: { type: schema.Types.ObjectId, ref: "User", required: true },
     timestamp: { type: Date, default: Date.now },
     stats: {

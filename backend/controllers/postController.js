@@ -3,7 +3,9 @@ const likeCounter = require("../api/likeCounter");
 const addPost = require("../api/addPost");
 const sharePost = require("../api/sharePost");
 const deletePost = require("../api/deletePost");
+const addComment = require("../api/addComment")
 const User = require("../models/Users");
+const Posts = require("../models/Posts");
 
 const createPostRender = async (req, res) => {
   const pageInfo = {
@@ -27,12 +29,6 @@ const createPostController = async (req, res) => {
   }
 };
 
-const viewPostRender = async (req, res) => {
-  const postData = await findPosts(req.user);
-  res.render("viewpost", { posts: postData[0] });
-};
-
-const viewPostController = async (req, res) => {};
 
 const likeCountController = async (req, res) => {
   if (!req.body.upvotes) return res.status(401).send("Unauthorized");
@@ -84,14 +80,45 @@ const deletPostController = async (req, res) => {
   }
 };
 
+const addCommentController= async (req,res) =>{
+  const commentDetails = {
+    content: req.body.comment,
+    commentor: req.user._id
+  }
+  const postId = req.params.postId
+
+  try{
+    await addComment(commentDetails,postId)
+    res.redirect("/")
+  } catch(err){
+    console.log(err)
+  }
+}
+
+// Single Post and Comments Controller
+
+const getSinglePostRender = async (req, res) => {
+  const postId = req.params.id;
+  const post = await Posts.findById(postId).populate("creator").exec()
+  const stats = await post.stats.populate("comments")
+  const comments = stats.comments
+  const pageInfo = {
+    userId: req.user._id,
+    title: 'Knot - Post',
+    pagename : 'comment',
+    profilePic: req.user.profilePic_url,
+}
+  res.render("post", {pageInfo: pageInfo, post: post, comments: comments});
+};
+
 
 module.exports = {
   createPostRender,
   createPostController,
-  viewPostRender,
-  viewPostController,
   likeCountController,
   dislikeCountController,
   sharePostController,
-  deletPostController
+  deletPostController,
+  addCommentController,
+  getSinglePostRender,
 };

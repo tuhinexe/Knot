@@ -17,8 +17,7 @@ const postSchema = mongoose.Schema(
       upvoted_by: { type: Array, default: [] },
       downvoted_by: { type: Array, default: [] },
       shares: { type: Number, default: 0 },
-      commented_by: { type: Array, default: [] },
-      comments: { type: Number, default: 0 },
+      comments: [{ type: schema.Types.ObjectId, ref: "Comment" }],
     },
   },
   { timestamps: true }
