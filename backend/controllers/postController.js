@@ -3,7 +3,6 @@ const likeCounter = require("../api/likeCounter");
 const addPost = require("../api/addPost");
 const sharePost = require("../api/sharePost");
 const deletePost = require("../api/deletePost");
-const addComment = require("../api/addComment")
 const User = require("../models/Users");
 const Posts = require("../models/Posts");
 
@@ -80,28 +79,16 @@ const deletPostController = async (req, res) => {
   }
 };
 
-const addCommentController= async (req,res) =>{
-  const commentDetails = {
-    content: req.body.comment,
-    commentor: req.user._id
-  }
-  const postId = req.params.postId
-
-  try{
-    await addComment(commentDetails,postId)
-    res.redirect("/")
-  } catch(err){
-    console.log(err)
-  }
-}
-
 // Single Post and Comments Controller
 
 const getSinglePostRender = async (req, res) => {
   const postId = req.params.id;
   const post = await Posts.findById(postId).populate("creator").exec()
   const stats = await post.stats.populate("comments")
-  const comments = stats.comments
+  const comments = []
+  for (let comment of stats.comments){
+    comments.push(await comment.populate("commentor"))
+  }
   const pageInfo = {
     userId: req.user._id,
     title: 'Knot - Post',
@@ -119,6 +106,5 @@ module.exports = {
   dislikeCountController,
   sharePostController,
   deletPostController,
-  addCommentController,
   getSinglePostRender,
 };

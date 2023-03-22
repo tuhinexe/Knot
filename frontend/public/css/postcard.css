@@ -13,6 +13,14 @@ a{
     align-items: center;
     margin-top: 15px;
 }
+.comments-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.hide{
+    visibility: hidden;
+}
 .post-container,.poll-container{
     display: flex;
     justify-content: flex-start;
@@ -35,7 +43,7 @@ a{
     width: 100%;
     
 }
-.delete-icon{
+.delete-icon, .comment-delete-icon{
     display: flex;
     justify-content: center;
     align-items: center;

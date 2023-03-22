@@ -54,22 +54,39 @@
         <div class="post-container">
             <div class="post-content">
                     <form class="submit-comment" action="/post/<%= post._id %>/comment" method="post" >
-                    <input id="comment" type="text" name="comment" placeholder="Comment Here" required>
+                    <input id="comment" autocomplete="off" type="text" name="comment" placeholder="Comment Here" required>
                     <input id="comment-btn" type="submit" value="Comment">
                 </form>
                 </div>
 
         </div>
     </div>
-    <div class="posts">
-    <div class="post-container">
+    <div class="posts comments-container">
+        <div class="post-container">
+            <h4>Comments</h4>
+        </div>
         <% comments.map((comment) =>{ %>
+            <div class="post-container">
+            <div class="post-creator">
+                <img class="post-profile" src="<%= comment.commentor.profilePic_url %>" alt="">
+                <div class="post-creator-name">
+                    <a href=""><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
+                            + post.creator.lastname %></a>
+                    <small>
+                        <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
+                            Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
+                    </small>
+                </div>
+                    <div class="comment-delete-icon <% post.creator._id !== pageInfo.userId || comment.commentor._id !== pageInfo.userId ? 'hide' : '' %>" data-comment-id="<%= comment._id %>" data-post-id="<%= post._id %>">
+                        <i class='bx bx-sm bx-trash'></i>
+                    </div>
+            </div>
             <div class="post-content">
                 <p><%= comment.content %></p>
             </div>
+        </div>
        <% }) %>
 
-    </div>
 </div>
  
 </section>
