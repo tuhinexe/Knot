@@ -25,6 +25,19 @@
   flex-direction: column;
   gap: 1rem;
 }
+.follow{
+
+  margin-right: auto;
+}
+.follow input{
+  background-color: var(--secondary-body-color);
+  color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .bioAndConnections {
   display: flex;
   justify-content: flex-start;

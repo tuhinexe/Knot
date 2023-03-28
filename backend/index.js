@@ -11,6 +11,7 @@ const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const postRouter = require("./routes/post");
+const followersRouter = require("./routes/followers");
 const pollsRouter = require("./routes/polls");
 const devApiRouter = require("./routes/devApi");
 const checkAuthorized = require("./middlewares/checkAuth");
@@ -48,6 +49,7 @@ app.use(checkAuthorized);
 
 app.use("/", homeRouter)
 app.use("/profile", profileRouter);
+app.use("/follow", followersRouter)
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
 app.use("/polls",pollsRouter);

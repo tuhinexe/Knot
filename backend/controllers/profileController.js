@@ -1,6 +1,7 @@
 const findUser = require('../api/findUser');
 const updateUser = require('../api/updateUser');
 const getPosts = require('../api/getPosts');
+const { followAndUnfollow } = require('../api/followAPI')
 
 const viewProfileRender = async (req, res) => {
     const userData = await findUser(req.user);
@@ -11,7 +12,7 @@ const viewProfileRender = async (req, res) => {
         profilePic_url: req.user.profilePic_url
     }
 
-    res.render("profile", { user: userData, profilePic: profilePic, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails, pageName: 'profile'})
+    res.render("profile", { activeUser: userData ,user: userData, profilePic: profilePic,profilePicLoggedIn: profilePic, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails, pageName: 'profile'})
 }
 
 
@@ -33,10 +34,42 @@ const editProfileController = async (req, res) => {
 
     try { await updateUser(id, postedData).then(res.redirect("/profile")) } catch (err) { console.log(err) }
 
+} 
+const singleProfileRender = async (req, res) => {
+    let user ={
+        _id: req.params.profileId
+    }
+    if(user._id === String(req.user._id)){
+        res.redirect('/profile')
+        return
+    }
+    const userData = await findUser(user);
+    const activeUser = req.user
+    let profilePic = userData.profilePic_url;
+    const posts = await getPosts(user);
+    const creatorDetails = {
+        creator: userData.firstname + ' ' + userData.lastname,
+        profilePic_url: userData.profilePic_url
+    }
+
+    res.render("profile", {activeUser, user: userData, profilePic: profilePic,profilePicLoggedIn: req.user.profilePic_url, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails, pageName: 'viewProfile'})
+}
+
+const followController = async (req,res) => {
+    const followerId = req.user._id
+    const followingId = req.params.followingId
+    try{
+        await followAndUnfollow(followingId,followerId)
+        res.redirect(`/follow/following`)
+    } catch(err){
+        console.log(err)
+    }
 }
 
 module.exports = {
     viewProfileRender,
     editProfileRender,
-    editProfileController
+    editProfileController,
+    singleProfileRender,
+    followController
 };

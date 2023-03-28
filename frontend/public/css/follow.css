@@ -1,0 +1,60 @@
+@import 'global.css';
+
+.follow-options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    margin: 10px 0;
+    width: 35%;
+    background: var(--secondary-body-color);
+    color: var(--secondary-color);
+    font-family: var(--medium);
+    border-radius: 10px;
+}
+
+.follower, .following{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+.follower a, .following a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.follower:hover, .follower a:hover, .following:hover, .following a:hover, .active-option{
+    background: var(--primary-color);
+    color: var(--secondary-body-color);
+    border-radius: 10px;
+}
+
+.active-option a{
+    color: var(--secondary-body-color);
+}
+a.unfollow-btn{
+
+    min-width: auto;
+    margin-left: auto;
+}
+
+
+
+@media screen and (max-width: 1400px) and (min-width: 768px){
+    .follow-options{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .follow-options{
+        width: 100%;
+    }
+}

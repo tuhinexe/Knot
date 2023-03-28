@@ -73,13 +73,17 @@
                     <a href=""><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                             + post.creator.lastname %></a>
                     <small>
-                        <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
+                        <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((comment.timestamp.valueOf()) -
                             Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
                     </small>
                 </div>
-                    <div class="comment-delete-icon <% post.creator._id !== pageInfo.userId || comment.commentor._id !== pageInfo.userId ? 'hide' : '' %>" data-comment-id="<%= comment._id %>" data-post-id="<%= post._id %>">
-                        <i class='bx bx-sm bx-trash'></i>
-                    </div>
+                <% if(comment.commentor._id === pageInfo.userId){ %>
+                    <p><%= comment.commentor._id %></p>
+                    <p><%= pageInfo.userId %></p>
+                <div class="comment-delete-icon" data-comment-id="<%= comment._id %>" data-post-id="<%= post._id %>">
+                                <i class='bx bx-sm bx-trash'></i>
+                            </div>
+                <% } %>
             </div>
             <div class="post-content">
                 <p><%= comment.content %></p>

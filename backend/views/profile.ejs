@@ -1,6 +1,6 @@
 <%- include ('partials/header',{pageTitle: pageTitle}) %>
-    <%- include ('partials/nav',{profilePic: profilePic, pageName: "" }) %>
-        <%- include ('partials/profilecard',{user: user }) %>
+    <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
+        <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
     
 <div class="profileNavigation">
     <ul class="profileNav-items">
