@@ -96,7 +96,6 @@
   font-size: clamp(0.8rem, 2vmin, 1.5rem);
   color: var(--light-color);
 }
-
 /* styling the profile navigation */
 .profileNav-items {
   display: flex;
@@ -105,13 +104,45 @@
   flex-wrap: nowrap;
   flex-direction: row;
   background-color: var(--secondary-body-color);
-  gap: clamp(5rem, 25vmin, 10rem);
+  gap: clamp(4rem, 25vmin, 8rem);
   margin-top: 1rem;
   width: 35%;
   margin-inline: auto;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: 10px;
 }
+.profileNav-items .navigation-active {
+  position: relative;
+  color: var(--primary-color);
+}
+
+.profileNav-items .navigation-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary-color);
+  animation: border-animation 3s ease-in-out infinite;
+}
+
+@keyframes border-animation {
+  0% {
+    width: 2%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 2%;
+  }
+}
+
+
+
+
+
 @media screen and (max-width: 1400px) {
   .profileCard {
     padding: 1.6rem 0.5rem 1rem 0.5rem;
@@ -124,7 +155,7 @@
   }
   .profileNav-items {
     border-radius: 0px 0px 10px 10px;
-    padding: 1rem;
+    padding: 0.8rem;
     width: 100%;
   }
 }
@@ -136,6 +167,6 @@
   }
   .profileNav-items {
     width: 60%;
-    padding: 1rem;
+    padding: 0.8rem;
   }
 }

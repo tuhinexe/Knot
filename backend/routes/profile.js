@@ -5,8 +5,9 @@ const checkAuthorized = require("../middlewares/checkAuth.js");
 
 
 router.route('/').get(checkAuthorized, controller.viewProfileRender);
-router.route('/:profileId').get(checkAuthorized, controller.singleProfileRender);
-router.get('/follow/:followingId',checkAuthorized, controller.followController)
-router.get("/update",controller.editProfileRender);
+router.route('/activity').get(checkAuthorized, controller.viewActivityRender);
 router.route("/update").get(controller.editProfileRender).post(controller.editProfileController);
+router.get('/follow/:followingId',checkAuthorized, controller.followController)
+router.route('/:profileId').get(checkAuthorized, controller.singleProfileRender);
+
 module.exports = router;

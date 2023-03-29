@@ -1,0 +1,85 @@
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
+        <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
+    
+<div class="profileNavigation">
+    <ul class="profileNav-items">
+        <li class=""><a class="" href="/profile"><i class='bx bx-md bxs-customize'></i></a></li>
+        <li class="<%=pageName==='profile-activities' ? 'navigation-active' : ''%>"><a class="" href="/profile/activity"><i class='bx bx-md bxs-widget'></i></a></li>
+        <li class=""><a class="" href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+    </ul>
+</div>
+<div class="own-polls">
+
+    <% polls.map(poll=>{ %>
+        <div class="polls">
+            <div class="poll-container">
+                <div class="post-creator">
+                    <img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt="">
+                    <div class="post-creator-name">
+                        <a href=""><%- creatorDetails.creator %></a>
+                        <small>
+                            <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                }).format((((poll.timestamp.valueOf()) - Date.now()) / (1000 * 60 * 60 *
+                                24)).toFixed(),'day') %>
+                        </small>
+                    </div>
+                </div>
+                <p class="poll-title">
+                    <%=poll.content%>
+                </p>
+                <div class="poll-options">
+                    <% poll.options.map(option=>{%>
+                        <div class="option">
+                            <p>
+                                <%=option.optionsName%>
+                                
+                            </p>
+                            <span>
+                                <%=option.voted_by.length%> 
+                            </span>
+                        </div>
+                        <%})%>
+
+                </div>
+            </div>
+
+        </div>
+
+        <% }) %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <div class="box">
+            <div class="container">
+                <div class="details">
+                    <p>Hii I am <%=user.firstname%>
+                    </p>
+                    <p>My last name is <%=user.lastname%>
+                    </p>
+                    <p>Hii my bio is <%=user.bio%>
+                    </p>
+                    <p>Hii my email <%=user.email%>
+                    </p>
+                    <img style="border-radius: 50%;" src="<%=user.profilePic_url%>" alt="">
+                    <p>this is an add post button</p>
+                </div>
+                <a href="/post/add">
+                    <div class="alternates">
+                        <button type="submit" id="google" class="hovereffect">🔥 add post</button>
+                    </div>
+                </a>
+            </div>
+        </div> -->

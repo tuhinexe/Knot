@@ -1,6 +1,7 @@
 const findUser = require('../api/findUser');
 const updateUser = require('../api/updateUser');
 const getPosts = require('../api/getPosts');
+const { getPolls, getChallenges } = require('../api/getActivities');
 const { followAndUnfollow } = require('../api/followAPI')
 
 const viewProfileRender = async (req, res) => {
@@ -15,7 +16,18 @@ const viewProfileRender = async (req, res) => {
     res.render("profile", { activeUser: userData ,user: userData, profilePic: profilePic,profilePicLoggedIn: profilePic, pageTitle: 'Knot - Profile', posts: posts, creatorDetails: creatorDetails, pageName: 'profile'})
 }
 
-
+const viewActivityRender = async (req, res) => {
+    // console.log(req.user)
+    const userData = await findUser(req.user);
+    let profilePic = req.user.profilePic_url;
+    const polls = await getPolls(req.user);
+    const creatorDetails = {
+        creator: req.user.firstname + ' ' + req.user.lastname,
+        profilePic_url: req.user.profilePic_url
+    }
+    // const challenges = await getChallenges(req.user );
+    res.render("profilePolls", { activeUser: userData , user: userData, profilePic: profilePic,profilePicLoggedIn: profilePic, pageTitle: 'Knot - Profile', creatorDetails: creatorDetails, pageName: 'profile-activities', polls: polls})
+};
 
 const editProfileRender = async (req, res) => {
     const user = await findUser(req.user._id);
@@ -68,6 +80,7 @@ const followController = async (req,res) => {
 
 module.exports = {
     viewProfileRender,
+    viewActivityRender,
     editProfileRender,
     editProfileController,
     singleProfileRender,
