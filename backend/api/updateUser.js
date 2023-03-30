@@ -1,13 +1,19 @@
 const userModel = require("../models/Users");
 
 const updateUser = async (id, postedData) => {
-    userModel.findOneAndUpdate({ _id: id }, postedData, (err, doc) => {
-        if (err) {
-            console.log(err);
-        } else {
-            return;
-        }
-    })
+    try {
+        const result = await userModel.findOneAndUpdate({ _id: id }, postedData);
+        return result;
+      } catch (err) {
+        if (err.name === "MongoServerError" && err.code === 11000) {
+            const field = Object.keys(err.keyPattern)[0]; // Get the field that caused the error
+            const value = err.keyValue[field]; // Get the value that caused the error
+            const message = `The ${field} "${value}" is already taken. Please choose a different ${field}.`;
+            throw new Error(message);
+          } else{
+            throw new Error("something went wrong please try again later");
+          }
+      }
 }
 
 module.exports = updateUser;

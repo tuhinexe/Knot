@@ -1,30 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
+        <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knot</title>
-</head>
+            <div class="profileNavigation">
+                <ul class="profileNav-items">
+                    <li class=""><a class="" href="/profile"><i class='bx bx-md bxs-customize'></i></a></li>
+                    <li class=""><a class="" href="/profile/activity"><i class='bx bx-md bxs-widget'></i></a></li>
+                    <li class="<%=pageName==='profile-edit' ? 'navigation-active' : ''%>"><a class=""
+                            href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+                </ul>
+            </div>
+            <div class="edit-profile">
+                <div class="edit-profile-container">
+                    <form class="edit-profile-form" action="/profile/update" method="post">
+                        <div class="label-input">
+                            <label for="firstname">First Name:</label>
+                            <input type="text" class="input" placeholder="First Name" name="firstname"
+                                value="<%=existingdata.firstname%>" id="" required>
+                        </div>
+                        <div class="label-input">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" class="input" placeholder="Last Name" name="lastname"
+                                value="<%=existingdata.lastname%>" id="" required>
+                        </div>
+                        <div class="label-input">
+                            <label for="username">Username:</label>
+                            <input type="text" class="input" placeholder="Username" name="username"
+                                value="<%=existingdata.username%>" id="" required>
+                        </div>
+                        <div class="label-input">
+                            <label for="bio">Bio:</label>
+                            <input type="text" class="input" placeholder="enter your bio.."
+                                value="<%=existingdata.bio%>" id="" name="bio">
+                        </div>
+                        <div class="label-input">
+                            <label for="dob">Date of birth:</label>
+                            <input type="date" class="input" placeholder="Date of birth" name="dob"
+                                value="<%=existingdata.date_of_birth%>" id="">
+                        </div>
+                        <input type="submit" class="edit-profile-submit" value="Submit" id="">
+                        <% if (messages.error) { %>
+                            <div class="submit-fail-text">
+                                <p><%= messages.error %></p>
+                                    <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissError()"></i>
+                            </div>
+                            <% } %>
+                    </form>
+                    
+                    
+                            <script>
+                                function dismissError() {
+                                    const errorElem = document.querySelector('.submit-fail-text');
+                                    errorElem.style.display = 'none';
+                                }
+                            </script>
 
-<body>
-    <div>
-        <form action="/profile/update" method="post">
-            <input type="text" class="input" placeholder="First Name" name="firstname"
-                value="<%=existingdata.firstname%>" id="" required>
-            <input type="text" class="input" placeholder="Last Name" name="lastname" value="<%=existingdata.lastname%>"
-                id="" required>
-            <input type="text" class="input" placeholder="Username" name="username" value="<%=existingdata.username%>"
-                id="" required>
-            <input type="date" class="input" placeholder="Date of birth" name="dob"
-                value="<%=existingdata.date_of_birth%>" id="" required>
-            <input type="email" class="input" placeholder="Email Address" name="email" value="<%=existingdata.email%>"
-                id="" required>
-            <input type="hidden" name="id" value="<%=existingdata._id%>" id="">
-            <input type="submit" class="submit hovereffect" value="Submit" id="">
-        </form>
-    </div>
-</body>
-
-</html>
+                </div>
+            </div>

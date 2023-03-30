@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const flash = require("connect-flash");
 const app = express();
 const session = require("express-session");
 const connectDB = require("./config/dbConnection");
@@ -28,6 +29,7 @@ app.use(
     extended: false,
   })
 );
+app.use(flash());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

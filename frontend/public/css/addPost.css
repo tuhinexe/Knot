@@ -1,0 +1,61 @@
+.submit-post,
+.submit-comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+.submit-post input,
+.submit-post textarea,
+.submit-comment input {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: var(--regular);
+  background-color: var(--body-color);
+  color: var(--secondary-color);
+}
+.submit-post textarea{
+    height: 4rem;
+}
+#content {
+  /* text-align: left; */
+  font-size: small;
+  resize: none;
+}
+#post-submit-btn,
+#comment-btn {
+  font-size: large;
+  width: 30%;
+  margin-bottom: 10px;
+  margin-inline: auto;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: var(--regular);
+  background-color: var(--secondary-color);
+  color: var(--body-color);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#post-submit-btn{
+    width: 100%;
+}
+#post-submit-btn:disabled{
+    cursor: not-allowed;
+}
+#post-submit-btn:hover,
+#comment-btn:hover {
+  /* some cool hover effect */
+  background-color: var(--primary-color);
+  color: var(--body-color);
+  transform: rotateZ(2deg);
+}

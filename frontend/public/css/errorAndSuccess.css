@@ -1,0 +1,67 @@
+.submit-fail-text{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-family: var(--regular);
+    text-align: center;
+    background-color: rgba(253, 71, 71, 0.438);
+    padding: 2px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+/* Styles for the success modal */
+.success-modal {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    font-size: 1rem;
+    font-family: var(--regular);
+    padding: 16px;
+    margin-top: 16px;
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+  }
+  
+  .success-modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 12px;
+    margin-right: 8px;
+    color: inherit;
+  }
+  
+  .success-modal-close:hover {
+    color: #3c763d;
+    text-decoration: none;
+  }
+  
+  /* Fade animation for the success modal */
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+    }
+  }
+  
+  /* Add the fade-out animation to the success modal when it is closed */
+  .success-modal.fade-out {
+    animation: fade-out 0.5s ease-out;
+  }
+  
