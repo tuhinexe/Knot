@@ -1,7 +1,7 @@
 const findUser = require("../api/findUser");
 const pollsModel = require("../models/Polls");
 const fetchPolls = require("../api/fetchPolls");
-
+const {voteCount} = require("../api/pollsApi");
 
 const pollsRender = async (req, res) => {
     const pageInfo = {
@@ -88,10 +88,23 @@ const createPollsRender = async (req, res) => {
     res.render("createPolls", { user:user });
 }
 
+const  voteController= async (req, res) => {
+    const clickedOptionId = req.body.clickedOptionId;
+    const pollId = req.body.pollId;
+    const userId=req.user._id;
+    try {
+        await voteCount(pollId, clickedOptionId,userId);
+    } catch (err) { 
+        console.log(err);
+    }
+    
+}
+
 
 module.exports = {
     pollsRender,
     createPollsController,
     viewPollsRender,
-    createPollsRender
+    createPollsRender,
+    voteController
 };

@@ -1,9 +1,25 @@
 import { globalEvent } from "../utils/eventListener.js";
 
 async function voteCount(e) {
-    const clickedOption=e.target
+    e.preventDefault();
+    const clickedOptionId=e.target.parentElement.getAttribute("data-option-id");
+    const pollId=e.target.parentElement.parentElement.getAttribute("data-poll-id");
+    const userId =e.target.parentElement.parentElement.getAttribute("data-user-id");
     
-    console.log("clicked")
+    try{
+        const response = await fetch("/polls/vote", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({clickedOptionId,pollId}),
+
+        });
+        console.log(response)
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 
 
