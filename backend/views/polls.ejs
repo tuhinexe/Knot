@@ -21,9 +21,9 @@
                         <p class="poll-title">
                             <%=poll.content%>
                         </p>
-                        <div class="poll-options">
+                        <div class="poll-options" data-poll-id="<%=poll._id%>">
                             <% poll.options.map(option=>{%>
-                                <div class="option">
+                                <div class="option" data-option-id="<%=option._id%>" data-user-id="<%=pageInfo.userId%>">
                                     <p>
                                         <%=option.optionsName%>
                                         
