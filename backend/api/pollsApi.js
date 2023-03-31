@@ -18,4 +18,15 @@ const voteCount=async(pollId,optionId,userId)=>{
 
 }
 
-module.exports={voteCount};
+const deletePoll = async (pollId,user) => {
+    try {
+    await Polls.findByIdAndDelete(pollId);    
+    user.polls.pull(pollId)
+    await user.save();
+    }catch{
+        console.log(err);
+    }
+}
+
+
+module.exports={voteCount,deletePoll};
