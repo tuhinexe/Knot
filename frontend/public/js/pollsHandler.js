@@ -7,6 +7,7 @@ async function voteCount(e) {
 
     console.log(clickedOptionId,pollId)
     
+
     try{
         const response = await fetch("/polls/vote", {
             method: "POST",

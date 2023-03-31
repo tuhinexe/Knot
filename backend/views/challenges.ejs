@@ -17,9 +17,39 @@
                                 </small>
                             </div>
                         </div>
-                        <p class="poll-title">
-                            <%=challenge.content%>
-                        </p>
+                            <div class="challenge-title">
+                                <%=challenge.content%>
+                                    <% const remainingTime = new Date(challenge.duration) - new Date(); %>
+                                    <% if (remainingTime > 0) { %>
+                                      <% const remainingDays = Math.ceil(remainingTime / (1000 * 60 * 60 * 24)); %>
+                                      <% if (remainingDays > 1) { %>
+                                        <p class="small-duration"><%= remainingDays %> days remaining</p>
+                                      <% } else { %>
+                                        <p class="small-duration">1 day remaining</p>
+                                      <% } %>
+                                    <% } else { %>
+                                        <p class="small-duration duration-ended">Challenge has ended</p>
+                                    <% } %>
+                            </div>
+                        <div class="post-content">
+                            <p class="challenge-desc">
+                                <%=challenge.description%>
+                            </p>
+                        </div>
+                        <div class="challenge-interaction">
+                            <div class="current-participation"><i class='bx bx-male-female'></i>
+                                <div class="count"><%= challenge.participators.length%> Participants</div>
+                            </div>
+                            <% if (challenge.participators.includes(pageInfo.userId)) { %>
+                                <div class="participate-btn participated"><i class='bx bxs-spa'></i>Participated</div>
+                            <% } else if(challenge.creatorId._id == pageInfo.userId) { %>
+                                <div class=""></div>
+                            <% } else { %>
+                                <div class="participate-btn"><i class='bx bxs-spa'></i>Participate</div>
+                            <% } %>
+
+                            
+                        </div>
                     </div>
 
                 </div>

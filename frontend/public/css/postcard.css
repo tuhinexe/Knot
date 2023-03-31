@@ -231,7 +231,7 @@ a {
   }
   .post-container,
   .poll-container,
-  .each-challenge-container
+  .each-challenge-container,
   .edit-profile-container {
     width: 100%;
     padding: 1rem;

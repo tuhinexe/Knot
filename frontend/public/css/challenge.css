@@ -1,3 +1,7 @@
+.challenges-section{
+    padding-bottom: 5rem;
+}
+
 .challenge-container{
     width: 100%;
     display: flex;
@@ -10,3 +14,66 @@
     color: var(--dark-color);
     width: 70%;
 }
+
+.challenge-title{
+    width: 100%;
+    font-size: 1.3rem;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.small-duration{
+    font-size: 0.7rem;
+    color: var(--dark-color);
+    background-color: var(--body-color);
+    padding: 0.3rem;
+    border-radius: 8px;
+}
+.duration-ended{
+    background-color: rgba(185, 43, 43, 0.596);
+    color: var(--primary-color);
+}
+
+.challenge-interaction{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    max-width: 100%;
+    overflow: hidden;
+}
+.participate-btn, .current-participation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--body-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;;
+  }
+  .participate-btn{
+    background-color: var(--primary-color);
+    color: var(--body-color);
+  }
+  
+  .participate-btn:hover {
+    background-color: var(--body-color);
+    color: var(--secondary-color);
+  }
+  @media screen and (min-width: 769px) and (max-width: 1400px) {
+    .participate-btn, .current-participation {
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+      }
+  }
+
+  @media screen and (max-width: 768px) {
+    .participate-btn, .current-participation {
+        padding: 0.25rem 0.5rem;
+        gap: 0.25rem;
+      }
+  }

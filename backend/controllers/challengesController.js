@@ -8,13 +8,11 @@ const challengesRender = async (req, res) => {
     title: "Knot - Challenges",
     pagename: "challenges",
     profilePic: req.user.profilePic_url,
-    userId: req.user._id,
+    userId: (String(req.user._id)),
   };
   try {
     const challenges = await challengesAPI.fetchChallenges();
-    // const challengesDate = challenges.map((challenge) => 
-    //     new Date(challenge.duration).toLocaleDateString() );
-    res.render('challenges', { challenges, pageInfo: pageInfo });
+    res.render('challenges', { challenges, pageInfo: pageInfo,  });
   } catch (err) {
     console.log(err);
     res.send([]);
