@@ -2,9 +2,9 @@ import { globalEvent } from "../utils/eventListener.js";
 
 async function voteCount(e) {
     e.preventDefault();
-    const clickedOptionId=e.target.parentElement.getAttribute("data-option-id");
-    const pollId=e.target.parentElement.parentElement.getAttribute("data-poll-id");
-    const userId =e.target.parentElement.parentElement.getAttribute("data-user-id");
+    const clickedOptionId= e.target.parentElement.getAttribute("data-option-id");
+    const pollId= e.target.parentElement.parentElement.getAttribute("data-poll-id");
+    const userId = e.target.parentElement.parentElement.getAttribute("data-user-id");
     
     try{
         const response = await fetch("/polls/vote", {
