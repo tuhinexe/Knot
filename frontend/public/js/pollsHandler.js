@@ -4,8 +4,6 @@ async function voteCount(e) {
     e.preventDefault();
     const clickedOptionId=e.target.parentElement.getAttribute("data-option-id");
     const pollId=e.target.parentElement.parentElement.getAttribute("data-poll-id");
-
-    console.log(clickedOptionId,pollId)
     
     try{
         const response = await fetch("/polls/vote", {
@@ -16,7 +14,10 @@ async function voteCount(e) {
             body: JSON.stringify({clickedOptionId,pollId}),
 
         });
-        console.log(response)
+     
+        if (response.redirected === true) {
+            window.location = response.url;
+        }
     }
     catch(err){
         console.log(err)

@@ -68,7 +68,7 @@ const sharePostController = async (req, res) => {
 };
 
 
-const deletPostController = async (req, res) => {
+const deletePostController = async (req, res) => {
   const postId = req.body.postId;
   const user = req.user;
   try {
@@ -109,6 +109,6 @@ module.exports = {
   likeCountController,
   dislikeCountController,
   sharePostController,
-  deletPostController,
+  deletePostController,
   getSinglePostRender,
 };

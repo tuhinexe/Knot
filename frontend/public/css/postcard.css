@@ -51,6 +51,7 @@ a {
   width: 100%;
 }
 .delete-icon,
+.poll-delete-icon,
 .comment-delete-icon {
   display: flex;
   justify-content: center;

@@ -1,7 +1,7 @@
 const findUser = require("../api/findUser");
 const pollsModel = require("../models/Polls");
 const fetchPolls = require("../api/fetchPolls");
-const {voteCount} = require("../api/pollsApi");
+const {voteCount,deletePoll} = require("../api/pollsApi");
 
 const pollsRender = async (req, res) => {
     const pageInfo = {
@@ -65,7 +65,7 @@ const createPollsController = async (req, res) => {
                         if (err) {
                             console.log(err);
                         } else {
-                            res.redirect("/profile");
+                            res.redirect("/profile/activity");
                         }
                     });
                 });
@@ -94,17 +94,29 @@ const  voteController= async (req, res) => {
     const userId=req.user._id;
     try {
         await voteCount(pollId, clickedOptionId,userId);
+        res.redirect("/polls");
     } catch (err) { 
         console.log(err);
     }
     
 }
 
+const deletePollController = async (req, res) => {
+    const pollId = req.params.pollId;
+    const user = req.user;
+    try {
+      await deletePoll(pollId, user);
+      res.redirect("/profile/activity");
+    } catch (err) {
+        res.redirect("/profile/activity");
+    }
+  };
 
 module.exports = {
     pollsRender,
     createPollsController,
     viewPollsRender,
     createPollsRender,
-    voteController
+    voteController,
+    deletePollController
 };
