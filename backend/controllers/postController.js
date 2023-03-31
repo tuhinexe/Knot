@@ -82,6 +82,7 @@ const deletPostController = async (req, res) => {
 // Single Post and Comments Controller
 
 const getSinglePostRender = async (req, res) => {
+try{
   const postId = req.params.id;
   const post = await Posts.findById(postId).populate("creator").exec()
   const stats = await post.stats.populate("comments")
@@ -96,6 +97,10 @@ const getSinglePostRender = async (req, res) => {
     profilePic: req.user.profilePic_url,
 }
   res.render("post", {pageInfo: pageInfo, post: post, comments: comments});
+} catch (err) {
+  res.redirect("/");
+  console.log("Route Error",err);
+};
 };
 
 
