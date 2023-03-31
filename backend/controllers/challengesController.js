@@ -29,7 +29,21 @@ const createChallengeRender = async (req, res) => {
   res.render("createChallenges", { pageInfo: pageInfo });
 };
 
+const createChallengeController = async (req, res) => {
+  const challengeData ={
+    creatorId: req.user._id,
+    content: req.body.content,
+  }
+  try {
+    await challengesAPI.createChallenges(challengeData);
+    res.redirect("/challenges");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   challengesRender,
   createChallengeRender,
+  createChallengeController,
 };

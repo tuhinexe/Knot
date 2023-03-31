@@ -3,7 +3,7 @@ const Polls=require('../models/Polls');
 const voteCount=async(pollId,optionId,userId)=>{
 
     const poll=await Polls.findById(pollId);
-    let option=poll.options.id(optionId);
+    let option=poll.options.find(option=>option._id==optionId);
     for(option of poll.options){
         if(option.voted_by.includes(userId)){
             return;
