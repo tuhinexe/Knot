@@ -8,7 +8,7 @@
                         <div class="post-creator">
                             <img class="post-profile" src="<%= challenge.creatorId.profilePic_url %>" alt="">
                             <div class="post-creator-name">
-                                <a href=""><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
+                                <a href="/profile/<%=challenge.creatorId._id%>"><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
                                         challenge.creatorId.firstname + ' ' + challenge.creatorId.lastname %></a>
                                 <small>
                                     <%= new Intl.RelativeTimeFormat('en',{style: 'long'

@@ -9,7 +9,7 @@
                         <div class="post-creator">
                             <img class="post-profile" src="<%= poll.creatorId.profilePic_url %>" alt="">
                             <div class="post-creator-name">
-                                <a href=""><%- poll.creatorId.firstname==undefined ? poll.creatorId :
+                                <a href="/profile/<%=poll.creatorId._id%>"><%- poll.creatorId.firstname==undefined ? poll.creatorId :
                                         poll.creatorId.firstname + ' ' + poll.creatorId.lastname %></a>
                                 <small>
                                     <%= new Intl.RelativeTimeFormat('en',{style: 'long'
