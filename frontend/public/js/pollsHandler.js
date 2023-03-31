@@ -24,4 +24,4 @@ async function voteCount(e) {
 
 
 
-globalEvent("click",".option",voteCount);
+globalEvent("click",".option", voteCount);

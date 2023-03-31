@@ -14,6 +14,7 @@ const logoutRouter = require("./routes/logout");
 const postRouter = require("./routes/post");
 const followersRouter = require("./routes/followers");
 const pollsRouter = require("./routes/polls");
+const challengesRouter = require("./routes/challenges");
 const devApiRouter = require("./routes/devApi");
 const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
@@ -54,7 +55,8 @@ app.use("/profile", profileRouter);
 app.use("/follow", followersRouter)
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
-app.use("/polls",pollsRouter);
+app.use("/polls", pollsRouter);
+app.use("/challenges", challengesRouter)
 app.use("/api/v1", devApiRouter);
 
 //use wildcard to catch all routes

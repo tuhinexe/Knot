@@ -1,42 +1,7 @@
-<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include
-('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename })
-%>
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include ('partials/nav',{profilePic:
+    pageInfo.profilePic, pageName: pageInfo.pagename }) %>
 
-<section class="post-section">
-  <div class="posts">
-    <div class="post-container">
-      <div class="post-creator">
-        <img
-          class="post-profile"
-          src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>"
-          alt=""
-        />
-        <div class="post-creator-name">
-          <a href="/profile"
-            ><%- pageInfo.user.firstname==undefined ? creatorDetails.creator :
-            pageInfo.user.firstname + ' ' + pageInfo.user.lastname %></a
-          >
-        </div>
-      </div>
-      <form action="/post/add" class="submit-post" method="post">
-        <textarea
-          placeholder="Be creative with the caption!"
-          name="content"
-          id="content"
-          autocomplete="off"
-          rows="6"
-        ></textarea>
-        <span id="error-span"></span>
-        <input
-          type="file"
-          accept="image/png, image/jpeg"
-          placeholder="Enter Post Content"
-          name="postImage"
-          id="input-file"
-        />
-        <img class="image-preview" src="" alt="" />
-        <input type="submit" value="Post" id="post-submit-btn" />
-      </form>
-    </div>
-  </div>
-</section>
+    <section class="post-section">
+      <%- include ('partials/createPost',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo:
+        pageInfo }) %>
+    </section>

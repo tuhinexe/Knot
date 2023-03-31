@@ -117,6 +117,7 @@ const singleProfileRender = async (req, res) => {
     posts: posts,
     creatorDetails: creatorDetails,
     pageName: "viewProfile",
+    messages: req.flash(),
   });
 };
 
