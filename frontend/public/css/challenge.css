@@ -1,0 +1,12 @@
+.challenge-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.label-input label{
+    color: var(--dark-color);
+    width: 70%;
+}

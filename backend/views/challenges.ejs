@@ -1,0 +1,28 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+    <%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+        <section class="challenges-section">
+            <% challenges.map(challenge=>{ %>
+                <div class="challenges">
+                    <div class="each-challenge-container">
+                        <div class="post-creator">
+                            <img class="post-profile" src="<%= challenge.creatorId.profilePic_url %>" alt="">
+                            <div class="post-creator-name">
+                                <a href=""><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
+                                        challenge.creatorId.firstname + ' ' + challenge.creatorId.lastname %></a>
+                                <small>
+                                    <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                        }).format((((challenge.timestamp.valueOf()) - Date.now()) / (1000 * 60 * 60 *
+                                        24)).toFixed(),'day') %>
+                                </small>
+                            </div>
+                        </div>
+                        <p class="poll-title">
+                            <%=challenge.content%>
+                        </p>
+                    </div>
+
+                </div>
+
+                <% }) %>
+        </section>

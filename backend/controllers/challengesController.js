@@ -12,7 +12,9 @@ const challengesRender = async (req, res) => {
   };
   try {
     const challenges = await challengesAPI.fetchChallenges();
-    res.send(challenges);
+    // const challengesDate = challenges.map((challenge) => 
+    //     new Date(challenge.duration).toLocaleDateString() );
+    res.render('challenges', { challenges, pageInfo: pageInfo });
   } catch (err) {
     console.log(err);
     res.send([]);
@@ -26,13 +28,15 @@ const createChallengeRender = async (req, res) => {
     pagename: "add challenge",
     profilePic: req.user.profilePic_url,
   };
-  res.render("createChallenges", { pageInfo: pageInfo });
+  res.render("addChallenge", { pageInfo: pageInfo });
 };
 
 const createChallengeController = async (req, res) => {
   const challengeData ={
     creatorId: req.user._id,
     content: req.body.content,
+    description: req.body.desc,
+    duration: req.body.duration
   }
   try {
     await challengesAPI.createChallenges(challengeData);

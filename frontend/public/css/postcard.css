@@ -5,11 +5,12 @@ a {
   color: var(--secondary-color);
 }
 .post-section,
-.poll-section {
+.poll-section, .challenges-section {
   padding-top: 5rem;
 }
 .posts,
 .polls,
+.challenges,
 .edit-profile {
   display: flex;
   justify-content: center;
@@ -27,6 +28,7 @@ a {
 }
 .post-container,
 .poll-container,
+.each-challenge-container,
 .edit-profile-container {
   display: flex;
   justify-content: flex-start;
@@ -156,7 +158,7 @@ a {
 }
 
 /* edit profile */
-.edit-profile-form {
+.edit-profile-form, .create-challenge-form {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -167,7 +169,7 @@ a {
   max-width: 100%;
   padding-bottom: 2rem;
 }
-.edit-profile-form input {
+.edit-profile-form input, .create-challenge-form input, .create-challenge-form textarea {
   width: 100%;
   max-width: 100%;
   padding: 0.5rem;
@@ -179,17 +181,17 @@ a {
   font-family: var(--regular);
 
 }
-.edit-profile-form input::placeholder {
+.edit-profile-form input::placeholder, .create-challenge-form input::placeholder, .create-challenge-form textarea::placeholder {
   color: var(--dark-color);
 }
 .edit-profile-form input:focus {
   border-inline: 1px solid var(--primary-color);
 }
-.edit-profile-submit {
+.edit-profile-submit, .challenge-submit-btn {
   cursor: pointer;
   font-size: 1rem;
 }
-.edit-profile-submit:hover {
+.edit-profile-submit:hover, .challenge-submit-btn:hover {
   background-color: var(--primary-color);
   color: var(--body-color);
 }
@@ -207,7 +209,8 @@ a {
 /* Media queries */
 @media screen and (max-width: 1120px) and (min-width: 768px) {
   .post-section,
-  .poll-section {
+  .poll-section,
+  .challenges-section{
     padding-top: 5rem;
   }
   .like,
@@ -221,12 +224,14 @@ a {
 @media screen and (max-width: 768px) {
   .post-section,
   .poll-section,
+  .challenge-section,
   .ownPosts,
   .edit-profile-form {
     padding-bottom: 5rem;
   }
   .post-container,
   .poll-container,
+  .each-challenge-container
   .edit-profile-container {
     width: 100%;
     padding: 1rem;
@@ -247,11 +252,13 @@ a {
     align-items: center;
   }
   .post-section,
-  .poll-section {
+  .poll-section,
+  .challenges-section {
     padding-top: 0;
   }
   .posts,
   .polls,
+  .challenges,
   .edit-profile {
     margin: 15px;
   }
@@ -267,6 +274,7 @@ a {
 @media screen and (min-width: 769px) and (max-width: 1400px) {
   .post-container,
   .poll-container,
+  .each-challenge-container,
   .edit-profile-container {
     width: 60%;
   }

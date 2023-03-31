@@ -30,7 +30,7 @@
   font-size: small;
   resize: none;
 }
-#post-submit-btn,
+.post-submit-btn,
 #comment-btn {
   font-size: large;
   width: 30%;
@@ -46,14 +46,14 @@
   cursor: pointer;
   transition: all 0.5s ease;
 }
-#post-submit-btn{
+.post-submit-btn{
     width: 100%;
 }
-#post-submit-btn:disabled{
+.post-submit-btn:disabled{
     cursor: not-allowed;
 }
-#post-submit-btn:hover,
-#comment-btn:hover {
+.post-submit-btn:hover,
+.comment-btn:hover {
   /* some cool hover effect */
   background-color: var(--primary-color);
   color: var(--body-color);
