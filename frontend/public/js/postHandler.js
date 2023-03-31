@@ -20,7 +20,9 @@ async function likePostEvent(e) {
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
       upvoteCount.innerText = String(count + 1);
-      downCount !== 0 ? downvoteCount.innerText = String(downCount - 1) : downvoteCount.innerText = String(downCount);
+      if(Array.from(e.target.parentElement.nextElementSibling.classList).includes("disliked") && downCount > 0){
+        downvoteCount.innerText = String(downCount - 1);
+      }
     } else {
       return
     }
@@ -55,7 +57,9 @@ async function dislikePostEvent(e) {
       let downCount = Number(downvoteCount.innerText);
       let count = Number(upvoteCount.innerText);
       downvoteCount.innerText = String(downCount + 1);
-      count !== 0 ? upvoteCount.innerText = String(count - 1) : upvoteCount.innerText = String(count);
+      if(Array.from(e.target.parentElement.previousElementSibling.classList).includes("liked") && count > 0){
+        upvoteCount.innerText = String(count - 1);
+      }
     } else {
       return
     }

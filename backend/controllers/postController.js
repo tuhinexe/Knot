@@ -99,7 +99,6 @@ try{
   res.render("post", {pageInfo: pageInfo, post: post, comments: comments});
 } catch (err) {
   res.redirect("/");
-  console.log("Route Error",err);
 };
 };
 
