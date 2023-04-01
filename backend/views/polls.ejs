@@ -23,12 +23,11 @@
                         </p>
                         <div class="poll-options" data-poll-id="<%=poll._id%>">
                             <% poll.options.map(option=>{%>
-                                <div class="option" data-option-id="<%=option._id%>">
+                                <div class='option <%-option.voted_by.includes(pageInfo.userId)? "voted" : ""%>' data-option-id="<%=option._id%>">
                                     <p>
                                         <%=option.optionsName%>
-                                        
                                     </p>
-                                    <span>
+                                    <span class="hide">
                                         <%=option.voted_by.length%> 
                                     </span>
                                 </div>
