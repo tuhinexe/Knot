@@ -2,7 +2,6 @@ import { likePost, dislikePost,sharePost } from "../utils/postReaction.js";
 import { globalEvent } from "../utils/eventListener.js";
 async function likePostEvent(e) {
   if (Array.from(e.target.parentElement.classList).includes("liked")) {
-    console.log("already liked");
     return;
   }
   const postId =
