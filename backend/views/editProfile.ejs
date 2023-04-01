@@ -40,7 +40,7 @@
                         </div>
                         <input type="submit" class="edit-profile-submit" value="Submit" id="">
                         <% if (messages.error) { %>
-                            <div class="submit-fail-text">
+                            <div class="fail-flash">
                                 <p><%= messages.error %></p>
                                     <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissError()"></i>
                             </div>
@@ -50,7 +50,7 @@
                     
                             <script>
                                 function dismissError() {
-                                    const errorElem = document.querySelector('.submit-fail-text');
+                                    const errorElem = document.querySelector('.fail-flash');
                                     errorElem.style.display = 'none';
                                 }
                             </script>

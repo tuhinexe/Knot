@@ -1,13 +1,13 @@
-const successMessage = document.querySelector(".success-modal");
+const successMessage = document.querySelector(".success-flash");
 
 if (successMessage) {
   console.log(successMessage);
   setTimeout(() => {
     successMessage.style.display = "none";
-  }, 2000);
+  }, 5000);
 }
 
-const errorMessage = document.querySelector(".submit-fail-text");
+const errorMessage = document.querySelector(".fail-flash");
 
 if (errorMessage) {
   setTimeout(() => {

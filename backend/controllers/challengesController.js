@@ -44,8 +44,49 @@ const createChallengeController = async (req, res) => {
   }
 };
 
+const viewOneChallengeRender = async(req, res)=>{
+  const pageInfo = {
+    user: req.user,
+    title: "Knot - Challenge",
+    pagename: "challenge",
+    profilePic: req.user.profilePic_url,
+    userId: (String(req.user._id))
+  };
+  const challengeId = req.params.id;
+  
+  
+  try{
+    const challenge = await challengesAPI.fetchOneChallenge(challengeId);
+    let challengeEnded = null;
+    const remainingTime = new Date(challenge.duration) - new Date();
+    if (!remainingTime > 0) {
+    challengeEnded = true;
+    } else {
+        challengeEnded = false;
+    }
+    res.render("oneChallenge", {pageInfo: pageInfo, challenge: challenge, challengeEnded: challengeEnded, messages: req.flash()});
+  }catch(err){
+    console.log(err);
+  }
+}
+
+const participateInChallengeRender = async(req, res)=>{
+  const challengeId = req.params.id;
+  const userId = req.user._id;
+  try{
+    await challengesAPI.participateInChallenge(challengeId, userId);
+    req.flash('success', 'You have successfully participated in this challenge');
+    res.redirect(`/challenges/${challengeId}`);
+  }catch(err){
+    req.flash('error', err.message);
+    res.redirect(`/challenges/${challengeId}`);
+  }
+};
+
 module.exports = {
   challengesRender,
   createChallengeRender,
   createChallengeController,
+  viewOneChallengeRender,
+  participateInChallengeRender
 };
