@@ -1,21 +1,18 @@
 const userModel = require("../models/Users");
 
-async function getPolls(user) {
-  const userFound = await userModel.findById(user._id).populate("polls").exec();
+async function getActivities(user) {
+  const userFound = await userModel.findById(user._id).populate("polls").populate("challenges").populate("participatedChallenges").exec();
   if (userFound) {
-    return userFound.polls.reverse();
+    const combined = [...userFound.polls, ...userFound.challenges, ...userFound.participatedChallenges];
+    const sorted = combined.sort((a, b) => b.timestamp - a.timestamp);
+
+    let uniqueArray = sorted
+  .filter((value, index, array) => array.findIndex(obj => String(obj._id) === String(value._id)) === index);
+    return uniqueArray;
   } else {
     console.log("polls not found");
   }
 }
-async function getChallenges(user) {
-  const userFound = await userModel.findById(user._id).populate("challenges").exec();
-  if (userFound) {
-    return userFound.challenges.reverse();
-  } else {
-    console.log("challenges not found");
-  }
-}
 
-module.exports = {getPolls, getChallenges};
+module.exports = getActivities;
 

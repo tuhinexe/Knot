@@ -1,7 +1,7 @@
 const findUser = require("../api/findUser");
 const updateUser = require("../api/updateUser");
 const getPosts = require("../api/getPosts");
-const { getPolls, getChallenges } = require("../api/getActivities");
+const getActivities = require("../api/getActivities");
 const { followAndUnfollow } = require("../api/followAPI");
 
 const viewProfileRender = async (req, res) => {
@@ -30,13 +30,13 @@ const viewActivityRender = async (req, res) => {
   // console.log(req.user)
   const userData = await findUser(req.user);
   let profilePic = req.user.profilePic_url;
-  const polls = await getPolls(req.user);
+  const activities = await getActivities(req.user);
   const creatorDetails = {
     creator: req.user.firstname + " " + req.user.lastname,
     profilePic_url: req.user.profilePic_url,
   };
   // const challenges = await getChallenges(req.user );
-  res.render("profilePolls", {
+  res.render("profileActivity", {
     activeUser: userData,
     user: userData,
     profilePic: profilePic,
@@ -44,7 +44,7 @@ const viewActivityRender = async (req, res) => {
     pageTitle: "Knot - Profile",
     creatorDetails: creatorDetails,
     pageName: "profile-activities",
-    polls: polls,
+    activities: activities,
   });
 };
 

@@ -46,6 +46,7 @@ let UserSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    sharedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     participatedChallenges: [{ type: mongoose.Schema.Types.ObjectId, ref: "Challenge" }],
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     challenges: [{ type: mongoose.Schema.Types.ObjectId, ref: "Challenge" }],

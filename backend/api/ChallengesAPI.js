@@ -9,10 +9,17 @@ const fetchChallenges = async () => {
   return challenges;
 };
 
-const createChallenges = async (challengeData) => {
+const createChallenges = async (challengeData, userId) => {
   try {
     const challenge = new Challenges(challengeData);
     await challenge.save();
+    await User.updateOne(
+      { _id: userId },
+      { 
+        $push: { participatedChallenges: challenge._id },
+        $addToSet: { challenges: challenge._id }
+      }
+    );
     return challenge;
   } catch (err) {
     console.log(err);

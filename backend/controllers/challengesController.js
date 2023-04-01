@@ -38,7 +38,7 @@ const createChallengeController = async (req, res) => {
     participators: [req.user._id]
   }
   try {
-    await challengesAPI.createChallenges(challengeData);
+    await challengesAPI.createChallenges(challengeData, req.user._id);
     res.redirect("/challenges");
   } catch (err) {
     console.log(err);
