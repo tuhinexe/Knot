@@ -11,6 +11,7 @@
     color: var(--secondary-color);
     font-family: var(--medium);
     border-radius: 10px;
+    gap: 0.5rem;
 }
 
 .follower, .following{
@@ -43,6 +44,9 @@ a.unfollow-btn{
 
     min-width: auto;
     margin-left: auto;
+    background-color: var(--secondary-body-color);
+    padding: 5px;
+    border-radius: 10px;
 }
 
 

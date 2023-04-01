@@ -31,7 +31,7 @@
                 <h3>Points</h3>
             </div>
         </div>
-        <% if(pageName !== "profile"){ %>
+        <% if(user._id !== activeUser._id ){ %>
             <div class="follow" data-profileId="<%= user._id %>">
                 <a href="/profile/follow/<%=user._id%>"><input type="button" value="<%= !user.followers.includes(activeUser._id) ? 'Follow': 'Unfollow'  %>"></a>
             </div>
