@@ -34,7 +34,8 @@ const createChallengeController = async (req, res) => {
     creatorId: req.user._id,
     content: req.body.content,
     description: req.body.desc,
-    duration: req.body.duration
+    duration: req.body.duration,
+    participators: [req.user._id]
   }
   try {
     await challengesAPI.createChallenges(challengeData);
@@ -57,6 +58,9 @@ const viewOneChallengeRender = async(req, res)=>{
   
   try{
     const challenge = await challengesAPI.fetchOneChallenge(challengeId);
+    const challengeParticipators = challenge.participators.map((participator)=>{
+      return String(participator._id);
+    })
     let challengeEnded = null;
     const remainingTime = new Date(challenge.duration) - new Date();
     if (!remainingTime > 0) {
@@ -64,7 +68,7 @@ const viewOneChallengeRender = async(req, res)=>{
     } else {
         challengeEnded = false;
     }
-    res.render("oneChallenge", {pageInfo: pageInfo, challenge: challenge, challengeEnded: challengeEnded, messages: req.flash()});
+    res.render("oneChallenge", {pageInfo: pageInfo, challenge: challenge, challengeEnded: challengeEnded, challengeParticipators: challengeParticipators, messages: req.flash()});
   }catch(err){
     console.log(err);
   }

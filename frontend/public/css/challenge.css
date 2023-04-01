@@ -67,7 +67,11 @@
 }
 .participated{
     background-color: var(--dark-color);
+    cursor: not-allowed;
+    pointer-events: none;
 }
+
+
 .ended{
     background-color: rgba(185, 43, 43, 0.596);
     color: var(--primary-color);
