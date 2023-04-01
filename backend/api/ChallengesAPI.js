@@ -50,9 +50,8 @@ const participateInChallenge = async(challengeId, userId)=>{
       { _id: challengeId },
       { $addToSet: { participators: userId } }
     );
-    const foundUserPromise = User.findOne({ _id: userId });
+    const foundUserPromise = User.updateOne({ _id: userId }, { $addToSet: { participatedChallenges: challengeId } });
     const [user, resultOfParticipation] = await Promise.all([foundUserPromise, participatePromise]);
-    user.participatedChallenges.push(challengeId);
     return resultOfParticipation;
   } catch (error) {
     throw new Error(error.message);
