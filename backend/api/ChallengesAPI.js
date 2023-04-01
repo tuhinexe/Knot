@@ -1,4 +1,5 @@
 const Challenges = require("../models/Challenges");
+const User = require("../models/Users");
 
 const fetchChallenges = async () => {
   const challenges = await Challenges.find({})
@@ -38,10 +39,13 @@ const participateInChallenge = async(challengeId, userId)=>{
     if (challenge.participators.includes(userId)) {
       throw new Error(`You have already participated`);
     }
-    const resultOfParticipation = await Challenges.updateOne(
+    const participatePromise = Challenges.updateOne(
       { _id: challengeId },
       { $addToSet: { participators: userId } }
     );
+    const foundUserPromise = User.findOne({ _id: userId });
+    const [user, resultOfParticipation] = await Promise.all([foundUserPromise, participatePromise]);
+    user.participatedChallenges.push(challengeId);
     return resultOfParticipation;
   } catch (error) {
     throw new Error(error.message);
@@ -50,3 +54,10 @@ const participateInChallenge = async(challengeId, userId)=>{
 
 
 module.exports = { fetchChallenges, createChallenges, fetchOneChallenge, participateInChallenge };
+
+
+// const userPromise = User.findById(userId);
+//   const challengesPromise = Challenge.find({ participants: userId }).sort({
+//     createdAt: -1
+//   });
+//   const [user, challenges] = await Promise.all([userPromise, challengesPromise]);
