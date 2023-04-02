@@ -99,26 +99,31 @@ const singleProfileRender = async (req, res) => {
     res.redirect("/profile");
     return;
   }
-  const userData = await findUser(user);
-  const activeUser = req.user;
-  let profilePic = userData.profilePic_url;
-  const posts = await getPosts(user);
-  const creatorDetails = {
-    creator: userData.firstname + " " + userData.lastname,
-    profilePic_url: userData.profilePic_url,
-  };
+  try{
+    const userData = await findUser(user);
+    const activeUser = req.user;
+    let profilePic = userData.profilePic_url;
+    const posts = await getPosts(user);
+    const creatorDetails = {
+      creator: userData.firstname + " " + userData.lastname,
+      profilePic_url: userData.profilePic_url,
+    };
+  
+    res.render("profile", {
+      activeUser,
+      user: userData,
+      profilePic: profilePic,
+      profilePicLoggedIn: req.user.profilePic_url,
+      pageTitle: "Knot - Profile",
+      posts: posts,
+      creatorDetails: creatorDetails,
+      pageName: "viewProfile",
+      messages: req.flash(),
+    });
+  } catch (err) {
+    res.redirect("/");
+  }
 
-  res.render("profile", {
-    activeUser,
-    user: userData,
-    profilePic: profilePic,
-    profilePicLoggedIn: req.user.profilePic_url,
-    pageTitle: "Knot - Profile",
-    posts: posts,
-    creatorDetails: creatorDetails,
-    pageName: "viewProfile",
-    messages: req.flash(),
-  });
 };
 
 const followController = async (req, res) => {

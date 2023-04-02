@@ -83,7 +83,7 @@ const deletePostController = async (req, res) => {
 
 const getSinglePostRender = async (req, res) => {
 try{
-  const postId = req.params.id;
+  const postId = req.params.postId;
   const post = await Posts.findById(postId).populate("creator").exec()
   const stats = await post.stats.populate("comments")
   const comments = []

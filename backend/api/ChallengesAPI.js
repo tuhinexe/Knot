@@ -35,7 +35,6 @@ const fetchOneChallenge = async (challengeId) => {
       .exec();
     return challenge;
   } catch (err) {
-    console.log(err);
     throw new Error(err);
   }
 };

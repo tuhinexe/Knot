@@ -70,7 +70,7 @@ const viewOneChallengeRender = async(req, res)=>{
     }
     res.render("oneChallenge", {pageInfo: pageInfo, challenge: challenge, challengeEnded: challengeEnded, challengeParticipators: challengeParticipators, messages: req.flash()});
   }catch(err){
-    console.log(err);
+    res.redirect("/challenges")
   }
 }
 
