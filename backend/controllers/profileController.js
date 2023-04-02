@@ -28,24 +28,29 @@ const viewProfileRender = async (req, res) => {
 
 const viewActivityRender = async (req, res) => {
   // console.log(req.user)
-  const userData = await findUser(req.user);
-  let profilePic = req.user.profilePic_url;
-  const activities = await getActivities(req.user);
-  const creatorDetails = {
-    creator: req.user.firstname + " " + req.user.lastname,
-    profilePic_url: req.user.profilePic_url,
-  };
-  // const challenges = await getChallenges(req.user );
-  res.render("profileActivity", {
-    activeUser: userData,
-    user: userData,
-    profilePic: profilePic,
-    profilePicLoggedIn: profilePic,
-    pageTitle: "Knot - Profile",
-    creatorDetails: creatorDetails,
-    pageName: "profile-activities",
-    activities: activities,
-  });
+  try{
+    const userData = await findUser(req.user);
+    let profilePic = req.user.profilePic_url;
+    const activities = await getActivities(req.user);
+    const creatorDetails = {
+      creator: req.user.firstname + " " + req.user.lastname,
+      profilePic_url: req.user.profilePic_url,
+    };
+    // const challenges = await getChallenges(req.user );
+    res.render("profileActivity", {
+      activeUser: userData,
+      user: userData,
+      profilePic: profilePic,
+      profilePicLoggedIn: profilePic,
+      pageTitle: "Knot - Profile",
+      creatorDetails: creatorDetails,
+      pageName: "profile-activities",
+      activities: activities,
+    });
+  }catch(err){
+    req.flash("error", err.message);
+    res.redirect("/profile");
+  }
 };
 
 const editProfileRender = async (req, res) => {
@@ -126,6 +131,42 @@ const singleProfileRender = async (req, res) => {
 
 };
 
+const singleProfileActivityRender = async (req, res) => {
+  let user = {
+    _id: req.params.profileId,
+  };
+  if (user._id === String(req.user._id)) {
+    res.redirect("/profile/activity");
+    return;
+  }
+  try{
+    const userDataPromise = findUser(user);
+    const activitiesPromise = getActivities(user);
+    const [userData, activities] = await Promise.all([userDataPromise, activitiesPromise]);
+    const activeUser = req.user;
+    let profilePic = userData.profilePic_url;
+    const creatorDetails = {
+      creator: userData.firstname + " " + userData.lastname,
+      profilePic_url: userData.profilePic_url,
+    };
+    // const challenges = await getChallenges(req.user );
+    res.render("profileActivity", {
+      activeUser,
+      user: userData,
+      profilePic: profilePic,
+      profilePicLoggedIn: req.user.profilePic_url,
+      pageTitle: "Knot - Profile",
+      creatorDetails: creatorDetails,
+      pageName: "profile-activities",
+      activities: activities,
+    });
+  }catch(err){
+    req.flash("error", err.message);
+    res.redirect("/profile");
+  }
+  
+};
+
 const followController = async (req, res) => {
   const followerId = req.user._id;
   const followingId = req.params.followingId;
@@ -143,5 +184,7 @@ module.exports = {
   editProfileRender,
   editProfileController,
   singleProfileRender,
+  singleProfileActivityRender,
   followController,
+
 };

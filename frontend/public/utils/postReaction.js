@@ -1,4 +1,4 @@
-async function likePost(event, postId, currentLike, currentDisLike, userId) {
+async function likePost(event, postId, currentLike, currentDisLike) {
   event.preventDefault();
   try {
     await fetch(`/api/v1/post/upvote`, {
@@ -10,8 +10,7 @@ async function likePost(event, postId, currentLike, currentDisLike, userId) {
       body: JSON.stringify({
         postId: postId,
         upvotes: currentLike,
-        downvotes: currentDisLike,
-        userId: userId,
+        downvotes: currentDisLike
       }),
     });
   } catch (err) {
@@ -19,7 +18,7 @@ async function likePost(event, postId, currentLike, currentDisLike, userId) {
   }
 }
 
-async function dislikePost(event, postId, currentLike, currentDisLike, userId) {
+async function dislikePost(event, postId, currentLike, currentDisLike) {
   event.preventDefault();
   try {
     await fetch(`/api/v1/post/downvote`, {
@@ -31,8 +30,7 @@ async function dislikePost(event, postId, currentLike, currentDisLike, userId) {
       body: JSON.stringify({
         postId: postId,
         upvotes: currentLike,
-        downvotes: currentDisLike,
-        userId: userId,
+        downvotes: currentDisLike
       }),
     });
   } catch (err) {

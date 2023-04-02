@@ -35,8 +35,7 @@
                     <div class="post-content">
                         <p class="challenge-desc">
                             <%=challenge.description%>
-                            <div><%=pageInfo.userId%></div>
-                        <div><%=challenge.participators.includes(pageInfo.userId)%></div>
+                            <%=challengeEnded%>                            
                         </p>
                     </div>
                     <div class="challenge-interaction">
@@ -52,7 +51,7 @@
                                 <div class=""></div>
                                 <% } else if (!challengeEnded) { %>
                                     <div class="participate-btn"><i class='bx bxs-spa'></i>Participate</div>
-                                    <% } else { %>
+                                    <% } else if(challengeEnded) { %>
                                         <div class="ended participate-btn"><i class='bx bx-sm bx-trending-down'></i>Challenge Ended
                                         </div>
                                         <% } %>

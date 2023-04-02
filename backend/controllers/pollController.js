@@ -85,7 +85,7 @@ const viewPollsRender = async (req, res) => {
 
 const createPollsRender = async (req, res) => {
     const user = req.user;
-    res.render("createPolls", { user:user });
+    res.render("addPolls", { user:user });
 }
 
 const  voteController= async (req, res) => {

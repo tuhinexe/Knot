@@ -10,8 +10,8 @@ async function likePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-upvotes");
   const currentDisLike =
     e.target.parentElement.parentElement.getAttribute("data-downvotes");
-  const userId =
-    e.target.parentElement.parentElement.getAttribute("data-user-id");
+  // const userId =
+  //   e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-upvote");
       let upvoteCount = e.target.nextElementSibling
@@ -33,7 +33,7 @@ async function likePostEvent(e) {
   e.target.parentElement.nextElementSibling.firstElementChild.classList.add(
     "bx-downvote"
   );
-  await likePost(e, postId, currentLike, currentDisLike, userId);
+  await likePost(e, postId, currentLike, currentDisLike);
 }
 
 async function dislikePostEvent(e) {
@@ -47,8 +47,8 @@ async function dislikePostEvent(e) {
     e.target.parentElement.parentElement.getAttribute("data-upvotes");
   const currentDisLike =
     e.target.parentElement.parentElement.getAttribute("data-downvotes");
-  const userId =
-    e.target.parentElement.parentElement.getAttribute("data-user-id");
+  // const userId =
+  //   e.target.parentElement.parentElement.getAttribute("data-user-id");
     if (e.target.classList.length > 0) {
       e.target.classList.toggle("bxs-downvote");
       let upvoteCount = e.target.parentElement.previousElementSibling.firstElementChild.nextElementSibling
@@ -70,7 +70,7 @@ async function dislikePostEvent(e) {
   e.target.parentElement.previousElementSibling.firstElementChild.classList.add(
     "bx-upvote"
   );
-  await dislikePost(e, postId, currentLike, currentDisLike, userId);
+  await dislikePost(e, postId, currentLike, currentDisLike);
 }
 
 async function sharePostEvent(e) {

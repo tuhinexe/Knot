@@ -32,11 +32,31 @@ const createChallengeRender = async (req, res) => {
 const createChallengeController = async (req, res) => {
   const challengeData ={
     creatorId: req.user._id,
-    content: req.body.content,
-    description: req.body.desc,
-    duration: req.body.duration,
     participators: [req.user._id]
   }
+  if (req.body.content !== "") {
+    challengeData.content = req.body.content;
+  }else{
+    req.flash("error", "chalu banta hai shale... seriously ?");
+    res.redirect("/challenges/add");
+    return
+  }
+  ;
+  if (req.body.desc !== "") {
+    challengeData.description = req.body.desc;
+  }else{
+    req.flash("error", "chalu banta hai shale... seriously ?");
+    res.redirect("/challenges/add");
+    return
+  };
+  if (req.body.duration !== "") {
+    challengeData.duration = req.body.duration;
+  }else{
+    req.flash("error", "chalu banta hai shale... seriously ?");
+    res.redirect("/challenges/add");
+    return
+  };
+
   try {
     await challengesAPI.createChallenges(challengeData, req.user._id);
     res.redirect("/challenges");
@@ -63,8 +83,9 @@ const viewOneChallengeRender = async(req, res)=>{
     })
     let challengeEnded = null;
     const remainingTime = new Date(challenge.duration) - new Date();
-    if (!remainingTime > 0) {
-    challengeEnded = true;
+
+    if (!(remainingTime > 0)) {
+      challengeEnded = true;
     } else {
         challengeEnded = false;
     }

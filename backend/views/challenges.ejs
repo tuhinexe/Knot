@@ -48,13 +48,16 @@
                                 <div class="count"> <a href="/challenges/<%=challenge._id%>">
                                         <%= challenge.participators.length%> Participants</div></a>
                             </div>
-                            <% if (challenge.participators.includes(pageInfo.userId)) { %>
-                                <a href="challenges/participate/<%=challenge._id%>" class="participate-btn participated"><i class='bx bx-sm bx-check'></i>Participated</a>
+                            <% if (challenge.participators.includes(pageInfo.userId) && ((new Date(challenge.duration) - new Date()) > 0)) { %>
+                                <div class="participate-btn participated"><i class='bx bx-sm bx-check'></i>Participated</div>
                                 <% } else if(challenge.creatorId._id==pageInfo.userId) { %>
                                     <div class=""></div>
-                                    <% } else { %>
-                                        <a href="challenges/participate/<%=challenge._id%>" class="participate-btn"><i class='bx bxs-spa'></i>Participate</a>
-                                        <% } %>
+                                    <% } else if (((new Date(challenge.duration) - new Date()) > 0)) { %>
+                                        <div class="participate-btn"><i class='bx bxs-spa'></i>Participate</div>
+                                        <% } else if(!((new Date(challenge.duration) - new Date()) > 0)) { %>
+                                            <div class="ended participate-btn"><i class='bx bx-sm bx-trending-down'></i>Challenge Ended
+                                            </div>
+                                            <% } %>
                         </div>
 
                     </div>

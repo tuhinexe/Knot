@@ -35,7 +35,7 @@ const likeCountController = async (req, res) => {
     const postId = req.body.postId;
     const currentLike = parseInt(req.body.upvotes);
     const currentDisLike = parseInt(req.body.downvotes);
-    const userId = req.body.userId;
+    const userId = req.user._id;
     await likeCounter.increaseLike(postId, currentLike, currentDisLike, userId);
   } catch (err) {
     console.log(err);
@@ -47,7 +47,7 @@ const dislikeCountController = async (req, res) => {
     const postId = req.body.postId;
     const currentLike = parseInt(req.body.upvotes);
     const currentDisLike = parseInt(req.body.downvotes);
-    const userId = req.body.userId;
+    const userId = req.user._id;
     await likeCounter.decreaseLike(postId, currentLike, currentDisLike, userId);
   } catch (err) {
     console.log(err);

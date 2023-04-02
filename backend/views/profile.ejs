@@ -1,6 +1,7 @@
 <%- include ('partials/header',{pageTitle: pageTitle}) %>
     <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
         <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
+
             <% if (messages.success) { %>
                 <div class="success-modal" role="alert">
                     <%= messages.success %>
@@ -15,17 +16,19 @@
                     </script>
                     <div class="profileNavigation">
                         <ul class="profileNav-items">
-                            <li class="<%=pageName==='profile' ? 'navigation-active' : ''%>"><a class=""
-                                    href="/profile"><i class='bx bx-md bxs-customize'></i></a></li>
-                            <li class=""><a class="" href="/profile/activity"><i class='bx bx-md bxs-widget'></i></a>
+                            <li class="navigation-active"><a class=""
+                                    href="<%= user._id === activeUser._id ? '/profile' : '/profile/'+user._id%>"><i class='bx bx-md bxs-customize'></i></a></li>
+                            <li class=""><a class="" href="<%= user._id === activeUser._id ? '/profile/activity' : '/profile/activity/'+user._id%>"><i class='bx bx-md bxs-widget'></i></a>
                             </li>
-                            <li class=""><a class="" href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+                            <% if(user._id === activeUser._id){ %>
+                                <li class=""><a class="" href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+                                <% } %>
                         </ul>
 
                     </div>
                     <div class="ownPosts">
                         <% posts.map(post=>{ %>
-                            <%- include ('partials/timeline',{post: post, userId: user._id, creatorDetails:
+                            <%- include ('partials/timeline',{post: post, userId: activeUser._id, creatorDetails:
                                 creatorDetails, pageName: pageName}) %>
 
                                 <% }) %>
