@@ -84,8 +84,14 @@ const viewPollsRender = async (req, res) => {
 };
 
 const createPollsRender = async (req, res) => {
+    const pageInfo = {
+        user: req.user,
+        title: "Knot - New Polls",
+        pagename: "add polls",
+        profilePic: req.user.profilePic_url,
+      };
     const user = req.user;
-    res.render("addPolls", { user:user });
+    res.render("addPolls", { user:user, pageInfo:pageInfo });
 }
 
 const  voteController= async (req, res) => {

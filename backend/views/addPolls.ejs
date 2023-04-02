@@ -1,0 +1,7 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include ('partials/nav',{profilePic:
+    pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+    <section class="post-section">
+      <%- include ('partials/createPolls',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo:
+        pageInfo }) %>
+    </section>

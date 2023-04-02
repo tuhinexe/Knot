@@ -1,12 +1,23 @@
-<div class="container">
-    <form action="/polls/add" method="post">
-        <input type="text" name="title" placeholder="Enter poll title." id="title">
-        <div class="options">
-            <input type="text" name="option" placeholder="Option 1" required id="">
-            <input type="text" name="option" placeholder="Option 2" required id="">
-            <input type="text" name="option" placeholder="Option 3" required id="">
-            <input type="text" name="option" placeholder="Option 4" required id="">
+<div class="posts">
+    <div class="post-container">
+        <div class="post-creator">
+            <img class="post-profile" src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>" alt="" />
+            <div class="post-creator-name">
+                <a href="/profile"><%- pageInfo.user.firstname==undefined ? creatorDetails.creator :
+                        pageInfo.user.firstname + ' ' + pageInfo.user.lastname %></a>
+            </div>
         </div>
-        <button id="submit">Submit</button>
-    </form>
+        <div class="challenge-container">
+            <form class="create-poll-form" action="/polls/add" method="post">
+                <input class="poll-title" type="text" name="title" placeholder="Enter poll title." id="title" autocomplete="off">
+                <div class="options poll-options">
+                    <input class="each-option" type="text" name="option" placeholder="Option 1" required id="" autocomplete="off">
+                    <input class="each-option" type="text" name="option" placeholder="Option 2" required id="" autocomplete="off">
+                    <input class="each-option" type="text" name="option" placeholder="Option 3" required id="" autocomplete="off">
+                    <input class="each-option" type="text" name="option" placeholder="Option 4" required id="" autocomplete="off">
+                </div>
+                <button class="poll-submit-btn" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
