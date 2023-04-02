@@ -2,6 +2,9 @@ const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
 const addPost = async (user, content, imageUrl,imageId,res) => {
+  if(!user || !content || !imageUrl || !imageId){
+    throw new Error("Invalid data");
+  }
   const newPost = new postModel({
     content: content,
     creator: user._id,
@@ -24,7 +27,7 @@ const addPost = async (user, content, imageUrl,imageId,res) => {
           });
         });
       } catch (err) {
-        res.send(err.message);
+        throw new Error(err);
       }
     }
   });
