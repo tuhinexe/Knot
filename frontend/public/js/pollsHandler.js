@@ -3,15 +3,6 @@ import { globalEvent } from "../utils/eventListener.js";
 async function voteCount(e) {
     e.preventDefault();
 
-    let children=e.target.parentElement.parentElement.children;
-    // for(let child of children){
-    //     if(child.classList.contains("voted")){    
-    //         child.children[1].classList.remove("hide");
-    //         return;
-    //     }
-    // }
-
-
     const clickedOptionId=e.target.parentElement.getAttribute("data-option-id");
     const pollId=e.target.parentElement.parentElement.getAttribute("data-poll-id");
     
@@ -38,6 +29,7 @@ async function voteCount(e) {
 let allOptions = document.querySelectorAll(".option");
 allOptions.forEach(function (option) {
     if(option.classList.contains("voted")){
+        option.parentElement.classList.add("pointer-events");
         Array.from(option.parentElement.children).forEach((child)=>{
             child.children[1].classList.remove("hide");
         })

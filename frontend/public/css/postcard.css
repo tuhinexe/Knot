@@ -26,6 +26,9 @@ a {
 .hide {
   visibility: hidden;
 }
+.pointer-events{
+  pointer-events: none;
+}
 .post-container,
 .poll-container,
 .each-challenge-container,
