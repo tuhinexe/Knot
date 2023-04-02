@@ -36,7 +36,6 @@ async function voteCount(e) {
 }
 
 let allOptions = document.querySelectorAll(".option");
-// console.log(allOptions);
 allOptions.forEach(function (option) {
     if(option.classList.contains("voted")){
         Array.from(option.parentElement.children).forEach((child)=>{
