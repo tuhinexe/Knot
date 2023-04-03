@@ -150,12 +150,15 @@ a {
   width: 100%;
   background-color: var(--body-color);
   border-radius: 10px;
-  padding: 5px 12px;
+  
   cursor: pointer;
+  position: relative;
 }
 .option p,
 .option span {
+  padding: 5px 12px;
   width: 50%;
+  z-index: 10;
 }
 .option span {
   text-align: right;

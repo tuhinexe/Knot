@@ -25,6 +25,7 @@
                             <% poll.options.map(option=>{%>
                                 <div class='option <%-option.voted_by.includes(pageInfo.userId)? "voted" : ""%>'
                                     data-option-id="<%=option._id%>">
+                                    <div class="option-fill"></div>
                                     <p>
                                         <%=option.optionsName%>
                                     </p>
