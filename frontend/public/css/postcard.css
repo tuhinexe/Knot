@@ -68,7 +68,30 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
+}
+
+.follow-count{
+  font-size: 4.2rem;
+}
+.follow-text{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.profile-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:0.5rem;
+}
+.followers-following{
+  display: flex;
+  gap:3rem;
+}
+.followers-following-text{
+  font-size: 1rem;
+  margin-left: 2px;
 }
 .post-content {
   display: flex;
@@ -290,6 +313,12 @@ a {
   .interaction {
     max-width: 100%;
     overflow: hidden;
+  }
+  .follow-text{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .like,
   .comment,

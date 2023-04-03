@@ -5,17 +5,27 @@
     <div class="posts">
         <div class="post-container">
             <div class="post-creator">
-                <a href="/profile"><img class="post-profile" src="<%=profilePicLoggedIn %>" alt=""></a>
-                <div class="post-creator-name">
-                    <a href="/profile"><%= user.firstname+' '+ user.lastname %></a>
-                    <small>
-                        <%= user.followers.length %> Followers
-                    </small>
-                    <small>
-                        <%= user.following.length %> Following
-                    </small>
-                    <a href="/profile">Visit Profile</a>
-                </div>
+                <div class="follow-text">
+                    <div class="profile-name">
+                        
+                        <a href="/profile"><img class="post-profile" src="<%=profilePicLoggedIn %>" alt=""></a>
+                        <div class="post-creator-name">
+                            <a href="/profile"><%= user.firstname+' '+ user.lastname %></a>
+                            
+                        </div>
+                    </div>
+                    <div class="followers-following">
+
+                        <small>
+                            <b class="follow-count"><%= user.followers.length %></b> <span class="followers-following-text">Followers</span> 
+                        </small>
+                        <small>
+                            <b class="follow-count"><%= user.following.length %></b> <span class="followers-following-text">Following</span>  
+                        </small>
+                    </div>
+
+                 </div>
+
             </div>
         </div>
             <div class="follow-options">

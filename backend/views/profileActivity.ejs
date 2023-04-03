@@ -18,7 +18,7 @@
             </div>
             <div class="own-activities">
 
-                <% activities.map(activity=>{ %>
+                <% activities.map((activity,index)=>{ %>
                     <% if (!activity.duration) { %>
                         <div class="polls">
                             <div class="poll-container">
@@ -44,18 +44,20 @@
                                 <p class="poll-title">
                                     <%=activity.content%>
                                 </p>
-                                <div class="poll-options" data-poll-id="<%=activity._id%>">
+                                <div class="poll-options" data-poll-id="<%=activity._id%>" data-total-votes="<%= totalVotes[index] %>">
                                     <% activity.options.map(option=>{%>
-                                        <div class="option" data-option-id="<%=option._id%>">
+                                        <div class='option <%-option.voted_by.includes(activeUser._id)? "voted" : ""%>'
+                                            data-option-id="<%=option._id%>">
+                                            <div class="option-fill hide animate-fill" style="width: <%= ( option.voted_by.length * 100) / totalVotes[index] %>%;"></div>
                                             <p>
                                                 <%=option.optionsName%>
-
                                             </p>
-                                            <span>
+                                            <span class="hide">
                                                 <%=option.voted_by.length%>
                                             </span>
                                         </div>
-                                        <% }) %>
+                                        <%})%>
+        
                                 </div>
                             </div>
                         </div>

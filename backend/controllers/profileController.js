@@ -31,7 +31,7 @@ const viewActivityRender = async (req, res) => {
   try{
     const userData = await findUser(req.user);
     let profilePic = req.user.profilePic_url;
-    const activities = await getActivities(req.user);
+    const [activities,totalVotes] = await getActivities(req.user);
     const creatorDetails = {
       creator: req.user.firstname + " " + req.user.lastname,
       profilePic_url: req.user.profilePic_url,
@@ -46,6 +46,7 @@ const viewActivityRender = async (req, res) => {
       creatorDetails: creatorDetails,
       pageName: "profile-activities",
       activities: activities,
+      totalVotes: totalVotes,
     });
   }catch(err){
     req.flash("error", err.message);
@@ -142,7 +143,7 @@ const singleProfileActivityRender = async (req, res) => {
   try{
     const userDataPromise = findUser(user);
     const activitiesPromise = getActivities(user);
-    const [userData, activities] = await Promise.all([userDataPromise, activitiesPromise]);
+    const [userData, [activities,totalVotes]] = await Promise.all([userDataPromise, activitiesPromise]);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
     const creatorDetails = {
@@ -159,6 +160,7 @@ const singleProfileActivityRender = async (req, res) => {
       creatorDetails: creatorDetails,
       pageName: "profile-activities",
       activities: activities,
+      totalVotes: totalVotes,
     });
   }catch(err){
     req.flash("error", err.message);
