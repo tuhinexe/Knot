@@ -4,7 +4,7 @@
 
 <section class="post-section">
     
-    <%- include ('partials/createPost',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo: pageInfo }) %>
+    <%- include ('partials/homePageAddButtons',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo: pageInfo }) %>
 
     <% posts.map(post =>{ %>
         <%- include ('partials/timeline',{post: post, userId: pageInfo.userId, pageName: ''}) %>

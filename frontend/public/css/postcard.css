@@ -5,7 +5,8 @@ a {
   color: var(--secondary-color);
 }
 .post-section,
-.poll-section, .challenges-section {
+.poll-section,
+.challenges-section {
   padding-top: 5rem;
 }
 .posts,
@@ -26,7 +27,7 @@ a {
 .hide {
   display: none;
 }
-.pointer-events{
+.pointer-events {
   pointer-events: none;
 }
 .post-container,
@@ -150,7 +151,7 @@ a {
   width: 100%;
   background-color: var(--body-color);
   border-radius: 10px;
-  
+
   cursor: pointer;
   position: relative;
 }
@@ -165,7 +166,8 @@ a {
 }
 
 /* edit profile */
-.edit-profile-form, .create-challenge-form {
+.edit-profile-form,
+.create-challenge-form {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -176,7 +178,9 @@ a {
   max-width: 100%;
   padding-bottom: 2rem;
 }
-.edit-profile-form input, .create-challenge-form input, .create-challenge-form textarea {
+.edit-profile-form input,
+.create-challenge-form input,
+.create-challenge-form textarea {
   width: 100%;
   max-width: 100%;
   padding: 0.5rem;
@@ -186,38 +190,75 @@ a {
   background-color: var(--body-color);
   color: var(--secondary-color);
   font-family: var(--regular);
-
 }
-.edit-profile-form input::placeholder, .create-challenge-form input::placeholder, .create-challenge-form textarea::placeholder {
+.edit-profile-form input::placeholder,
+.create-challenge-form input::placeholder,
+.create-challenge-form textarea::placeholder {
   color: var(--dark-color);
 }
 .edit-profile-form input:focus {
   border-inline: 1px solid var(--primary-color);
 }
-.edit-profile-submit, .challenge-submit-btn {
+.edit-profile-submit,
+.challenge-submit-btn {
   cursor: pointer;
   font-size: 1rem;
 }
-.edit-profile-submit:hover, .challenge-submit-btn:hover {
+.edit-profile-submit:hover,
+.challenge-submit-btn:hover {
   background-color: var(--primary-color);
   color: var(--body-color);
 }
-.label-input{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
-    gap: 0.5rem;
+.label-input {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
 }
-.label-input label{
-    width: 30%;
+.label-input label {
+  width: 30%;
 }
+
+/* add buttons in timeline */
+.adding-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  /* gap: 1rem; */
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 0;
+}
+
+
+
+.add-post-btn,
+.add-poll-btn,
+.add-challenge-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  background-color: var(--body-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.add-post-btn:hover, .add-poll-btn:hover, .add-challenge-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--body-color);
+}
+
 /* Media queries */
 @media screen and (max-width: 1120px) and (min-width: 768px) {
   .post-section,
   .poll-section,
-  .challenges-section{
+  .challenges-section {
     padding-top: 5rem;
   }
   .like,
@@ -269,14 +310,17 @@ a {
   .edit-profile {
     margin: 15px;
   }
-  .label-input{
+  .label-input {
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     gap: 0.5rem;
-}
+  }
+  .add-button-text {
+    display: none;
+  }
 }
 @media screen and (min-width: 769px) and (max-width: 1400px) {
   .post-container,
