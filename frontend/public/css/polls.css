@@ -70,3 +70,16 @@
   /* transition: width 300ms ease-in-out; */
   position: absolute;
 }
+
+.animate-fill{
+  animation: fill 800ms ease-in-out;
+}
+
+@keyframes fill{
+  0%{
+    width: 0%;
+  }
+  50%{
+    width: 100%;
+  }
+}

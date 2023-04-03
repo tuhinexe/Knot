@@ -24,7 +24,7 @@ a {
   gap: 0.5rem;
 }
 .hide {
-  visibility: hidden;
+  display: none;
 }
 .pointer-events{
   pointer-events: none;

@@ -5,7 +5,7 @@
 
             <% polls.map((poll,index)=>{ %>
                 <div class="polls">
-                    <div class="poll-container" data-total-votes="<%= totalVotes[index] %>">
+                    <div class="poll-container">
                         <div class="post-creator">
                             <img class="post-profile" src="<%= poll.creatorId.profilePic_url %>" alt="">
                             <div class="post-creator-name">
@@ -21,11 +21,11 @@
                         <p class="poll-title">
                             <%=poll.content%>
                         </p>
-                        <div class="poll-options" data-poll-id="<%=poll._id%>">
+                        <div class="poll-options" data-poll-id="<%=poll._id%>" data-total-votes="<%= totalVotes[index] %>">
                             <% poll.options.map(option=>{%>
                                 <div class='option <%-option.voted_by.includes(pageInfo.userId)? "voted" : ""%>'
                                     data-option-id="<%=option._id%>">
-                                    <div class="option-fill hide" style="width: <%= ( option.voted_by.length * 100) / totalVotes[index] %>%;"></div>
+                                    <div class="option-fill hide animate-fill" style="width: <%= ( option.voted_by.length * 100) / totalVotes[index] %>%;"></div>
                                     <p>
                                         <%=option.optionsName%>
                                     </p>

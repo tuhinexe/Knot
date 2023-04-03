@@ -5,10 +5,17 @@ async function voteCount(e) {
 
     e.target.parentElement.classList.add("voted");
     Array.from(e.target.parentElement.parentElement.children).forEach((child) => {
+        let totalVote = Number(child.parentElement.getAttribute("data-total-votes"));
+        let currentVote = Number(child.children[2].innerHTML);
         child.parentElement.classList.add("pointer-events");
         child.children[0].classList.remove("hide");
         child.children[2].classList.remove("hide");
-        console.log(child.children[0])
+        if(child.classList.contains("voted")){
+            child.children[0].style.width =`${((currentVote+1) * 100) / (totalVote +1)}%`;
+        } else{
+
+            child.children[0].style.width =`${(currentVote * 100) / (totalVote+1)}%`;
+        }
     })
 
     e.target.parentElement.children[2].innerText = Number(e.target.parentElement.children[2].innerText) + 1;
@@ -41,10 +48,5 @@ allOptions.forEach(function (option) {
         })
     }
 });
-
-// let  allPolls= document.querySelectorAll(".poll-options");
-// Array.from(allPolls).forEach((option) => {
-//     console.log(option.children[0])
-// })
 
 globalEvent("click", ".option", voteCount);
