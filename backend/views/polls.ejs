@@ -20,7 +20,6 @@
                         </div>
                         <p class="poll-title">
                             <%=poll.content%>
-                            <%=poll.participators.includes(pageInfo.userId)%>
                         </p>
                         <div class="poll-options" data-poll-id="<%=poll._id%>">
                             <% poll.options.map(option=>{%>
@@ -29,7 +28,7 @@
                                     <p>
                                         <%=option.optionsName%>
                                     </p>
-                                    <span class='<%-poll.participators.includes(pageInfo.userId)? "" : "hide"%>'>
+                                    <span class="hide">
                                         <%=option.voted_by.length%>
                                     </span>
                                 </div>

@@ -28,16 +28,15 @@ async function voteCount(e) {
         console.log(err)
     }
 }
-//i removed the code below and replaced it with inline ejs check for voted class
 
-// let allOptions = document.querySelectorAll(".option");
-// allOptions.forEach(function (option) {
-//     if (option.classList.contains("voted")) {
-//         option.parentElement.classList.add("pointer-events");
-//         Array.from(option.parentElement.children).forEach((child) => {
-//             child.children[1].classList.remove("hide");
-//         })
-//     }
-// });
+let allOptions = document.querySelectorAll(".option");
+allOptions.forEach(function (option) {
+    if (option.classList.contains("voted")) {
+        option.parentElement.classList.add("pointer-events");
+        Array.from(option.parentElement.children).forEach((child) => {
+            child.children[1].classList.remove("hide");
+        })
+    }
+});
 
 globalEvent("click", ".option", voteCount);
