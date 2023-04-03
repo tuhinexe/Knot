@@ -50,7 +50,7 @@
                             <% } else if(challenge.creatorId._id==pageInfo.userId) { %>
                                 <div class=""></div>
                                 <% } else if (!challengeEnded) { %>
-                                    <div class="participate-btn"><i class='bx bxs-spa'></i>Participate</div>
+                                    <a href="/challenges/participate/<%=challenge._id%>" class="participate-btn"><i class='bx bxs-spa'></i>Participate</a>
                                     <% } else if(challengeEnded) { %>
                                         <div class="ended participate-btn"><i class='bx bx-sm bx-trending-down'></i>Challenge Ended
                                         </div>

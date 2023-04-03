@@ -53,7 +53,7 @@
                                 <% } else if(challenge.creatorId._id==pageInfo.userId) { %>
                                     <div class=""></div>
                                     <% } else if (((new Date(challenge.duration) - new Date()) > 0)) { %>
-                                        <div class="participate-btn"><i class='bx bxs-spa'></i>Participate</div>
+                                        <a href="/challenges/participate/<%=challenge._id%>" class="participate-btn"><i class='bx bxs-spa'></i>Participate</a>
                                         <% } else if(!((new Date(challenge.duration) - new Date()) > 0)) { %>
                                             <div class="ended participate-btn"><i class='bx bx-sm bx-trending-down'></i>Challenge Ended
                                             </div>
