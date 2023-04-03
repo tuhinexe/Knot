@@ -12,8 +12,8 @@ const pollsRender = async (req, res) => {
     }
 
     try {
-        const polls = await fetchPolls();
-        res.render('polls', { polls, pageInfo: pageInfo });
+        const [polls,totalVotes] = await fetchPolls();
+        res.render('polls', { polls, pageInfo: pageInfo, totalVotes });
     } catch (err) {
         console.log(err);
         res.render('polls', { polls: [] });
