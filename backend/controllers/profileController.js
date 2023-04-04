@@ -87,11 +87,6 @@ const editProfileController = async (req, res) => {
   if (req.body.username !== "") {
     postedData.username = req.body.username;
   };
-  if(req.user.username == req.body.username){
-    req.flash("error", "bhai eta toh tor i name na")
-    res.redirect("/profile/update")
-    return;
-  }
   try {
     await updateUser(id, postedData);
     req.flash("success", "Profile updated successfully");

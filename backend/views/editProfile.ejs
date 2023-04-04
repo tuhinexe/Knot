@@ -38,7 +38,7 @@
                             <input type="date" class="input" placeholder="Date of birth" name="dob"
                                 value="<%=existingdata.date_of_birth%>" id="">
                         </div>
-                        <input type="submit" class="edit-profile-submit" value="Submit" id="">
+                        <input type="submit" class="edit-profile-submit" value="Update Now" id="">
                         <% if (messages.error) { %>
                             <div class="fail-flash">
                                 <p><%= messages.error %></p>
@@ -51,7 +51,9 @@
                             </div>
                             <% } %>
                     </form>
-                    
+                    <form action="/logout" method="post" class="edit-profile-form logout-form">
+                        <input type="submit" class="edit-profile-submit logout-btn" value="Logout" id="">
+                    </form>
                     
                             <script>
                                 function dismissError() {

@@ -199,7 +199,6 @@ a {
   border-radius: 10px;
   width: 100%;
   max-width: 100%;
-  padding-bottom: 2rem;
 }
 .edit-profile-form input,
 .create-challenge-form input,
@@ -232,6 +231,16 @@ a {
   background-color: var(--primary-color);
   color: var(--body-color);
 }
+
+.edit-profile-form + .edit-profile-form::before {
+  content: "";
+  display: block;
+  margin: 2rem auto; /* adjust the margin to control the thickness of the line */
+  width: 80%; /* adjust the width of the line */
+  border-top: 1px solid var(--primary-color); /* adjust the color of the line */
+
+}
+
 .label-input {
   width: 100%;
   display: flex;
@@ -297,7 +306,7 @@ a {
   .poll-section,
   .challenge-section,
   .ownPosts,
-  .edit-profile-form {
+  .logout-form {
     padding-bottom: 5rem;
   }
   .post-container,
