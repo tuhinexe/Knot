@@ -76,24 +76,27 @@ const editProfileController = async (req, res) => {
     postedData.date_of_birth = req.body.dob;
   };
   if (req.body.firstname !== "") {
-    postedData.firstname = req.body.firstname;
+    postedData.firstname = req.body.firstname.replace(/\s/g, "");
   };
   if (req.body.lastname !== "") {
-    postedData.lastname = req.body.lastname;
+    postedData.lastname = req.body.lastname.replace(/\s/g, "");
   };
   if (req.body.bio !== "") {
     postedData.bio = req.body.bio;
   };
   if (req.body.username !== "") {
-    postedData.username = req.body.username;
+    postedData.username = req.body.username.replace(/\s/g, "");
   };
+  if(req.body.profilePic !== ""){
+    postedData.profilePic_url = req.body.profilePic;
+  }
   try {
     await updateUser(id, postedData);
     req.flash("success", "Profile updated successfully");
-    res.redirect("/profile/update");
+    res.json({success: "Profile updated successfully"});
   } catch (err) {
     req.flash("error", err.message);
-    res.redirect("/profile/update");
+    res.json({error: err.message});
   }
 };
 const singleProfileRender = async (req, res) => {

@@ -182,10 +182,13 @@ a {
 .option p,
 .option span {
   padding: 5px 12px;
-  width: 50%;
   z-index: 10;
 }
+.option p {
+  width: 100%;
+}
 .option span {
+  padding-left: 0;
   text-align: right;
 }
 
