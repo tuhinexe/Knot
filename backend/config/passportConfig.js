@@ -21,6 +21,7 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
+      const randomProfileTheme = ["lorelei-neutral", "lorelei", "personas", "fun-emoji", "avataaars", "adventurer", "big-ears"]
       const userData = {
         googleId: profile.id,
         username: profile._json.email.split("@")[0],
@@ -28,7 +29,7 @@ passport.use(
         lastname: profile.name.familyName,
         email: profile._json.email,
         bio: "",
-        profilePic_url: `https://api.dicebear.com/5.x/lorelei-neutral/svg?seed=${profile.id}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
+        profilePic_url: `https://api.dicebear.com/5.x/${randomProfileTheme[Math.floor(Math.random()*randomProfileTheme.length)]}/svg?seed=${profile.id}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
       };
       User.findOne({ googleId: profile.id }, function (err, user) {
         if (user) {

@@ -22,7 +22,6 @@ async function getActivities(user) {
           return acc + option.voted_by.length;
         }, 0);
       });
-     
       return [uniqueArray, totalVotes];
     } else {
       throw new Error("User not found");

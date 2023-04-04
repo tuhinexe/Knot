@@ -13,9 +13,9 @@ const signUpRender = (req, res) => {
 
 const signUpController = async (req, res) => {
   const userData = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    username: req.body.username,
+    firstname: req.body.firstname.replace(/\s/g, ""),
+    lastname: req.body.lastname.replace(/\s/g, ""),
+    username: req.body.username.replace(/\s/g, ""),
     email: req.body.email,
     bio: "",
     profilePic_url: `https://api.dicebear.com/5.x/lorelei-neutral/svg?seed=${req.body.username}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,

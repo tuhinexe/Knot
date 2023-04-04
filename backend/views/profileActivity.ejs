@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="own-activities">
-
+                
                 <% activities.map((activity,index)=>{ %>
                     <% if (!activity.duration) { %>
                         <div class="polls">
@@ -25,7 +25,7 @@
                                 <div class="post-creator">
                                     <img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt="">
                                     <div class="post-creator-name">
-                                        <a href=""><%- creatorDetails.creator %></a>
+                                        <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- creatorDetails.creator %></a>
                                         <small>
                                             <%= new Intl.RelativeTimeFormat('en',{style: 'long'
                                                 }).format((((activity.timestamp.valueOf()) - Date.now()) / (1000 * 60 *
@@ -43,6 +43,7 @@
                                 </div>
                                 <p class="poll-title">
                                     <%=activity.content%>
+                                    
                                 </p>
                                 <div class="poll-options" data-poll-id="<%=activity._id%>" data-total-votes="<%= totalVotes[index] %>">
                                     <% activity.options.map(option=>{%>
@@ -70,7 +71,7 @@
                                             src="<%=activity.creatorId.profilePic_url || creatorDetails.profilePic_url  %>"
                                             alt="">
                                         <div class="post-creator-name">
-                                            <a href=""><%- activity.creatorId.firstname ? activity.creatorId.firstname+" "+activity.creatorId.lastname : creatorDetails.creator %></a>
+                                            <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- activity.creatorId.firstname ? activity.creatorId.firstname+" "+activity.creatorId.lastname : creatorDetails.creator %></a>
                                         <small>
                                             <%= new Intl.RelativeTimeFormat('en',{style: 'long'
                                                 }).format((((activity.timestamp.valueOf()) - Date.now()) / (1000 * 60 *
@@ -106,6 +107,7 @@
                                             <p class="challenge-desc">
                                                 <a href="/challenges/<%=activity._id%>">
                                                     <%=activity.description%>
+                                                    
                                                 </a>
                                             </p>
                                         </div>

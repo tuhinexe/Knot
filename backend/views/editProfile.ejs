@@ -44,6 +44,11 @@
                                 <p><%= messages.error %></p>
                                     <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissError()"></i>
                             </div>
+                            <% } else if(messages.success){ %>
+                            <div class="success-flash">
+                                <p><%= messages.success %></p>
+                                    <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissSuccess()"></i>
+                            </div>
                             <% } %>
                     </form>
                     
@@ -52,6 +57,10 @@
                                 function dismissError() {
                                     const errorElem = document.querySelector('.fail-flash');
                                     errorElem.style.display = 'none';
+                                }
+                                function dismissSuccess() {
+                                    const successElem = document.querySelector('.success-flash');
+                                    successElem.style.display = 'none';
                                 }
                             </script>
 
