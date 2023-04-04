@@ -21,7 +21,7 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
-      const randomProfileTheme = ["lorelei-neutral", "lorelei", "personas", "fun-emoji", "avataaars", "adventurer", "big-ears"]
+      const randomProfileTheme = ["lorelei", "personas", "fun-emoji", "avataaars", "adventurer", "big-ears"]
       const userData = {
         googleId: profile.id,
         username: profile._json.email.split("@")[0],
