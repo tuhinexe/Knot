@@ -78,6 +78,13 @@
                                                 60 * 24)).toFixed(),'day') %>
                                         </small>
                                     </div>
+                                    <% if(activeUser._id.toString() == activity.creatorId){ %>
+                                        <div class="challenge-delete-icon">
+                                            <a href="/challenges/delete/<%= activity._id %>">
+                                                <i class='bx bx-sm bx-trash'></i>
+                                            </a>
+                                        </div>
+                                        <% } %>
                                 </div>
                                 <div>
                                     <a class=" challenge-title" href="/challenges/<%=activity._id%>">
@@ -107,7 +114,6 @@
                                             <p class="challenge-desc">
                                                 <a href="/challenges/<%=activity._id%>">
                                                     <%=activity.description%>
-                                                    
                                                 </a>
                                             </p>
                                         </div>

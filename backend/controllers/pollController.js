@@ -1,7 +1,7 @@
 const findUser = require("../api/findUser");
 const pollsModel = require("../models/Polls");
 const fetchPolls = require("../api/fetchPolls");
-const {voteCount,deletePoll} = require("../api/pollsApi");
+const { voteCount, deletePoll } = require("../api/pollsApi");
 
 const pollsRender = async (req, res) => {
     const pageInfo = {
@@ -12,7 +12,7 @@ const pollsRender = async (req, res) => {
     }
 
     try {
-        const [polls,totalVotes] = await fetchPolls();
+        const [polls, totalVotes] = await fetchPolls();
         res.render('polls', { polls, pageInfo: pageInfo, totalVotes });
     } catch (err) {
         console.log(err);
@@ -89,34 +89,34 @@ const createPollsRender = async (req, res) => {
         title: "Knot - New Polls",
         pagename: "add polls",
         profilePic: req.user.profilePic_url,
-      };
+    };
     const user = req.user;
-    res.render("addPolls", { user:user, pageInfo:pageInfo });
+    res.render("addPolls", { user: user, pageInfo: pageInfo });
 }
 
-const  voteController= async (req, res) => {
+const voteController = async (req, res) => {
     const clickedOptionId = req.body.clickedOptionId;
     const pollId = req.body.pollId;
-    const userId=req.user._id;
+    const userId = req.user._id;
     try {
-        await voteCount(pollId, clickedOptionId,userId);
+        await voteCount(pollId, clickedOptionId, userId);
         res.redirect("/polls");
-    } catch (err) { 
+    } catch (err) {
         console.log(err);
     }
-    
+
 }
 
 const deletePollController = async (req, res) => {
     const pollId = req.params.pollId;
     const user = req.user;
     try {
-      await deletePoll(pollId, user);
-      res.redirect("/profile/activity");
+        await deletePoll(pollId, user);
+        res.redirect("/profile/activity");
     } catch (err) {
         res.redirect("/profile/activity");
     }
-  };
+};
 
 module.exports = {
     pollsRender,

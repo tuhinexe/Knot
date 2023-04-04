@@ -1,7 +1,6 @@
 const findUser = require("../api/findUser");
 const challengesModel = require("../models/Challenges");
 const challengesAPI = require("../api/ChallengesAPI");
-// const {voteCount} = require("../api/pollsApi");
 
 const challengesRender = async (req, res) => {
   const pageInfo = {
@@ -108,10 +107,24 @@ const participateInChallengeRender = async(req, res)=>{
   }
 };
 
+const deleteChallengeController = async(req, res)=>{
+  const challengeId = req.params.challengeId;
+  const user = req.user._id;
+  try {
+    await challengesAPI.deleteChallenge(challengeId, user);
+    res.redirect("/profile/activity");
+  } catch (err) {
+      res.redirect("/profile/activity");
+  }
+};
+
+
+
 module.exports = {
   challengesRender,
   createChallengeRender,
   createChallengeController,
   viewOneChallengeRender,
-  participateInChallengeRender
+  participateInChallengeRender,
+  deleteChallengeController
 };

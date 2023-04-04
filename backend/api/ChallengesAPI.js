@@ -57,8 +57,18 @@ const participateInChallenge = async(challengeId, userId)=>{
   }
 }
 
+const deleteChallenge = async (challengeId, user) => {
+  try {
+    await Challenges.findByIdAndDelete(challengeId);    
+    user.challenges.pull(challengeId)
+    await user.save();
+    }catch{
+        console.log(err);
+    }
+}
 
-module.exports = { fetchChallenges, createChallenges, fetchOneChallenge, participateInChallenge };
+
+module.exports = { fetchChallenges, createChallenges, fetchOneChallenge, participateInChallenge,deleteChallenge };
 
 
 // const userPromise = User.findById(userId);
