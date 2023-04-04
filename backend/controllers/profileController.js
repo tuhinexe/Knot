@@ -160,7 +160,7 @@ const singleProfileActivityRender = async (req, res) => {
       profilePicLoggedIn: req.user.profilePic_url,
       pageTitle: "Knot - Profile",
       creatorDetails: creatorDetails,
-      pageName: "profile-activities",
+      pageName: "viewProfile-activities",
       activities: activities,
       totalVotes: totalVotes,
     });
