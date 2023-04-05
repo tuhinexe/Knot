@@ -12,18 +12,23 @@
     </div>
     <div class="bioAndConnections">
         <div class="connections">
+            <a href="<%= user._id !== activeUser._id ? '/followers/'+user._id : '/followers' %>">
             <div class="followers">
+                
                 <p>
                     <%=user.followers.length%>
                 </p>
                 <h3>Followers</h3>
             </div>
+        </a>
+        <a href="<%= user._id !== activeUser._id ? '/following/'+user._id : '/following' %>">
             <div class="followings">
                 <p>
                     <%=user.following.length%>
                 </p>
                 <h3>Following</h3>
             </div>
+        </a>
             <div class="points">
                 <p>
                     <%=user.points%>

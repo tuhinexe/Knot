@@ -30,10 +30,10 @@
         </div>
             <div class="follow-options">
                 <div class="follower <%= isFollowers && 'active-option' %>">
-                    <a href="/follow/followers">Followers</a>
+                    <a href="<%= pageName === 'viewfollowers'? '/followers/'+user._id: '/followers' %>">Followers</a>
                 </div>
                 <div class="following <%= isFollowing && 'active-option' %>">
-                    <a href="/follow/following">Following</a>
+                    <a href="<%= pageName === 'viewfollowers'? '/following/'+user._id: '/following' %>">Following</a>
                 </div>
             </div>
         <div class="post-container">

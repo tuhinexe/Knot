@@ -51,8 +51,8 @@ app.use("/login", loginRouter);
 app.use(checkAuthorized);
 
 app.use("/", homeRouter)
+app.use("/", followersRouter);
 app.use("/profile", profileRouter);
-app.use("/follow", followersRouter)
 app.use("/logout", logoutRouter);
 app.use("/post", postRouter);
 app.use("/polls", pollsRouter);
