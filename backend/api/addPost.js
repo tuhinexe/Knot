@@ -2,7 +2,7 @@ const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
 const addPost = async (user, content, imageUrl,imageId,res) => {
-  if(!user || !content || !imageUrl || !imageId){
+  if(!user || !content){
     throw new Error("Invalid data");
   }
   const newPost = new postModel({

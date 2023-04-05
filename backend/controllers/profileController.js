@@ -115,7 +115,7 @@ const singleProfileRender = async (req, res) => {
     const userData = await findUser(user);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
-    let posts = await getPosts(req.user);
+    let posts = await getPosts(user);
     for(let post of posts){
       await post.populate("creator")
     }

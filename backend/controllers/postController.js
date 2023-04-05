@@ -75,7 +75,6 @@ const deletePostController = async (req, res) => {
     await deletePost(postId, user);
     res.redirect("/profile");
   } catch (err) {
-    console.log(err);
     res.redirect("/profile");
   }
 };
