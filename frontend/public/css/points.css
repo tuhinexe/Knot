@@ -7,22 +7,32 @@
   align-items: center;
   justify-content: space-between;
 }
-.happy-gif, .sad-gif, .dance-gif{
-    height: 5rem;
-    width: 5rem;
-    margin-right: 0.5rem;
-    transition: 1.5s ease-in-out;
+.happy-gif,
+.sad-gif,
+.dance-gif {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 0.5rem;
+  transition: 1.5s ease-in-out;
 }
-.happy-gif:hover{
-    transform: scale(2.5);
-    z-index: 30;
+.dance-gif {
+  transition: 3s ease-in-out;
 }
-.sad-gif:hover, .dance-gif:hover{
-    transform: scale(2.5) rotateY(180deg);
-    z-index: 30;
+.happy-gif:hover {
+  transform: scale(2.5);
+  z-index: 30;
 }
-.sad-gif, .dance-gif{
-    transform: rotateY(180deg);
+.sad-gif:hover,
+.dance-gif:hover {
+  transform: scale(2.5) rotateY(180deg);
+  z-index: 30;
+}
+.sad-gif,
+.dance-gif {
+  transform: rotateY(180deg);
+}
+.dance-gif:hover {
+  margin-right: 30rem;
 }
 .points-right {
   text-align: right;
@@ -74,12 +84,13 @@
 }
 
 @media screen and (max-width: 768px) {
-.happy-gif{
+  .happy-gif {
     transform: scale(2.5);
     margin-right: 1rem;
-}
-.dance-gif, .sad-gif{
+  }
+  .dance-gif,
+  .sad-gif {
     margin-right: 1rem;
     transform: rotateY(180deg) scale(2.5);
-}
+  }
 }
