@@ -12,6 +12,10 @@ async function increaseLike(postId, currentLike, currentDisLike, userId) {
       post.stats.upvotes = currentLike + 1;
       post.stats.downvotes = currentDisLike;
       post.save();
+      userModel.findById(post.creator).then((user)=>{
+        user.points += 1;
+        user.save();
+      })
       return post;
     }
 
@@ -33,6 +37,10 @@ async function decreaseLike(postId, currentLike, currentDisLike, userId) {
       post.stats.upvotes = currentLike;
       post.stats.downvotes = currentDisLike + 1;
       post.save();
+      userModel.findById(post.creator).then((user)=>{
+        user.points -= 1;
+        user.save();
+      })
       return post;
     }
 

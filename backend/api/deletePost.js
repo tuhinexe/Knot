@@ -9,7 +9,8 @@ const deletePost = async (postId,user) => {
         if(imageId !== null){
             await deleteImage(imageId);
         }
-        user.posts.pull(postId)
+        user.posts.pull(postId);
+        user.points -= 3;
         await user.save();
     } else {
         user.posts.pull(postId)

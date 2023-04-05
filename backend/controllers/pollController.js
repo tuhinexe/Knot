@@ -61,6 +61,7 @@ const createPollsController = async (req, res) => {
             try {
                 findUser(req.user).then((user) => {
                     user.polls.push(poll._id);
+                    user.points += 5;
                     user.save((err, user) => {
                         if (err) {
                             console.log(err);

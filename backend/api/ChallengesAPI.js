@@ -17,7 +17,8 @@ const createChallenges = async (challengeData, userId) => {
       { _id: userId },
       { 
         $push: { participatedChallenges: challenge._id },
-        $addToSet: { challenges: challenge._id }
+        $addToSet: { challenges: challenge._id },
+        $inc: { points: 5 }
       }
     );
     return challenge;
@@ -49,8 +50,10 @@ const participateInChallenge = async(challengeId, userId)=>{
       { _id: challengeId },
       { $addToSet: { participators: userId } }
     );
+    const challengeCreator = await User.findById(challenge.creatorId);
+    challengeCreator.points += 2;
     const foundUserPromise = User.updateOne({ _id: userId }, { $addToSet: { participatedChallenges: challengeId } });
-    const [user, resultOfParticipation] = await Promise.all([foundUserPromise, participatePromise]);
+    const [user, resultOfParticipation] = await Promise.all([foundUserPromise, participatePromise, challengeCreator.save()]);
     return resultOfParticipation;
   } catch (error) {
     throw new Error(error.message);
@@ -61,6 +64,7 @@ const deleteChallenge = async (challengeId, user) => {
   try {
     await Challenges.findByIdAndDelete(challengeId);    
     user.challenges.pull(challengeId)
+    user.points -= 5;
     await user.save();
     }catch{
         console.log(err);
@@ -68,7 +72,7 @@ const deleteChallenge = async (challengeId, user) => {
 }
 
 
-module.exports = { fetchChallenges, createChallenges, fetchOneChallenge, participateInChallenge,deleteChallenge };
+module.exports = { fetchChallenges, createChallenges, fetchOneChallenge, participateInChallenge, deleteChallenge };
 
 
 // const userPromise = User.findById(userId);

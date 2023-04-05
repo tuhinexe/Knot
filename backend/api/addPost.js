@@ -18,6 +18,7 @@ const addPost = async (user, content, imageUrl,imageId,res) => {
       try {
         findUser(user).then((user) => {
           user.posts.push(post._id);
+          user.points += 3;
           user.save((err, user) => {
             if (err) {
               console.log(err);
