@@ -19,7 +19,7 @@ const editProfileSubmit = document.querySelector(".edit-profile-form");
 editProfileSubmit.addEventListener("submit", async (e) => {
   e.preventDefault();
   const updateBtn = document.querySelector("#updateProfileBtn");
-  updateBtn.disabled = true;
+  updateBtn.style.pointerEvents = "none";
   updateBtn.value = "Updating...";
   const formData = new FormData(editProfileSubmit);
   const firstname = formData.get("firstname");
