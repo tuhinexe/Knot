@@ -183,7 +183,7 @@ const followController = async (req, res) => {
   const followingId = req.params.followingId;
   try {
     await followAndUnfollow(followingId, followerId);
-    res.redirect(`/follow/following`);
+    res.redirect(`/following`);
   } catch (err) {
     console.log(err);
   }
