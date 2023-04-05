@@ -41,7 +41,10 @@
     color: var(--secondary-body-color);
 }
 a.unfollow-btn{
-
+    width: 20%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
     min-width: auto;
     margin-left: auto;
     background-color: var(--secondary-body-color);

@@ -1,7 +1,7 @@
 @import 'global.css';
 
 body{
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-image: linear-gradient(180deg, var(--body-color) 0%, #8fd3f4 100%);
     font-family: var(--regular);
     
     
@@ -51,12 +51,17 @@ header{
     width: 100%;
     border: none;
     border-radius: 30px;
-    color: rgb(66, 69, 69);
+    color: var(--secondary-color);
     font-size: 15px;
     padding: 0 0 0 45px;
+    padding-right: 75px;
     background: rgba(255,255,255, 0.1);
     outline: none;
     margin: 10px 0 10px 10px;
+}
+.input::placeholder{
+    color: var(--secondary-color);
+
 }
 .input-field{
     display: flex;
@@ -68,7 +73,7 @@ header{
 ::-webkit-input-placeholder{
     color: rgb(105,105,105);
 }
-.submit{
+.signin{
     margin: 10px 0 10px;
     border: none;
     border-radius: 30px;
@@ -79,7 +84,21 @@ header{
     color: black;
     background: rgba(255,255,255,0.7);
     cursor: pointer;
-    transition: .3s ;
+    transition: .3s;
+}
+.signup{
+    margin: 10px 0 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color: black;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+    transition: .3s;
+    margin-left: 10px;
 }
 .hovereffect:hover{
     box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.3);
@@ -129,7 +148,7 @@ label a{
     align-items: center;
     justify-content: center;
     margin: 10px 0px;
-    padding: 8px 35px;
+    padding: 8px 75px;
     width: 100%;
     font-size: medium;
     background-color: rgb(255, 255, 255,0.7);
@@ -154,4 +173,5 @@ label a{
 #eyeicon{
     position: absolute;
     right: 1.5rem;
+    cursor: pointer;
 }

@@ -26,8 +26,11 @@
   gap: 1rem;
 }
 .follow{
-
   margin-right: auto;
+}
+.follow input:hover{
+  background: var(--primary-color);
+  color: var(--secondary-body-color);
 }
 .follow input{
   background-color: var(--secondary-body-color);

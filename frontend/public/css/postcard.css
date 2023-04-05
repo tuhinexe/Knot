@@ -258,6 +258,7 @@ a {
   color: var(--body-color);
 }
 .logout-btn:hover {
+  color: var(--secondary-color);
   background-color: #EB455F;
 }
 
