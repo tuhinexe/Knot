@@ -51,14 +51,13 @@
 </section>
 <section class="comments" style="padding-bottom: 4rem;">
     <div class="posts">
-        <div class="post-container">
+        <div class="post-container comment-section">
             <div class="post-content">
                     <form class="submit-comment" action="/post/<%= post._id %>/comment" method="post" >
-                    <input id="comment" autocomplete="off" type="text" name="comment" placeholder="Comment Here" required>
-                    <input id="comment-btn" type="submit" value="Comment">
-                </form>
+                    <textarea id="comment" autocomplete="off" type="text" name="comment" placeholder="Comment Here" rows="2" required></textarea>
                 </div>
-
+                <button id="comment-btn" type="submit"><i  class='bx bx-sm bx-send'></i></button>
+            </form>
         </div>
     </div>
     <div class="posts comments-container">

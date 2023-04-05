@@ -11,7 +11,7 @@
 }
 .submit-post input,
 .submit-post textarea,
-.submit-comment input {
+.submit-comment textarea {
   width: 100%;
   max-width: 100%;
   padding: 0.5rem;
@@ -35,7 +35,6 @@
   font-size: large;
   width: 30%;
   margin-bottom: 10px;
-  margin-inline: auto;
   padding: 0.5rem;
   border-radius: 10px;
   border: none;
@@ -45,6 +44,21 @@
   color: var(--body-color);
   cursor: pointer;
   transition: all 0.5s ease;
+}
+#comment-btn {
+  width:15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-bottom: 0;
+}
+.comment-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 .post-submit-btn{
     width: 100%;
