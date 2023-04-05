@@ -73,7 +73,7 @@ header{
 ::-webkit-input-placeholder{
     color: rgb(105,105,105);
 }
-.signin{
+.input-field .signin, .signup{
     margin: 10px 0 10px;
     border: none;
     border-radius: 30px;
@@ -87,17 +87,6 @@ header{
     transition: .3s;
 }
 .signup{
-    margin: 10px 0 10px;
-    border: none;
-    border-radius: 30px;
-    font-size: 15px;
-    height: 45px;
-    outline: none;
-    width: 100%;
-    color: black;
-    background: rgba(255,255,255,0.7);
-    cursor: pointer;
-    transition: .3s;
     margin-left: 10px;
 }
 .hovereffect:hover{
