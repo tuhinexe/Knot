@@ -8,8 +8,8 @@ const viewProfileRender = async (req, res) => {
   const userData = await findUser(req.user);
   let profilePic = req.user.profilePic_url;
   let posts = await getPosts(req.user);
-  for(let post of posts){
-    await post.populate("creator")
+  for (let post of posts) {
+    await post.populate("creator");
   }
 
   const creatorDetails = {
@@ -26,16 +26,16 @@ const viewProfileRender = async (req, res) => {
     posts: posts,
     creatorDetails: creatorDetails,
     pageName: "profile",
-    messages: req.flash()
+    messages: req.flash(),
   });
 };
 
 const viewActivityRender = async (req, res) => {
   // console.log(req.user)
-  try{
+  try {
     const userData = await findUser(req.user);
     let profilePic = req.user.profilePic_url;
-    const [activities,totalVotes] = await getActivities(req.user);
+    const [activities, totalVotes] = await getActivities(req.user);
     const creatorDetails = {
       creator: req.user.firstname + " " + req.user.lastname,
       profilePic_url: req.user.profilePic_url,
@@ -52,7 +52,7 @@ const viewActivityRender = async (req, res) => {
       activities: activities,
       totalVotes: totalVotes,
     });
-  }catch(err){
+  } catch (err) {
     req.flash("error", err.message);
     res.redirect("/profile");
   }
@@ -69,38 +69,59 @@ const editProfileRender = async (req, res) => {
     pageTitle: "Knot - Profile",
     pageName: "profile-edit",
     existingdata: userData,
-    messages: req.flash()
+    messages: req.flash(),
   });
 };
 const editProfileController = async (req, res) => {
   const id = req.user._id;
 
-  const postedData = {};
+  const postedData = {
+    points: req.user.points,
+  };
   if (req.body.dob !== "") {
     postedData.date_of_birth = req.body.dob;
-  };
+  }
   if (req.body.firstname !== "") {
     postedData.firstname = req.body.firstname.replace(/\s/g, "");
-  };
+  }
   if (req.body.lastname !== "") {
     postedData.lastname = req.body.lastname.replace(/\s/g, "");
-  };
+  }
   if (req.body.bio !== "") {
     postedData.bio = req.body.bio;
-  };
+  }
   if (req.body.username !== "") {
     postedData.username = req.body.username.replace(/\s/g, "");
-  };
-  if(req.body.profilePic !== ""){
+  }
+  if (req.body.profilePic !== "") {
     postedData.profilePic_url = req.body.profilePic;
+  }
+
+  if ((!(req.user.username == postedData.username)) && postedData.username != undefined) {
+    if(postedData.points < 20){
+      req.flash("error", "You don't have enough points to change your username");
+      res.json({ error: "You don't have enough points to change your username" });
+      return;
+    }else{
+      postedData.points -= 20
+    }
+  }
+  if(postedData.profilePic_url){
+    if(postedData.points < 50){
+      req.flash("error", "You don't have enough points to change your profile picture");
+      res.json({ error: "You don't have enough points to change your profile picture" });
+      return;
+    } else{
+      postedData.points -= 50
+    }
   }
   try {
     await updateUser(id, postedData);
     req.flash("success", "Profile updated successfully");
-    res.json({success: "Profile updated successfully"});
+    res.json({ success: "Profile updated successfully" });
   } catch (err) {
     req.flash("error", err.message);
-    res.json({error: err.message});
+    res.json({ error: err.message });
   }
 };
 const singleProfileRender = async (req, res) => {
@@ -111,19 +132,19 @@ const singleProfileRender = async (req, res) => {
     res.redirect("/profile");
     return;
   }
-  try{
+  try {
     const userData = await findUser(user);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
     let posts = await getPosts(user);
-    for(let post of posts){
-      await post.populate("creator")
+    for (let post of posts) {
+      await post.populate("creator");
     }
     const creatorDetails = {
       creator: userData.firstname + " " + userData.lastname,
       profilePic_url: userData.profilePic_url,
     };
-  
+
     res.render("profile", {
       activeUser,
       user: userData,
@@ -138,7 +159,6 @@ const singleProfileRender = async (req, res) => {
   } catch (err) {
     res.redirect("/");
   }
-
 };
 
 const singleProfileActivityRender = async (req, res) => {
@@ -149,10 +169,13 @@ const singleProfileActivityRender = async (req, res) => {
     res.redirect("/profile/activity");
     return;
   }
-  try{
+  try {
     const userDataPromise = findUser(user);
     const activitiesPromise = getActivities(user);
-    const [userData, [activities,totalVotes]] = await Promise.all([userDataPromise, activitiesPromise]);
+    const [userData, [activities, totalVotes]] = await Promise.all([
+      userDataPromise,
+      activitiesPromise,
+    ]);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
     const creatorDetails = {
@@ -171,11 +194,10 @@ const singleProfileActivityRender = async (req, res) => {
       activities: activities,
       totalVotes: totalVotes,
     });
-  }catch(err){
+  } catch (err) {
     req.flash("error", err.message);
     res.redirect("/profile");
   }
-  
 };
 
 const followController = async (req, res) => {
@@ -197,5 +219,4 @@ module.exports = {
   singleProfileRender,
   singleProfileActivityRender,
   followController,
-
 };

@@ -25,7 +25,7 @@
                         </div>
                         <div class="label-input">
                             <label for="lastname">Profile Picture:</label>
-                            <input type="file" class="input" placeholder="Last Name" accept="image/png,image/jpeg" name="profilePic"  id="update-profile-pic">
+                            <input type="file" class="input" placeholder="Last Name" accept="image/png,image/jpeg" name="profilePic"  id="update-profile-pic" autocomplete="off">
                         </div>
                         <div class="label-input">
                             <img class="input" src="" alt="" id="profilePicPreview">
@@ -33,7 +33,7 @@
                         <div class="label-input">
                             <label for="username">Username:</label>
                             <input type="text" class="input" placeholder="Username" name="username"
-                                value="<%=existingdata.username%>" id="" required>
+                                value="<%=existingdata.username%>" id="">
                         </div>
                         <div class="label-input">
                             <label for="bio">Bio:</label>

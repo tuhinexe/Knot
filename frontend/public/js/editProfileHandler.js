@@ -41,7 +41,6 @@ editProfileSubmit.addEventListener("submit", async (e) => {
     bio,
     dob,
   };
-  console.log(body);
   try{
     const response = await fetch("/profile/update", {
       method: "POST",
