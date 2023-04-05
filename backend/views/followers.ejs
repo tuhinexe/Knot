@@ -8,9 +8,9 @@
                 <div class="follow-text">
                     <div class="profile-name">
                         
-                        <a href="/profile"><img class="post-profile" src="<%=profilePicLoggedIn %>" alt=""></a>
+                        <a href="<%= pageName === 'viewfollowers'? '/profile/'+user._id: '/profile' %>"><img class="post-profile" src="<%=profilePicLoggedIn %>" alt=""></a>
                         <div class="post-creator-name">
-                            <a href="/profile"><%= user.firstname+' '+ user.lastname %></a>
+                            <a href="<%= pageName === 'viewfollowers'? '/profile/'+user._id: '/profile' %>"><%= user.firstname+' '+ user.lastname %></a>
                             
                         </div>
                     </div>
