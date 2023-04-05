@@ -9,7 +9,7 @@
         <div class="post-creator">
             <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
             <div class="post-creator-name">
-                <a href=""><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
+                <a href="/profile/<%=post.creator._id%>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                         + post.creator.lastname %></a>
                 <small>
                     <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -

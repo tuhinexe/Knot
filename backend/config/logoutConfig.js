@@ -7,7 +7,7 @@ const initializeLogout = async (req, res) => {
       console.log(err);
       res.redirect("/unknownerror");
     } else {
-      res.redirect("/signup");
+      res.redirect("/login");
     }
   });
 };
