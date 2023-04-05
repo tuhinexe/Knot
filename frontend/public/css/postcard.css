@@ -256,6 +256,9 @@ a {
   background-color: var(--primary-color);
   color: var(--body-color);
 }
+.logout-btn:hover {
+  background-color: #EB455F;
+}
 
 .edit-profile-form + .edit-profile-form::before {
   content: "";
