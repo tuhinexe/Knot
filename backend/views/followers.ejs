@@ -60,7 +60,9 @@
                         <div class="post-creator-name">
                             <a href="/profile/<%= following._id %>"><%= following.firstname+' '+following.lastname  %></a>
                         </div>
+                        <% if (currentUser._id.toString() !== follower._id.toString()) { %>
                         <a class="unfollow-btn" href="/profile/follow/<%=following._id%>">Unfollow</a>
+                        <% } %>
                     </div>
                 </div>
             <% }) %>
