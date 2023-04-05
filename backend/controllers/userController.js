@@ -8,7 +8,7 @@ const initializeLogout = require("../config/logoutConfig");
 
 
 const signUpRender = (req, res) => {
-  res.render("signUp", {pageTitle: 'Knot - Sign Up'});
+  res.render("signUp", {pageTitle: 'Knot - Sign Up', messages: req.flash()});
 };
 
 const signUpController = async (req, res) => {
@@ -21,12 +21,18 @@ const signUpController = async (req, res) => {
     bio: "",
     profilePic_url: `https://api.dicebear.com/5.x/${randomProfileTheme[Math.floor(Math.random()*randomProfileTheme.length)]}/svg?seed=${req.body.username}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
   };
-  await initializeSignup(userData, req.body.password, req, res);
+  try{
+
+    await initializeSignup(userData, req.body.password, req, res);
+  } catch(err){
+    req.flash("error", err.message);
+    console.log(err);
+  };
 };
 
 
 const loginRender = (req, res) => {
-  res.render("login",{pageTitle: 'Knot - Login'});
+  res.render("login",{pageTitle: 'Knot - Login', messages: req.flash()});
 };
 
 const loginController = async (req, res) => {
@@ -34,7 +40,13 @@ const loginController = async (req, res) => {
     username: req.body.username,
     password: req.body.password
   }
-  await initializeLogin(userData, req, res);
+  try{
+    
+    await initializeLogin(userData, req, res);
+  } catch(err){
+    req.flash("error", err.message);
+    console.log(err);
+  };
 };
 
 const logoutController = (req, res) => {

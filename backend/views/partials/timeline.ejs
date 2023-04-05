@@ -1,53 +1,119 @@
 <div class="posts">
-
-
-    <div class="post-container">
-        <div class="post-creator">
-            <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
-            <div class="post-creator-name">
-                <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
-                        + post.creator.lastname %></a>
-                <small>
-                    <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
-                        Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
-                </small>
-            </div>
-            <% if(pageName === "profile"){ %>
-                <div class="delete-icon" data-post-id="<%= post._id %>">
-                    <i class='bx bx-sm bx-trash'></i>
+    <% if (pageName === 'profile' && post.creator._id.toString() !== userId.toString()){ %>
+        <div class="post-container share-container">
+            <div class="post-creator">
+                <img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt="">
+                <div class="post-creator-name">
+                    <a href="/profile/<%= userId %>"><%= creatorDetails.creator %></a>
+                    <small>
+                        shared
+                    </small>
                 </div>
-            <% } %>
+            </div>
+            <div class="shared-content">
+                <div class="post-creator">
+                    <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+                    <div class="post-creator-name">
+                        <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
+                                + post.creator.lastname %></a>
+                        <small>
+                            <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
+                                Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
+                        </small>
+                    </div>
+                    <% if(pageName === "profile"){ %>
+                        <div class="delete-icon" data-post-id="<%= post._id %>">
+                            <i class='bx bx-sm bx-trash'></i>
+                        </div>
+                    <% } %>
+                </div>
+                
+                <div class="post-content shared-post-content">
+                    <a href="/post/<%=post._id %>">
+                    <p>
+                        <%=post.content%>
+                    </p>
+                    <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
+                    </a>
+                </div>
+            
+                <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
+                    data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>" data-shares="<%= post.stats.shares %>"> 
+                    <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
+                        <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
+                        <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
+                    </div>
+                    <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
+                        <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
+                        <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
+                    </div>
+                    <div class="comment">
+                        <a class="comment" href="/post/<%=post._id %>">
+                        <i class='bx bx-sm bx-comment'></i>
+                        <span><%= post.stats.comments.length %></span>
+                    </a>
+                    </div>
+                    <div class="share">
+                        <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
+                        <span><%= post.stats.shares %></span>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="post-content">
-            <a href="/post/<%=post._id %>">
-            <p>
-                <%=post.content%>
-            </p>
-            <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
-            </a>
+    <% } else{ %>
+
+        <div class="post-container">
+            <div class="post-creator">
+                <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+                <div class="post-creator-name">
+                    <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
+                            + post.creator.lastname %></a>
+                    <small>
+                        <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
+                            Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
+                    </small>
+                </div>
+                <% if(pageName === "profile"){ %>
+                    <div class="delete-icon" data-post-id="<%= post._id %>">
+                        <i class='bx bx-sm bx-trash'></i>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="post-content">
+                <a href="/post/<%=post._id %>">
+                <p>
+                    <%=post.content%>
+                </p>
+                <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
+                </a>
+            </div>
+        
+            <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
+                data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>" data-shares="<%= post.stats.shares %>"> 
+                <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
+                    <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
+                    <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
+                </div>
+                <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
+                    <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
+                    <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
+                </div>
+                <div class="comment">
+                    <a class="comment" href="/post/<%=post._id %>">
+                    <i class='bx bx-sm bx-comment'></i>
+                    <span><%= post.stats.comments.length %></span>
+                </a>
+                </div>
+                <div class="share">
+                    <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
+                    <span><%= post.stats.shares %></span>
+                </div>
+            </div>
         </div>
+    <% } %>
+
+
     
-        <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
-            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=userId%>" data-shares="<%= post.stats.shares %>"> 
-            <div class='like <%-post.stats.upvoted_by.includes(userId)? "liked" : ""%> '>
-                <i class='bx bx-sm <%-post.stats.upvoted_by.includes(userId)? "bxs-upvote" : "bx-upvote"%> '></i>
-                <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
-            </div>
-            <div class='dislike <%-post.stats.downvoted_by.includes(userId)? "disliked" : ""%> '>
-                <i class='bx bx-sm <%-post.stats.downvoted_by.includes(userId)? "bxs-downvote" : "bx-downvote"%> '></i>
-                <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
-            </div>
-            <div class="comment">
-                <a class="comment" href="/post/<%=post._id %>">
-                <i class='bx bx-sm bx-comment'></i>
-                <span><%= post.stats.comments.length %></span>
-            </a>
-            </div>
-            <div class="share">
-                <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
-                <span><%= post.stats.shares %></span>
-            </div>
-        </div>
-    </div>
 </div>

@@ -7,7 +7,7 @@ const feedController = async (req,res) => {
         pagename : 'home',
         profilePic: req.user.profilePic_url,
         userId: req.user._id,
-        user: req.user
+        user: req.user,
     }
 
 try{

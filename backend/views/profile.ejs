@@ -1,19 +1,6 @@
 <%- include ('partials/header',{pageTitle: pageTitle}) %>
     <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
         <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
-
-            <% if (messages.success) { %>
-                <div class="success-modal" role="alert">
-                    <%= messages.success %>
-                        <i class='bx bx-x bx-md success-modal-close' onclick="dismissSuccess()"></i>
-                </div>
-                <% } %>
-                    <script>
-                        function dismissSuccess() {
-                            const SuccessElem = document.querySelector('.success-modal');
-                            SuccessElem.style.display = 'none';
-                        }
-                    </script>
                     <div class="profileNavigation">
                         <ul class="profileNav-items">
                             <li class="navigation-active"><a class=""
@@ -28,43 +15,10 @@
                     </div>
                     <div class="ownPosts">
                         <% posts.map(post=>{ %>
-                            <%- include ('partials/timeline',{post: post, userId: activeUser._id, creatorDetails:
+                            <%- include ('partials/timeline',{post: post,user:user, userId: activeUser._id, creatorDetails:
                                 creatorDetails, pageName: pageName}) %>
 
                                 <% }) %>
                     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <!-- <div class="box">
-            <div class="container">
-                <div class="details">
-                    <p>Hii I am <%=user.firstname%>
-                    </p>
-                    <p>My last name is <%=user.lastname%>
-                    </p>
-                    <p>Hii my bio is <%=user.bio%>
-                    </p>
-                    <p>Hii my email <%=user.email%>
-                    </p>
-                    <img style="border-radius: 50%;" src="<%=user.profilePic_url%>" alt="">
-                    <p>this is an add post button</p>
-                </div>
-                <a href="/post/add">
-                    <div class="alternates">
-                        <button type="submit" id="google" class="hovereffect">🔥 add post</button>
-                    </div>
-                </a>
-            </div>
-        </div> -->
+                    <%- include ('partials/footer') %>

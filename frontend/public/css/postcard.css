@@ -47,6 +47,11 @@ a {
   color: var(--secondary-color);
   font-family: var(--regular);
 }
+.share-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .post-creator {
   display: flex;
   /* justify-content: flex-start; */
@@ -105,6 +110,22 @@ a {
   width: 100%;
   gap: 0.8rem;
   font-size: large;
+}
+.shared-content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--body-color);
+  height: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  gap: 1rem;
+  color: var(--secondary-color);
+  font-family: var(--regular);
+}
+.shared-post-content{
+  background-color: var(--secondary-body-color);
 }
 .post-content p,
 .post-content a {

@@ -2,12 +2,15 @@
 <%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
 
 
+
 <section class="post-section">
     
     <%- include ('partials/homePageAddButtons',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo: pageInfo }) %>
 
     <% posts.map(post =>{ %>
-        <%- include ('partials/timeline',{post: post, userId: pageInfo.userId, pageName: ''}) %>
+        <%- include ('partials/timeline',{post: post,user:pageInfo.user, userId: pageInfo.userId, pageName: pageInfo.pagename}) %>
         
     <% }) %>
 </section>
+
+<%- include ('partials/footer') %>

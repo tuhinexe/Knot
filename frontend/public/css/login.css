@@ -26,6 +26,8 @@ a{
 .container{
     width: 350px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     
 }
@@ -88,8 +90,9 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 25%;
+    gap: 1.5rem;
     color: #fff;
+    width: 100%;
     font-size: 14px;
     margin-top: 10px;
 }

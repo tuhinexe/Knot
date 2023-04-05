@@ -80,21 +80,15 @@
                     </div>
                     <div class="participation-feedback">
                         <% if (messages.success) { %>
-                            <div class="success-flash">
-                                <p>
-                                    <%= messages.success %>
-                                </p>
-                            </div>
+                            <%- include ('partials/flashModal',{message: messages}) %>
                             <% } %>
                                 <% if (messages.error) { %>
-                                    <div class="fail-flash">
-                                        <p>
-                                            <%= messages.error %>
-                                        </p>
-                                    </div>
+                                    <%- include ('partials/flashModal',{message: messages}) %>
                                     <% } %>
                     </div>
                 </div>
 
             </div>
         </section>
+
+    <%- include ('partials/footer') %>

@@ -50,6 +50,10 @@
 
         </div>
     </div>
+
+    <% if (messages.error) { %>
+        <%- include('partials/flashModal', {message: messages}) %>
+        <% } %>
 </body>
 <script src="/js/script.js"></script>
 

@@ -65,7 +65,7 @@
     animation: fade-out 0.5s ease-out;
   }
   
-  .fail-flash, .success-flash {
+  /* .fail-flash, .success-flash {
     font-size: 1rem;
     font-family: var(--regular);
     padding: 16px;
@@ -85,4 +85,4 @@
     background-color: #dff0d8;
     color: #3c763d;
     border: 1px solid #d6e9c6;
-  }
+  } */

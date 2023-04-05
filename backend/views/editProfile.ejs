@@ -47,31 +47,14 @@
                         </div>
                         <input type="submit" class="edit-profile-submit" value="Update Now" id="updateProfileBtn">
                         <% if (messages.error) { %>
-                            <div class="fail-flash">
-                                <p><%= messages.error %></p>
-                                    <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissError()"></i>
-                            </div>
+                            <%- include ('partials/flashModal',{messages: messages}) %>
                             <% } else if(messages.success){ %>
-                            <div class="success-flash">
-                                <p><%= messages.success %></p>
-                                    <i class='bx bx-x bx-md submit-fail-text-cancel' onclick="dismissSuccess()"></i>
-                            </div>
+                                <%- include ('partials/flashModal',{messages: messages}) %>
                             <% } %>
                     </form>
                     <form action="/logout" method="post" class="edit-profile-form logout-form">
                         <input type="submit" class="edit-profile-submit logout-btn" value="Logout" id="">
                     </form>
-                    
-                            <script>
-                                function dismissError() {
-                                    const errorElem = document.querySelector('.fail-flash');
-                                    errorElem.style.display = 'none';
-                                }
-                                function dismissSuccess() {
-                                    const successElem = document.querySelector('.success-flash');
-                                    successElem.style.display = 'none';
-                                }
-                            </script>
 
                 </div>
             </div>

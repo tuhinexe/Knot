@@ -7,7 +7,11 @@ const { followAndUnfollow } = require("../api/followAPI");
 const viewProfileRender = async (req, res) => {
   const userData = await findUser(req.user);
   let profilePic = req.user.profilePic_url;
-  const posts = await getPosts(req.user);
+  let posts = await getPosts(req.user);
+  for(let post of posts){
+    await post.populate("creator")
+  }
+
   const creatorDetails = {
     creator: req.user.firstname + " " + req.user.lastname,
     profilePic_url: req.user.profilePic_url,
@@ -111,7 +115,10 @@ const singleProfileRender = async (req, res) => {
     const userData = await findUser(user);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
-    const posts = await getPosts(user);
+    let posts = await getPosts(req.user);
+    for(let post of posts){
+      await post.populate("creator")
+    }
     const creatorDetails = {
       creator: userData.firstname + " " + userData.lastname,
       profilePic_url: userData.profilePic_url,

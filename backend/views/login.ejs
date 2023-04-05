@@ -1,9 +1,9 @@
 <%- include('partials/header',{pageTitle: pageTitle}) %>
     <link rel="stylesheet" href="/css/login.css">
     <script src="/js/login.js" defer></script>
-    <title>Knot - Login</title>
 </head>
 <body>
+ 
     <div class="box">
      <div class="container">
  
@@ -40,5 +40,9 @@
         </div> </a>
      </div>
  </div>  
+
+ <% if (messages.error) { %>
+    <%- include('partials/flashModal', {message: messages}) %>
+    <% } %>
  </body>
 </html>
