@@ -30,6 +30,7 @@
                         <div class="label-input">
                             <img class="input" src="" alt="" id="profilePicPreview">
                         </div>
+                        <p class="view-point-details">50 points required to update your profile picture. <span><a href="/points">know why !!</a></span></p>
                         <div class="label-input">
                             <label for="username">Username:</label>
                             <input type="text" class="input" placeholder="Username" name="username"
@@ -46,11 +47,6 @@
                                 value="<%=existingdata.date_of_birth%>" id="">
                         </div>
                         <input type="submit" class="edit-profile-submit" value="Update Now" id="updateProfileBtn">
-                        <% if (messages.error) { %>
-                            <%- include ('partials/flashModal',{messages: messages}) %>
-                            <% } else if(messages.success){ %>
-                                <%- include ('partials/flashModal',{messages: messages}) %>
-                            <% } %>
                     </form>
                     <form action="/logout" method="post" class="edit-profile-form logout-form">
                         <input type="submit" class="edit-profile-submit logout-btn" value="Logout" id="">
@@ -58,3 +54,8 @@
 
                 </div>
             </div>
+            <% if (messages.error) { %>
+                <%- include ('partials/flashModal',{messages: messages}) %>
+                <% } else if(messages.success){ %>
+                    <%- include ('partials/flashModal',{messages: messages}) %>
+                <% } %>

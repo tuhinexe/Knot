@@ -282,6 +282,26 @@ a {
 .label-input label {
   width: 30%;
 }
+.view-point-details{
+  padding: 0.2rem 0.5rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  width: 100%;
+}
+.view-point-details span a{
+  color: var(--dark-color);
+  padding-left: 0.5rem;
+  transition: 0.6s ease-in-out;
+  -webkit-text-decoration: underline wavy rgb(248, 183, 84);
+  text-decoration: underline wavy rgb(248, 183, 84);
+}
+.view-point-details span a:hover{
+  color: rgb(248, 183, 84);
+  padding-left: 2rem;
+  -webkit-text-decoration: underline wavy var(--primary-color);
+  text-decoration: underline wavy var(--primary-color);
+  
+}
 
 /* add buttons in timeline */
 .adding-buttons {

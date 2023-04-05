@@ -16,6 +16,7 @@ const followersRouter = require("./routes/followers");
 const pollsRouter = require("./routes/polls");
 const challengesRouter = require("./routes/challenges");
 const devApiRouter = require("./routes/devApi");
+const pointsRouter = require("./routes/points");
 const checkAuthorized = require("./middlewares/checkAuth");
 const passportSetup = require("./config/passportConfig");
 const passport = require("passport");
@@ -58,6 +59,7 @@ app.use("/post", postRouter);
 app.use("/polls", pollsRouter);
 app.use("/challenges", challengesRouter)
 app.use("/api/v1", devApiRouter);
+app.use("/points", pointsRouter);
 
 //use wildcard to catch all routes
 app.get("*", (req, res) => {
