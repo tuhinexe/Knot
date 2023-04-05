@@ -73,8 +73,13 @@ const editProfileRender = async (req, res) => {
 };
 const editProfileController = async (req, res) => {
   const id = req.user._id;
-  if(req.body.profilePicId){
-    await deleteImage(req.user.profilePicId);
+  try{
+    if(req.body.profilePicId && req.user.profilePicId !== ""){ 
+      await deleteImage(req.user.profilePicId);
+    }
+  }catch(err){
+    req.flash("error", err.message);      
+    res.json({ error: err.message });
   }
   const postedData = {
     points: req.user.points,
