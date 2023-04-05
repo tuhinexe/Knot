@@ -76,9 +76,7 @@
                             Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
                     </small>
                 </div>
-                <% if(comment.commentor._id === pageInfo.userId){ %>
-                    <p><%= comment.commentor._id %></p>
-                    <p><%= pageInfo.userId %></p>
+                <% if(comment.commentor._id.toString() === pageInfo.userId.toString() || post.creator._id.toString() === pageInfo.userId.toString()){ %>
                 <div class="comment-delete-icon" data-comment-id="<%= comment._id %>" data-post-id="<%= post._id %>">
                                 <i class='bx bx-sm bx-trash'></i>
                             </div>
