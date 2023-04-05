@@ -29,12 +29,14 @@
                 <h3>Following</h3>
             </div>
         </a>
-            <div class="points">
-                <p>
-                    <%=user.points%>
-                </p>
-                <h3>Points</h3>
-            </div>
+            <a href="/points">
+                <div class="points">
+                    <p>
+                        <%=user.points%>
+                    </p>
+                    <h3>Points</h3>
+                </div>
+            </a>
         </div>
         <% if(user._id !== activeUser._id ){ %>
             <div class="follow" data-profileId="<%= user._id %>">
