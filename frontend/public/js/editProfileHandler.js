@@ -31,13 +31,14 @@ editProfileSubmit.addEventListener("submit", async (e) => {
   if (profilePic.name !== "") {
     profilePic = await getImageUrl(profilePic);
   } else {
-    profilePic = { url: "" };
+    profilePic = { url: "", publicId: "" };
   }
   const body = {
     firstname,
     lastname,
     username,
     profilePic: profilePic.url,
+    profilePicId: profilePic.publicId,
     bio,
     dob,
   };

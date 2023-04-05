@@ -3,6 +3,7 @@ const updateUser = require("../api/updateUser");
 const getPosts = require("../api/getPosts");
 const getActivities = require("../api/getActivities");
 const { followAndUnfollow } = require("../api/followAPI");
+const deleteImage = require("../api/deleteImage");
 
 const viewProfileRender = async (req, res) => {
   const userData = await findUser(req.user);
@@ -31,7 +32,6 @@ const viewProfileRender = async (req, res) => {
 };
 
 const viewActivityRender = async (req, res) => {
-  // console.log(req.user)
   try {
     const userData = await findUser(req.user);
     let profilePic = req.user.profilePic_url;
@@ -40,7 +40,6 @@ const viewActivityRender = async (req, res) => {
       creator: req.user.firstname + " " + req.user.lastname,
       profilePic_url: req.user.profilePic_url,
     };
-    // const challenges = await getChallenges(req.user );
     res.render("profileActivity", {
       activeUser: userData,
       user: userData,
@@ -74,7 +73,9 @@ const editProfileRender = async (req, res) => {
 };
 const editProfileController = async (req, res) => {
   const id = req.user._id;
-
+  if(req.body.profilePicId){
+    await deleteImage(req.user.profilePicId);
+  }
   const postedData = {
     points: req.user.points,
   };
@@ -95,6 +96,7 @@ const editProfileController = async (req, res) => {
   }
   if (req.body.profilePic !== "") {
     postedData.profilePic_url = req.body.profilePic;
+    postedData.profilePicId = req.body.profilePicId;
   }
 
   if ((!(req.user.username == postedData.username)) && postedData.username != undefined) {

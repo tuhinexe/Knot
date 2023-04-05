@@ -42,6 +42,7 @@ let UserSchema = new mongoose.Schema(
     profilePic_url: {
       type: String,
     },
+    profilePicId:{type:String},
     points: {
       type: Number,
       default: 0,

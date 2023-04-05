@@ -45,6 +45,7 @@ passport.use(
         lastname: profile.name.familyName,
         email: profile._json.email,
         bio: "",
+        profilePicId: "",
         profilePic_url: `https://api.dicebear.com/5.x/${randomProfileTheme[Math.floor(Math.random()*randomProfileTheme.length)]}/svg?seed=${profile.id}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
       };
       User.findOne({ googleId: profile.id }, function (err, user) {

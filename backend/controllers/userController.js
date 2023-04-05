@@ -19,6 +19,7 @@ const signUpController = async (req, res) => {
     username: req.body.username.replace(/\s/g, ""),
     email: req.body.email,
     bio: "",
+    profilePicId: "",
     profilePic_url: `https://api.dicebear.com/5.x/${randomProfileTheme[Math.floor(Math.random()*randomProfileTheme.length)]}/svg?seed=${req.body.username}&backgroundColor=ffffff,b6e3f4&backgroundType=gradientLinear`,
   };
   try{
