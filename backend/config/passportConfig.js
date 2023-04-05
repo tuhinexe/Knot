@@ -13,6 +13,22 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+const generateRandomUsername = async (user) => {
+  const uniqueUserName = await User.findOne({ username: user })
+  if (!uniqueUserName) {
+    return user
+  }
+  const prefix = user
+  const suffix = Math.floor(Math.random() * 10000); 
+  const username = `${prefix}${suffix}`;
+  const foundUser = await User.findOne({ username });
+  if (foundUser) {
+    return generateRandomUsername();
+  }
+  return username;
+}
+
 passport.use(
   new GoogleStrategy(
     {
@@ -20,11 +36,11 @@ passport.use(
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: process.env.CALLBACK_URL,
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       const randomProfileTheme = ["lorelei", "personas", "fun-emoji", "avataaars", "adventurer", "big-ears"]
       const userData = {
         googleId: profile.id,
-        username: profile._json.email.split("@")[0],
+        username: await generateRandomUsername(profile._json.email.split("@")[0]),
         firstname: profile.name.givenName,
         lastname: profile.name.familyName,
         email: profile._json.email,
