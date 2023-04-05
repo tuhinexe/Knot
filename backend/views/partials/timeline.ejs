@@ -23,7 +23,9 @@
                     </div>
                     <% if(pageName === "profile"){ %>
                         <div class="delete-icon" data-post-id="<%= post._id %>">
-                            <i class='bx bx-sm bx-trash'></i>
+                            <a href="/post/delete/<%=post._id%>">
+                                <i class='bx bx-sm bx-trash'></i>
+                            </a>
                         </div>
                     <% } %>
                 </div>
@@ -76,7 +78,9 @@
                 </div>
                 <% if(pageName === "profile"){ %>
                     <div class="delete-icon" data-post-id="<%= post._id %>">
+                        <a href="/post/delete/<%=post._id%>">
                         <i class='bx bx-sm bx-trash'></i>
+                    </a>
                     </div>
                 <% } %>
             </div>

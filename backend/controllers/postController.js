@@ -69,13 +69,14 @@ const sharePostController = async (req, res) => {
 
 
 const deletePostController = async (req, res) => {
-  const postId = req.body.postId;
+  const postId = req.params.postId;
   const user = req.user;
   try {
     await deletePost(postId, user);
     res.redirect("/profile");
   } catch (err) {
     console.log(err);
+    res.redirect("/profile");
   }
 };
 
