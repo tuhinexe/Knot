@@ -23,9 +23,11 @@
                             <input type="text" class="input" placeholder="Last Name" name="lastname"
                                 value="<%=existingdata.lastname%>" id="" required>
                         </div>
-                        <div class="label-input">
-                            <label for="lastname">Profile Picture:</label>
+                        <div class="label-input file-upload">
                             <input type="file" class="input" placeholder="Last Name" accept="image/png,image/jpeg" name="profilePic"  id="update-profile-pic" autocomplete="off">
+                            <label for="update-profile-pic" id="uploadpic">
+                                <i class='bx bx-md bx-tada bxs-image-add' id="upload-icon"></i> <span>Make sure you look good.</span> 
+                            </label>
                         </div>
                         <div class="label-input">
                             <img class="input" src="" alt="" id="profilePicPreview">

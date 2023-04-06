@@ -228,7 +228,7 @@ a {
 }
 .edit-profile-form input,
 .create-challenge-form input,
-.create-challenge-form textarea {
+.create-challenge-form textarea,#uploadpic {
   width: 100%;
   max-width: 100%;
   padding: 0.5rem;
@@ -270,6 +270,27 @@ a {
   border-top: 1px solid var(--primary-color); /* adjust the color of the line */
 
 }
+.file-upload input[type="file"],#input-file {
+  display: none;
+}
+
+.file-upload label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap:1rem;
+  
+}
+label#uploadpic{
+  width: 100%;
+  position: relative;
+}
+.file-upload{
+  width: 100%;
+}
+
 
 .label-input {
   width: 100%;
@@ -357,6 +378,13 @@ a {
   .logout-form {
     padding-bottom: 5rem;
   }
+  div.file-upload{
+    display: flex;
+    flex-direction: row;
+  }
+  label#uploadpic{
+    width: 100%;
+  }
   .post-container,
   .poll-container,
   .each-challenge-container,
@@ -414,5 +442,8 @@ a {
   .each-challenge-container,
   .edit-profile-container {
     width: 60%;
+  }
+  #uploadpic{
+    width: 100%;
   }
 }
