@@ -115,8 +115,16 @@ const editProfileController = async (req, res) => {
   }
   if(postedData.profilePic_url){
     if(postedData.points < 50){
-      req.flash("error", "You don't have enough points to change your profile picture");
-      res.json({ error: "You don't have enough points to change your profile picture" });
+      try{
+        if(req.body.profilePicId && req.user.profilePicId !== ""){ 
+          await deleteImage(req.user.profilePicId);
+          req.flash("error", "You don't have enough points to change your profile picture");
+          res.json({ error: "You don't have enough points to change your profile picture" });
+        }
+      }catch(err){
+        req.flash("error", err.message);      
+        res.json({ error: err.message });
+      }
       return;
     } else{
       postedData.points -= 50
