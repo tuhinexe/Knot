@@ -4,6 +4,7 @@ const getPosts = require("../api/getPosts");
 const getActivities = require("../api/getActivities");
 const { followAndUnfollow } = require("../api/followAPI");
 const deleteImage = require("../api/deleteImage");
+const searchProfile = require("../api/searchProfile");
 
 const viewProfileRender = async (req, res) => {
   const userData = await findUser(req.user);
@@ -73,12 +74,12 @@ const editProfileRender = async (req, res) => {
 };
 const editProfileController = async (req, res) => {
   const id = req.user._id;
-  try{
-    if(req.body.profilePicId && req.user.profilePicId !== ""){ 
+  try {
+    if (req.body.profilePicId && req.user.profilePicId !== "") {
       await deleteImage(req.user.profilePicId);
     }
-  }catch(err){
-    req.flash("error", err.message);      
+  } catch (err) {
+    req.flash("error", err.message);
     res.json({ error: err.message });
   }
   const postedData = {
@@ -104,30 +105,44 @@ const editProfileController = async (req, res) => {
     postedData.profilePicId = req.body.profilePicId;
   }
 
-  if ((!(req.user.username == postedData.username)) && postedData.username != undefined) {
-    if(postedData.points < 20){
-      req.flash("error", "You don't have enough points to change your username");
-      res.json({ error: "You don't have enough points to change your username" });
+  if (
+    !(req.user.username == postedData.username) &&
+    postedData.username != undefined
+  ) {
+    if (postedData.points < 20) {
+      req.flash(
+        "error",
+        "You don't have enough points to change your username"
+      );
+      res.json({
+        error: "You don't have enough points to change your username",
+      });
       return;
-    }else{
-      postedData.points -= 20
+    } else {
+      postedData.points -= 20;
     }
   }
-  if(postedData.profilePic_url){
-    if(postedData.points < 50){
-      try{
-        if(req.body.profilePicId && req.user.profilePicId !== ""){ 
+  if (postedData.profilePic_url) {
+    if (postedData.points < 50) {
+      try {
+        if (req.body.profilePicId && req.user.profilePicId !== "") {
           await deleteImage(req.body.profilePicId);
-          req.flash("error", "You don't have enough points to change your profile picture");
-          res.json({ error: "You don't have enough points to change your profile picture" });
+          req.flash(
+            "error",
+            "You don't have enough points to change your profile picture"
+          );
+          res.json({
+            error:
+              "You don't have enough points to change your profile picture",
+          });
         }
-      }catch(err){
-        req.flash("error", err.message);      
+      } catch (err) {
+        req.flash("error", err.message);
         res.json({ error: err.message });
       }
       return;
-    } else{
-      postedData.points -= 50
+    } else {
+      postedData.points -= 50;
     }
   }
   try {
@@ -226,6 +241,57 @@ const followController = async (req, res) => {
   }
 };
 
+const searchProfileRender = async (req, res) => {
+  res.render("followers", {
+    pageTitle: "Knot - Search Profile",
+    profilePicLoggedIn: req.user.profilePic_url,
+    pageName: "searching-profile",
+    user: req.user,
+    isFollowing: false,
+    isFollowers: false,
+    isSearching: true,
+    currentUser: req.user,
+    foundUser: [],
+    searchValue: "",
+    messages: req.flash(),
+  });
+  // res.render("searchProfile", {});
+};
+
+const searchProfileController = async (req, res) => {
+  if (!req.query.user || req.query.user === "") {
+    req.flash("error", "Please enter something to search");
+    res.redirect("back");
+    return;
+  }
+  try {
+    const foundUser = await searchProfile(req.query.user);
+    if (foundUser.length > 0) {
+      res.render("followers", {
+        pageTitle: "Knot - Search Profile",
+        profilePicLoggedIn: req.user.profilePic_url,
+        pageName: "searching-profile",
+        user: req.user,
+        isFollowers: false,
+        isFollowing: false,
+        isSearching: true,
+        currentUser: req.user,
+        foundUser: foundUser,
+        searchValue: req.query.user,
+        messages: req.flash(),
+      });
+    } else {
+      req.flash("error", `No user found that matches '${req.query.user}'`);
+      res.redirect("back");
+      return;
+    }
+  } catch (error) {
+    req.flash("somethingWrong", "something went wrong, please try again later");
+    res.redirect("back");
+    return;
+  }
+};
+
 module.exports = {
   viewProfileRender,
   viewActivityRender,
@@ -234,4 +300,6 @@ module.exports = {
   singleProfileRender,
   singleProfileActivityRender,
   followController,
+  searchProfileController,
+  searchProfileRender,
 };

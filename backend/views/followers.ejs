@@ -35,6 +35,9 @@
                 <div class="following <%= isFollowing && 'active-option' %>">
                     <a href="<%= pageName === 'viewfollowers'? '/following/'+user._id: '/following' %>">Following</a>
                 </div>
+                <div class="search-user-btn <%= isSearching && 'active-option' %>">
+                    <a href="/profile/searchuser"><i class='bx bx-sm bx-search-alt'></i></a>
+                </div>
             </div>
         <div class="post-container">
             <% isFollowers && followers.map(follower => { %>
@@ -66,7 +69,52 @@
                     </div>
                 </div>
             <% }) %>
+            <% if(isSearching) { %>
+                <div class="post-content ">
+                    <form class="search-form" action="/profile/search">
+                        <input class="search-bar-input" type="text" name="user" placeholder="Search.." value="<%= searchValue !== '' ? searchValue : '' %>">
+                        <button class="search-form-btn" type="submit"><i class='bx bx-sm bx-search-alt'></i></button>
+                      </form>
+                </div>
+                <% } %>
         </div>
+<% if(isSearching && foundUser.length > 0 ) { %>
+    <div class="post-container  search-result-user">
+        <% isSearching && foundUser.length > 0 && foundUser.map(user => { %>
+                            <div class="post-content">
+                                <a href="/profile/<%= user._id %>">
+                                <div class="post-creator">
+                                    <img class="post-profile" src="<%= user.profilePic_url %>" alt="">
+                                    <div class="post-creator-name">
+                                        <%= user.firstname+' '+user.lastname  %>
+                                    </div>
+                                    
+                                    <small><%=user.username%></small>
+                                </div> </a>
+                            </div>
+                            <% }) %>
+                        </div>
+                        <% } %>
+                        <% if(isSearching && foundUser.length === 0 ) { %>
+                    <div class="post-container get-points search-result-user">
+                            <% if(messages.error) { %>
+                                <div class="post-content search-error">
+                                            <%= messages.error %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <% } %>
+                        <% if(isSearching && messages.somethingWrong ) { %>
+                            <div class="post-container get-points search-result-user ">
+                                <% if(messages.somethingWrong) { %>
+                                    <div class="post-content search-error">
+                                                <%= messages.somethingWrong %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <% } %>                            
+
+       
         
     </div>
 </div>

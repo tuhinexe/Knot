@@ -41,7 +41,7 @@ a {
   background-color: var(--secondary-body-color);
   width: 35%;
   height: 100%;
-  padding: 1.5rem 1.5rem 0.7rem 1.5rem;
+  padding: 1rem;
   border-radius: 10px;
   gap: 1rem;
   color: var(--secondary-color);
