@@ -2,7 +2,6 @@ const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
 const addPost = async (user, content, imageUrl,imageId,res) => {
-  console.log(user,content,imageUrl,imageId);
 if(!user && content === "" && imageUrl === "") return res.redirect('back');
   const newPost = new postModel({
     content: content,

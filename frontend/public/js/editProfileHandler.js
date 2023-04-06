@@ -1,7 +1,7 @@
 import { getImageUrl } from "../utils/imageUrl.js";
 
-const imageFieldChanegd = document.querySelector("#update-profile-pic");
-imageFieldChanegd.addEventListener("change", (e) => {
+const imageFieldChanged = document.querySelector("#update-profile-pic");
+imageFieldChanged && imageFieldChanged.addEventListener("change", (e) => {
   const file = e.target.files[0];
   const reader = new FileReader();
   reader.readAsDataURL(file);
@@ -16,7 +16,7 @@ imageFieldChanegd.addEventListener("change", (e) => {
 });
 
 const editProfileSubmit = document.querySelector(".edit-profile-form");
-editProfileSubmit.addEventListener("submit", async (e) => {
+editProfileSubmit && editProfileSubmit.addEventListener("submit", async (e) => {
   e.preventDefault();
   const updateBtn = document.querySelector("#updateProfileBtn");
   updateBtn.style.pointerEvents = "none";
