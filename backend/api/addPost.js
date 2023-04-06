@@ -2,9 +2,8 @@ const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
 const addPost = async (user, content, imageUrl,imageId,res) => {
-  if(!user || !content){
-    throw new Error("Invalid data");
-  }
+  console.log(user,content,imageUrl,imageId);
+if(!user && content === "" && imageUrl === "") return res.redirect('back');
   const newPost = new postModel({
     content: content,
     creator: user._id,
