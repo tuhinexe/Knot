@@ -92,5 +92,9 @@
   .sad-gif {
     margin-right: 1rem;
     transform: rotateY(180deg) scale(2.5);
+
+  }
+  .dance-gif:active,.sad-gif:active{
+  margin-right: 30rem;
   }
 }
