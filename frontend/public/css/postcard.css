@@ -242,6 +242,12 @@ a {
   color: var(--secondary-color);
   font-family: var(--regular);
 }
+
+.create-challenge-form input,
+.create-challenge-form textarea{
+  font-size: 0.9rem;
+}
+
 .edit-profile-form input::placeholder,
 .create-challenge-form input::placeholder,
 .create-challenge-form textarea::placeholder {
@@ -249,14 +255,6 @@ a {
 }
 .edit-profile-form input:focus {
   border-inline: 1px solid var(--primary-color);
-}
-.edit-profile-submit{
-  color: var(--body-color) !important;
-  background-color: var(--primary-color) !important;
-}
-.edit-profile-submit:hover {
-  color: var(--primary-color) !important;
-  background-color: var(--body-color) !important;
 }
 .edit-profile-submit,
 .challenge-submit-btn,
@@ -268,6 +266,14 @@ a {
 .challenge-submit-btn:hover {
   background-color: var(--primary-color);
   color: var(--body-color);
+}
+.edit-profile-submit{
+  color: var(--body-color) !important;
+  background-color: var(--primary-color) !important;
+}
+.edit-profile-submit:hover {
+  color: var(--body-color) !important;
+  background-color: rgb(163, 248, 163) !important;
 }
 .logout-form input{
   color: var(--body-color);
