@@ -119,7 +119,7 @@
     </div>
 </div>
 
-<% if (messages.error) { %>
+<% if (messages.error || message.somethingWrong || messages.success) { %>
     <%- include ('partials/flashModal.ejs',{messages: messages}) %>
       <% }%>
 
