@@ -266,7 +266,19 @@ const searchProfileRender = async (req, res) => {
 const searchProfileController = async (req, res) => {
   if (!req.query.user || req.query.user === "") {
     req.flash("error", "Please enter something to search");
-    res.redirect("back");
+    res.render("followers", {
+      pageTitle: "Knot - Search Profile",
+      profilePicLoggedIn: req.user.profilePic_url,
+      pageName: "searching-profile",
+      user: req.user,
+      isFollowers: false,
+      isFollowing: false,
+      isSearching: true,
+      currentUser: req.user,
+      foundUser: [],
+      searchValue: '',
+      messages: req.flash(),
+    });
     return;
   }
   try {
@@ -285,14 +297,39 @@ const searchProfileController = async (req, res) => {
         searchValue: req.query.user,
         messages: req.flash(),
       });
+      return;
     } else {
       req.flash("error", `No user found that matches '${req.query.user}'`);
-      res.redirect("back");
+      res.render("followers", {
+        pageTitle: "Knot - Search Profile",
+        profilePicLoggedIn: req.user.profilePic_url,
+        pageName: "searching-profile",
+        user: req.user,
+        isFollowers: false,
+        isFollowing: false,
+        isSearching: true,
+        currentUser: req.user,
+        foundUser: [],
+        searchValue: '',
+        messages: req.flash(),
+      });
       return;
     }
   } catch (error) {
     req.flash("somethingWrong", "something went wrong, please try again later");
-    res.redirect("back");
+    res.render("followers", {
+      pageTitle: "Knot - Search Profile",
+      profilePicLoggedIn: req.user.profilePic_url,
+      pageName: "searching-profile",
+      user: req.user,
+      isFollowers: false,
+      isFollowing: false,
+      isSearching: true,
+      currentUser: req.user,
+      foundUser: [],
+      searchValue: '',
+      messages: req.flash(),
+    });
     return;
   }
 };
