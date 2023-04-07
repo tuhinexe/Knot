@@ -14,6 +14,7 @@ const followersRender = async (req, res) => {
     isSearching: false,
     followers: user.followers,
     currentUser: req.user,
+    messages: req.flash(),
   });
 };
 
@@ -31,6 +32,7 @@ const followingRender = async (req, res) => {
     isSearching: false,
     following: user.following,
     currentUser: req.user,
+    messages: req.flash(),
   });
 };
 
@@ -47,6 +49,7 @@ const viewProfileFollowersRender = async (req, res) => {
     isFollowing: false,
     followers: user.followers,
     currentUser: req.user,
+    messages: req.flash(),
   });
 };
 
@@ -63,6 +66,7 @@ const viewProfileFollowingRender = async (req, res) => {
     isFollowers: false,
     following: user.following,
     currentUser: req.user,
+    messages: req.flash(),
   });
 };
 

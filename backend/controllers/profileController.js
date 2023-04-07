@@ -242,7 +242,8 @@ const followController = async (req, res) => {
     await followAndUnfollow(followingId, followerId);
     res.redirect("back");
   } catch (err) {
-    console.log(err);
+    req.flash("error", err.message);
+    res.redirect("back");
   }
 };
 
@@ -260,7 +261,6 @@ const searchProfileRender = async (req, res) => {
     searchValue: "",
     messages: req.flash(),
   });
-  // res.render("searchProfile", {});
 };
 
 const searchProfileController = async (req, res) => {

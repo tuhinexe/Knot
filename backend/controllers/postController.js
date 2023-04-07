@@ -31,7 +31,7 @@ const createPostController = async (req, res) => {
     await addPost(user, content, imageUrl, imageId);
     res.json({ success: "post added successfully" });
   } catch (err) {
-    req.flash("error", "please upload an image or write a post");
+    req.flash("error", "please upload an image or write a post (supported formats: jpg, jpeg, png)");
     res.json({ error: err.message });
   }
 };
@@ -70,7 +70,8 @@ const sharePostController = async (req, res) => {
     await sharePost(postId, currentShare, user);
     res.redirect("/profile");
   } catch (err) {
-    console.log(err);
+    req.flash("error", "cannot share, something went wrong");
+    res.redirect("/profile");
   }
 };
 
@@ -81,6 +82,7 @@ const deletePostController = async (req, res) => {
     await deletePost(postId, user);
     res.redirect("/profile");
   } catch (err) {
+    req.flash("error", "cannot delete, something went wrong");
     res.redirect("/profile");
   }
 };

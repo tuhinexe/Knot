@@ -56,7 +56,8 @@ const createPollsController = async (req, res) => {
     });
     newPoll.save((err, poll) => {
         if (err) {
-            console.log(err);
+            req.flash("error", "can't create poll, try again later");
+            res.redirect("/");
         } else {
             try {
                 findUser(req.user).then((user) => {
@@ -64,7 +65,8 @@ const createPollsController = async (req, res) => {
                     user.points += 5;
                     user.save((err, user) => {
                         if (err) {
-                            console.log(err);
+                            req.flash("error", "can't create poll, try again later");
+                            res.redirect("/profile");
                         } else {
                             res.redirect("/profile/activity");
                         }
@@ -115,7 +117,8 @@ const deletePollController = async (req, res) => {
         await deletePoll(pollId, user);
         res.redirect("/profile/activity");
     } catch (err) {
-        res.redirect("/profile/activity");
+        req.flash("error", "can't delete poll, try again later");
+        res.redirect("/profile");
     }
 };
 
