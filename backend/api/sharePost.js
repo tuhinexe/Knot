@@ -10,7 +10,7 @@ const sharePost = async (postId,currentShare,user) => {
     postCreator.points += 2;
     user.posts.push(postId);
     post.stats.shares = currentShare+1;
-    Promise.all([postCreator.save(),post.save(),user.save()])
+    await Promise.all([postCreator.save(),post.save(),user.save()])
 }
 
 module.exports = sharePost;

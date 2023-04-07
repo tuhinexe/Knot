@@ -13,7 +13,7 @@ const voteCount = async (pollId, optionId, userId) => {
     const pollCreator = await User.findById(poll.creatorId);
     pollCreator.points += 1;
     option.voted_by.push(userId);
-    Promise.all([pollCreator.save(), poll.save()]);
+    await Promise.all([pollCreator.save(), poll.save()]);
   } catch (err) {
     console.log(err);
   }
@@ -21,10 +21,9 @@ const voteCount = async (pollId, optionId, userId) => {
 
 const deletePoll = async (pollId, user) => {
   try {
-    await Polls.findByIdAndDelete(pollId);
     user.polls.pull(pollId);
     user.points -= 5;
-    await user.save();
+    await Promise.all([user.save(), Polls.findByIdAndDelete(pollId)]);
   } catch {
     console.log(err);
   }

@@ -12,15 +12,14 @@ const fetchChallenges = async () => {
 const createChallenges = async (challengeData, userId) => {
   try {
     const challenge = new Challenges(challengeData);
-    await challenge.save();
-    await User.updateOne(
+    await Promise.all([await challenge.save(), User.updateOne(
       { _id: userId },
       { 
         $push: { participatedChallenges: challenge._id },
         $addToSet: { challenges: challenge._id },
         $inc: { points: 5 }
       }
-    );
+    )])
     return challenge;
   } catch (err) {
     console.log(err);

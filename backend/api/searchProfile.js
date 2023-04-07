@@ -6,6 +6,7 @@ const searchProfile = async (searchTerm) => {
     // }).catch((err)=>{
     //     console.log("Error creating indexes");
     // });
+    //this needs to be called after droping db
     const users = await User.find(
       {
         $or: [
