@@ -12,7 +12,7 @@
             </div>
             <div class="shared-content">
                 <div class="post-creator">
-                    <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+                    <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="" loading="lazy" decoding="async">
                     <div class="post-creator-name">
                         <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                                 + post.creator.lastname %></a>
@@ -35,7 +35,7 @@
                     <p>
                         <%=post.content%>
                     </p>
-                    <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
+                    <img class="post-image" src="<%= post.imagePath || '' %>" alt="" loading="lazy" decoding="async">
                     </a>
                 </div>
             

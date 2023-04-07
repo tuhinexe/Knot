@@ -1,31 +1,31 @@
 @charset 'utf-8';
 @font-face {
     font-family: 'Mukta-Bold';
-    src: url('../fonts/Mukta-Bold.ttf') format('truetype');
+    src: url('../fonts/Mukta-Bold.woff2') format('woff2');
 }
 @font-face {
     font-family: 'Mukta-ExtraBold';
-    src: url('../fonts/Mukta-ExtraBold.ttf') format('truetype');
+    src: url('../fonts/Mukta-ExtraBold.woff2') format('woff2');
 }
 @font-face {
     font-family: 'Mukta-SemiBold';
-    src: url('../fonts/Mukta-SemiBold.ttf') format('truetype');
+    src: url('../fonts/Mukta-SemiBold.woff2') format("woff2");
 }
 @font-face {
     font-family: 'Mukta-Regular';
-    src: url('../fonts/Mukta-Regular.ttf') format('truetype');
+    src: url('../fonts/Mukta-Regular.woff2') format("woff2");
 }
 @font-face {
     font-family: 'Mukta-Light';
-    src: url('../fonts/Mukta-Light.ttf') format('truetype');
+    src: url('../fonts/Mukta-Light.woff2') format("woff2");
 }
 @font-face {
     font-family: 'Mukta-extraLight';
-    src: url('../fonts/Mukta-extraLight.ttf') format('truetype');
+    src: url('../fonts/Mukta-extraLight.woff2') format("woff2");
 }
 @font-face {
     font-family: 'Mukta-Medium';
-    src: url('../fonts/Mukta-Medium.ttf') format('truetype');
+    src: url('../fonts/Mukta-Medium.woff2') format("woff2");
     font-display: swap;
 }
 
