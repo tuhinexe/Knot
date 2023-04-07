@@ -35,9 +35,11 @@
                 <div class="following <%= isFollowing && 'active-option' %>">
                     <a href="<%= pageName === 'viewfollowers'? '/following/'+user._id: '/following' %>">Following</a>
                 </div>
+                <% if(pageName !== 'viewfollowers'){ %>
                 <div class="search-user-btn <%= isSearching && 'active-option' %>">
                     <a href="/profile/searchuser"><i class='bx bx-sm bx-search-alt'></i></a>
                 </div>
+                <% } %>
             </div>
         <div class="post-container">
             <% isFollowers && followers.map(follower => { %>
@@ -71,7 +73,7 @@
             <% }) %>
             <% if(isSearching) { %>
                 <div class="post-content ">
-                    <form class="search-form" action="/profile/search">
+                    <form class="search-form" action="/profile/search" method="get">
                         <input class="search-bar-input" type="text" name="user" placeholder="Search.." value="<%= searchValue !== '' ? searchValue : '' %>">
                         <button class="search-form-btn" type="submit"><i class='bx bx-sm bx-search-alt'></i></button>
                       </form>

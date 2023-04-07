@@ -50,6 +50,7 @@ const viewProfileFollowersRender = async (req, res) => {
     followers: user.followers,
     currentUser: req.user,
     messages: req.flash(),
+    isSearching: false,
   });
 };
 
@@ -67,6 +68,7 @@ const viewProfileFollowingRender = async (req, res) => {
     following: user.following,
     currentUser: req.user,
     messages: req.flash(),
+    isSearching: false,
   });
 };
 
