@@ -15,5 +15,3 @@ const challengeDateElem = document.querySelector("#date")
 
 challengeDateElem &&  challengeDateElem.setAttribute("min", new Date().toISOString().split("T")[0])
 
-challengeDateElem &&  challengeDateElem.setAttribute("max", new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0])
-
