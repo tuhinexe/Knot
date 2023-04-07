@@ -24,7 +24,7 @@ const addComment = async (commentDetails, postId) => {
 };
 
 const deleteComment = async (commentId, postId) => {
-    const post = await Post.findById(postId);
+    const post = await Posts.findById(postId);
     post.stats.comments.pull(commentId);
     const postCreator = await User.findById(post.creator);
     postCreator.points -= 2;

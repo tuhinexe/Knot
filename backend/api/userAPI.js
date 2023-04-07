@@ -1,27 +1,6 @@
 const userModel = require("../models/Users");
 const postModel = require("../models/Posts");
 const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-
-const create_newUser = async function (user) {
-  const userData = {
-    firstname: user.firstname,
-    lastname: user.lastname,
-    username: user.username,
-    email: user.email
-
-  };
-  userModel.register(userData, user.password, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.redirect('/signup');
-    } else {
-      passport.authenticate("local")(req, res, () => {
-        res.redirect("/profile");
-      });
-    }
-  });
-};
 
 const findUser = async function (user) {
     const userFound = await userModel.findById(user._id).populate("posts").exec();
@@ -50,7 +29,7 @@ const findUser = async function (user) {
 
 
 
-module.exports = { create_newUser, findUser, updateUser};
+module.exports = {findUser, updateUser};
 
 
 

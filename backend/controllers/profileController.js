@@ -165,7 +165,7 @@ const singleProfileRender = async (req, res) => {
     return;
   }
   try {
-    const userData = await findUser(user);
+    const userData = await userAPI.findUser(user);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
     let posts = await postAPI.findPosts(user);
@@ -202,7 +202,7 @@ const singleProfileActivityRender = async (req, res) => {
     return;
   }
   try {
-    const userDataPromise = findUser(user);
+    const userDataPromise = userAPI.findUser(user);
     const activitiesPromise = profileAPI.getActivities(user);
     const [userData, [activities, totalVotes]] = await Promise.all([
       userDataPromise,
@@ -214,7 +214,6 @@ const singleProfileActivityRender = async (req, res) => {
       creator: userData.firstname + " " + userData.lastname,
       profilePic_url: userData.profilePic_url,
     };
-    // const challenges = await getChallenges(req.user );
     res.render("profileActivity", {
       activeUser,
       user: userData,
