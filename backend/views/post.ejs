@@ -1,0 +1,98 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+<%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+<section class="post-section" style="padding-bottom: 0;">
+<div class="posts">
+
+
+    <div class="post-container">
+        <div class="post-creator">
+            <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+            <div class="post-creator-name">
+                <a href="/profile/<%=post.creator._id%>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
+                        + post.creator.lastname %></a>
+                <small>
+                    <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((post.timestamp.valueOf()) -
+                        Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
+                </small>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <a href="/post/<%=post._id %>">
+            <p>
+                <%=post.content%>
+            </p>
+            <img class="post-image" src="<%= post.imagePath || '' %>" alt="">
+        </a>
+        </div>
+    
+        <div class="interaction" data-post-id="<%=post._id%>" data-upvotes="<%=post.stats.upvoted_by.length%>"
+            data-downvotes="<%=post.stats.downvoted_by.length%>" data-user-id="<%=pageInfo.userId%>" data-shares="<%= post.stats.shares %>"> 
+            <div class='like <%-post.stats.upvoted_by.includes(pageInfo.userId)? "liked" : ""%> '>
+                <i class='bx bx-sm <%-post.stats.upvoted_by.includes(pageInfo.userId)? "bxs-upvote" : "bx-upvote"%> '></i>
+                <span id="upvote-count"><%= post.stats.upvoted_by.length %></span>
+            </div>
+            <div class='dislike <%-post.stats.downvoted_by.includes(pageInfo.userId)? "disliked" : ""%> '>
+                <i class='bx bx-sm <%-post.stats.downvoted_by.includes(pageInfo.userId)? "bxs-downvote" : "bx-downvote"%> '></i>
+                <span id="downvote-count"><%= post.stats.downvoted_by.length %></span>
+            </div>
+            <div class="comment">
+                <i class='bx bx-sm bx-comment'></i>
+                <span><%= post.stats.comments.length %></span>
+            </div>
+            <div class="share">
+                <i class='bx bx-sm bx-share bx-flip-horizontal'></i>
+                <span><%= post.stats.shares %></span>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<section class="comments" style="padding-bottom: 4rem;">
+    <div class="posts">
+        <div class="post-container comment-section">
+            <div class="post-content">
+                    <form class="submit-comment" action="/post/<%= post._id %>/comment" method="post" >
+                    <textarea id="comment" autocomplete="off" type="text" name="comment" placeholder="Comment Here" rows="2" required></textarea>
+                </div>
+                <button id="comment-btn" type="submit"><i  class='bx bx-sm bx-send'></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="posts comments-container">
+        <div class="post-container">
+            <h4>Comments</h4>
+        </div>
+        <% comments.map((comment) =>{ %>
+            <div class="post-container">
+            <div class="post-creator">
+                <img class="post-profile" src="<%= comment.commentor.profilePic_url %>" alt="">
+                <div class="post-creator-name">
+                    <a href="/profile/<%= comment.commentor._id %>"><%= comment.commentor.firstname+' '+ comment.commentor.lastname %></a>
+                    <small>
+                        <%= new Intl.RelativeTimeFormat('en',{style: 'long' }).format((((comment.timestamp.valueOf()) -
+                            Date.now()) / (1000 * 60 * 60 * 24)).toFixed(),'day') %>
+                    </small>
+                </div>
+                <% if(comment.commentor._id.toString() === pageInfo.userId.toString() || post.creator._id.toString() === pageInfo.userId.toString()){ %>
+                <div class="comment-delete-icon" data-comment-id="<%= comment._id %>" data-post-id="<%= post._id %>">
+                                <i class='bx bx-sm bx-trash'></i>
+                            </div>
+                <% } %>
+            </div>
+            <div class="post-content">
+                <p><%= comment.content %></p>
+            </div>
+        </div>
+       <% }) %>
+
+</div>
+ 
+</section>
+
+<% if(messages.error){ %>
+
+    <%- include ('partials/flashModal',{messages: messages}) %>
+<% } %>
+<%- include ('partials/footer') %>

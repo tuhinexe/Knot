@@ -1,0 +1,46 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+    <%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+        <section class="poll-section">
+
+            <% polls.map((poll,index)=>{ %>
+                <div class="polls">
+                    <div class="poll-container">
+                        <div class="post-creator">
+                            <img class="post-profile" src="<%= poll.creatorId.profilePic_url %>" alt="">
+                            <div class="post-creator-name">
+                                <a href="/profile/<%=poll.creatorId._id%>"><%- poll.creatorId.firstname==undefined ?
+                                    poll.creatorId : poll.creatorId.firstname + ' ' + poll.creatorId.lastname %></a>
+                                    <small>
+                                        <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                    }).format((((poll.timestamp.valueOf()) - Date.now()) / (1000 * 60 * 60 *
+                                    24)).toFixed(),'day') %>
+                                </small>
+                            </div>
+                        </div>
+                        <p class="poll-title">
+                            <%=poll.content%>
+                        </p>
+                        <div class="poll-options" data-poll-id="<%=poll._id%>" data-total-votes="<%= totalVotes[index] %>">
+                            <% poll.options.map(option=>{%>
+                                <div class='option <%-option.voted_by.includes(pageInfo.userId)? "voted" : ""%>'
+                                    data-option-id="<%=option._id%>">
+                                    <div class="option-fill hide animate-fill" style="width: <%= ( option.voted_by.length * 100) / totalVotes[index] %>%;"></div>
+                                    <p>
+                                        <%=option.optionsName%>
+                                    </p>
+                                    <span class="hide">
+                                        <%=option.voted_by.length%>
+                                    </span>
+                                </div>
+                                <%})%>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <% }) %>
+        </section>
+
+<%- include ('partials/footer') %>

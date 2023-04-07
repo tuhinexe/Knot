@@ -1,0 +1,127 @@
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: currentUser.profilePic_url, pageName: pageName }) %>
+
+<div class="post-section">
+    <div class="posts">
+        <div class="post-container">
+            <div class="post-creator">
+                <div class="follow-text">
+                    <div class="profile-name">
+                        
+                        <a href="<%= pageName === 'viewfollowers'? '/profile/'+user._id: '/profile' %>"><img class="post-profile" src="<%=profilePicLoggedIn %>" alt=""></a>
+                        <div class="post-creator-name">
+                            <a href="<%= pageName === 'viewfollowers'? '/profile/'+user._id: '/profile' %>"><%= user.firstname+' '+ user.lastname %></a>
+                            
+                        </div>
+                    </div>
+                    <div class="followers-following">
+
+                        <small>
+                            <b class="follow-count"><%= user.followers.length %></b> <span class="followers-following-text">Followers</span> 
+                        </small>
+                        <small>
+                            <b class="follow-count"><%= user.following.length %></b> <span class="followers-following-text">Following</span>  
+                        </small>
+                    </div>
+
+                 </div>
+
+            </div>
+        </div>
+            <div class="follow-options">
+                <div class="follower <%= isFollowers && 'active-option' %>">
+                    <a href="<%= pageName === 'viewfollowers'? '/followers/'+user._id: '/followers' %>">Followers</a>
+                </div>
+                <div class="following <%= isFollowing && 'active-option' %>">
+                    <a href="<%= pageName === 'viewfollowers'? '/following/'+user._id: '/following' %>">Following</a>
+                </div>
+                <% if(pageName !== 'viewfollowers'){ %>
+                <div class="search-user-btn <%= isSearching && 'active-option' %>">
+                    <a href="/profile/searchuser"><i class='bx bx-sm bx-search-alt'></i></a>
+                </div>
+                <% } %>
+            </div>
+        <div class="post-container">
+            <% isFollowers && followers.map(follower => { %>
+                <div class="post-content">
+
+                    <div class="post-creator">
+                        <img class="post-profile" src="<%= follower.profilePic_url %>" alt="">
+                        <div class="post-creator-name">
+                            <a href="/profile/<%= follower._id %>"><%= follower.firstname+' '+follower.lastname  %></a>
+                        </div>
+                        <% if (currentUser._id.toString() !== follower._id.toString()) { %>
+                        <a class="unfollow-btn" href="/profile/follow/<%=follower._id%>"><%= currentUser.following.includes(follower._id) ? 'Unfollow' : 'Follow' %></a>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+
+            <% isFollowing && following.map(following => { %>
+                <div class="post-content">
+
+                    <div class="post-creator">
+                        <img class="post-profile" src="<%= following.profilePic_url %>" alt="">
+                        <div class="post-creator-name">
+                            <a href="/profile/<%= following._id %>"><%= following.firstname+' '+following.lastname  %></a>
+                        </div>
+                        <% if (currentUser._id.toString() !== following._id.toString()) { %>
+                        <a class="unfollow-btn" href="/profile/follow/<%=following._id%>"><%= currentUser.following.includes(following._id) ? 'Unfollow' : 'Follow' %></a>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+            <% if(isSearching) { %>
+                <div class="post-content ">
+                    <form class="search-form" action="/profile/search" method="get">
+                        <input class="search-bar-input" type="text" name="user" placeholder="Search.." value="<%= searchValue !== '' ? searchValue : '' %>">
+                        <button class="search-form-btn" type="submit"><i class='bx bx-sm bx-search-alt'></i></button>
+                      </form>
+                </div>
+                <% } %>
+        </div>
+<% if(isSearching && foundUser.length > 0 ) { %>
+    <div class="post-container  search-result-user">
+        <% isSearching && foundUser.length > 0 && foundUser.map(user => { %>
+                            <div class="post-content">
+                                <a href="/profile/<%= user._id %>">
+                                <div class="post-creator">
+                                    <img class="post-profile" src="<%= user.profilePic_url %>" alt="">
+                                    <div class="post-creator-name">
+                                        <%= user.firstname+' '+user.lastname  %>
+                                    </div>
+                                    
+                                    <small><%=user.username%></small>
+                                </div> </a>
+                            </div>
+                            <% }) %>
+                        </div>
+                        <% } %>
+                        <% if(isSearching && foundUser.length === 0 ) { %>
+                    <div class="post-container get-points search-result-user">
+                            <% if(messages.error) { %>
+                                <div class="post-content search-error">
+                                            <%= messages.error %>
+                                </div>
+                            <% } %>
+                        </div>
+                        <% } %>
+                        <% if(isSearching && messages.somethingWrong ) { %>
+                            <div class="post-container get-points search-result-user ">
+                                <% if(messages.somethingWrong) { %>
+                                    <div class="post-content search-error">
+                                                <%= messages.somethingWrong %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <% } %>                            
+
+       
+        
+    </div>
+</div>
+
+
+<%- include ('partials/footer') %>
+        
+

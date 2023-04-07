@@ -1,0 +1,13 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include ('partials/nav',{profilePic:
+    pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+    <section class="post-section">
+      <%- include ('partials/createPost',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo:
+        pageInfo, messages: messages}) %>
+    </section>
+
+
+          
+<% if (messages.error) { %>
+  <%- include ('partials/flashModal.ejs',{messages: messages}) %>
+    <% }%>

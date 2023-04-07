@@ -1,0 +1,167 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+    <%- include ('partials/nav',{profilePic: pageInfo.profilePicLoggedIn, pageName: pageInfo.pagename }) %>
+
+
+
+        <section class="post-section">
+            <div class="posts">
+                <div class="post-container">
+                    <div class="follow-text">
+                        <div class="profile-name">
+
+                            <a href=""><img class="post-profile" src="<%=pageInfo.profilePicLoggedIn %>" alt=""></a>
+                            <div class="post-creator-name">
+                                <a href="">
+                                    <%= pageInfo.user.firstname+' '+ pageInfo.user.lastname %></a>
+                        
+                    </div>
+                </div>
+                <div class="followers-following">
+
+                    <small>
+                        <b class="follow-count"><%= pageInfo.user.points %></b> <span class="followers-following-text">Points</span> 
+                    </small>
+                </div>
+
+             </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content get-points">
+                Work hard and earn it !! <img class="happy-gif" src="/images/happy.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content">
+                <ul class="points-gain">
+                    <li class="li-content">
+                        <div class="points-left">
+                            Get 3 points for every post you create <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Get 5 points for every challenges and polls you create
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-left">
+                            Get 1 points for every upvote you get <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Get 2 points for every comment in your post
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-left">
+                            Get 2 points for every participation on your challenges <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Get 1 points for every vote on your polls
+                        </div>
+                        <li class="li-content">
+                            <div class="points-left">
+                                Get 2 points for every share of your posts <img class="star-gif" src="/images/star.gif" alt="">
+                            </div>
+                        </li>
+                        <li class="li-content">
+                            <div class="points-right">
+                                <img class="star-gif" src="/images/star.gif" alt="">
+                                Get 10 points when someone follows you
+                            </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content get-points">
+                Lose points 'Knot' mind <img class="sad-gif" src="/images/sad.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content">
+                <ul class="points-gain">
+                    <li class="li-content">
+                        <div class="points-left">
+                            Lose 3 points for every post you delete <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Lose 5 points for every challenges and polls you delete
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-left">
+                            Lose 1 points for every downvote you get <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Lose 2 points when a comment gets deleted from your post
+                        </div>
+                    </li>
+                        <li class="li-content">
+                            <div class="points-left">
+                                Lose 10 points whenever someone unfollows you <img class="star-gif" src="/images/star.gif" alt="">
+                            </div>
+                        </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content get-points">
+                Just use it ! <img class="dance-gif" src="/images/dance.gif" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="posts">
+        <div class="post-container get-points">
+            <div class="post-content">
+                <ul class="points-gain">
+                    <li class="li-content">
+                        <div class="points-left">
+                            Updating 'username' costs you 20 points <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-right">
+                            <img class="star-gif" src="/images/star.gif" alt="">
+                            Updating profile picture costs you 50 points
+                        </div>
+                    </li>
+                    <li class="li-content">
+                        <div class="points-left">
+                            <span style="color: aquamarine;">More usage coming soon, stay tuneeeeeeed...</span> <img class="star-gif" src="/images/star.gif" alt="">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    
+</section>
+
+<%- include ('partials/footer') %>

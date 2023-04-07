@@ -1,0 +1,42 @@
+<div class="modal success-flash fail-flash" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" style="background-color: <%= messages.error? '#EB455F' : messages.warning && '#FFD93D' %>;">
+          <h4 class="modal-title"><%= messages.success? 'Success': messages.warning? 'Warning' : 'Error' %></h4>
+          <button type="button" onclick="dismissModal()" class="close" style="background-color: <%= messages.error? '#EB455F' : messages.warning && '#FFD93D' %>;" data-dismiss="modal"><i class='bx bx-tada bx-sm bx-x'></i></button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <%= messages.success? messages.success: messages.warning? messages.warning : messages.error %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function dismissModal() {
+        const errorElem = document.querySelector('.modal');
+        errorElem.style.display = 'none';
+    }
+    const successMessage = document.querySelector(".success-flash");
+
+if (successMessage) {
+  setTimeout(() => {
+    successMessage.style.display = "none";
+  }, 3000);
+}
+
+const errorMessage = document.querySelector(".fail-flash");
+
+if (errorMessage) {
+  setTimeout(() => {
+    errorMessage.style.display = "none";
+  }, 3000 );
+}
+
+</script>
+  

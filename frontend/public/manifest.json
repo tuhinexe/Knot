@@ -1,0 +1,28 @@
+{
+    "name": "Knot",
+    "short_name": "Knot",
+    "description": "The sophisticated social network",
+    "icons": [
+      {
+        "src": "./images/knot.png",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src":"./images/sea-knot.png",
+        "sizes": "512x512 256x256 192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#BCEAD5",
+    "background_color": "#16213E"
+}
+  
+
+
+
+    

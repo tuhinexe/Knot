@@ -1,0 +1,94 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+    <%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+        <section class="challenges-section">
+            <div class="challenges">
+                <div class="each-challenge-container">
+                    <div class="post-creator">
+                        <img class="post-profile" src="<%= challenge.creatorId.profilePic_url %>" alt="">
+                        <div class="post-creator-name">
+                            <a href=""><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
+                                    challenge.creatorId.firstname + ' ' + challenge.creatorId.lastname %></a>
+                            <small>
+                                <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                    }).format((((challenge.timestamp.valueOf()) - Date.now()) / (1000 * 60 * 60 *
+                                    24)).toFixed(),'day') %>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="challenge-title">
+                        <%=challenge.content%>
+                            <% const remainingTime=new Date(challenge.duration) - new Date(); %>
+                                <% if (remainingTime> 0) { %>
+                                    <% const remainingDays=Math.ceil(remainingTime / (1000 * 60 * 60 * 24)); %>
+                                        <% if (remainingDays> 1) { %>
+                                            <p class="small-duration">
+                                                <%= remainingDays %> days remaining
+                                            </p>
+                                            <% } else { %>
+                                                <p class="small-duration">1 day remaining</p>
+                                                <% } %>
+                                                    <% } else { %>
+                                                        <p class="small-duration duration-ended">Challenge has ended</p>
+                                                        <% } %>
+                    </div>
+                    <div class="post-content">
+                        <p class="challenge-desc">
+                            <%=challenge.description%>                          
+                        </p>
+                    </div>
+                    <div class="challenge-interaction">
+                        <div class="current-participation"><i class='bx bx-male-female'></i>
+                            <div class="count">
+                                <%= challenge.participators.length%> Participants
+                            </div>
+                        </div>
+                        
+                        <% if (challengeParticipators.includes(pageInfo.userId) && !challengeEnded) { %>
+                            <div class="participate-btn participated"><i class='bx bx-sm bx-check'></i>Participated</div>
+                            <% } else if(challenge.creatorId._id==pageInfo.userId) { %>
+                                <div class=""></div>
+                                <% } else if (!challengeEnded) { %>
+                                    <a href="/challenges/participate/<%=challenge._id%>" class="participate-btn"><i class='bx bxs-spa'></i>Participate</a>
+                                    <% } else if(challengeEnded) { %>
+                                        <div class="ended participate-btn"><i class='bx bx-sm bx-trending-down'></i>Challenge Ended
+                                        </div>
+                                        <% } %>
+                    </div>
+                </div>
+
+            </div>
+            <div class="challenges">
+
+                <div class="each-challenge-container">
+                    <div class="participants-list">
+                        <div class="participants-list-header">
+                            <h3>Participants</h3>
+                        </div>
+                        <div class="participants-list-content">
+                            <% challenge.participators.map(participator=>{ %>
+                                <div class="participant">
+                                    <img src="<%= participator.profilePic_url %>" alt="" class="participant-image">
+                                    <div class="participant-name">
+                                        <a href="/profile/<%=participator._id%>"><%- participator.firstname==undefined ?
+                                                participator : participator.firstname + ' ' + participator.lastname
+                                                %></a>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                    <div class="participation-feedback">
+                        <% if (messages.success) { %>
+                            <%- include ('partials/flashModal',{message: messages}) %>
+                            <% } %>
+                                <% if (messages.error) { %>
+                                    <%- include ('partials/flashModal',{message: messages}) %>
+                                    <% } %>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    <%- include ('partials/footer') %>

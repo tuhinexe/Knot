@@ -1,0 +1,78 @@
+@charset 'utf-8';
+@font-face {
+    font-family: 'Mukta-Bold';
+    src: url('../fonts/Mukta-Bold.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Mukta-ExtraBold';
+    src: url('../fonts/Mukta-ExtraBold.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Mukta-SemiBold';
+    src: url('../fonts/Mukta-SemiBold.woff2') format("woff2");
+}
+@font-face {
+    font-family: 'Mukta-Regular';
+    src: url('../fonts/Mukta-Regular.woff2') format("woff2");
+}
+@font-face {
+    font-family: 'Mukta-Light';
+    src: url('../fonts/Mukta-Light.woff2') format("woff2");
+}
+@font-face {
+    font-family: 'Mukta-extraLight';
+    src: url('../fonts/Mukta-extraLight.woff2') format("woff2");
+}
+@font-face {
+    font-family: 'Mukta-Medium';
+    src: url('../fonts/Mukta-Medium.woff2') format("woff2");
+    font-display: swap;
+}
+
+:root{
+    /* Fonts */
+    --light: 'Mukta-Light';
+    --regular: 'Mukta-Regular';
+    --medium: 'Mukta-Medium';
+    --semi-bold: 'Mukta-SemiBold';
+    --bold: 'Mukta-Bold';
+    --extra-bold: 'Mukta-ExtraBold';
+    --extra-light: 'Mukta-extraLight';
+/* Colors */
+    --body-color: #16213E;
+    --secondary-body-color: #1D2D44;
+    --primary-color: #BCEAD5;
+    --secondary-color: #DEF5E5;
+    --light-color: #9ED5C5;
+    --dark-color: #8EC3B0; 
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--body-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--dark-color) var(--body-color);
+}
+img{
+    object-fit: cover;
+    max-width: 100%;
+    width: 100%;
+}
+::-webkit-scrollbar { width: 1rem; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--dark-color);
+  border-radius: 1rem;
+  border: .3rem solid var(--body-color);
+ 
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+  }
+::-webkit-scrollbar-track {
+  background-color: var(--body-color);
+}
+

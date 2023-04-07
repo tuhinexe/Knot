@@ -1,0 +1,25 @@
+<div class="posts">
+  <div class="post-container">
+    <div class="post-creator">
+      <img class="post-profile" src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>" alt="" />
+      <div class="post-creator-name">
+        <a href="/profile"><%- pageInfo.user.firstname==undefined ? creatorDetails.creator : pageInfo.user.firstname
+            + ' ' + pageInfo.user.lastname %></a>
+      </div>
+    </div>
+    <form action="/post/add" class="submit-post" method="post">
+      <textarea placeholder="Be creative with the caption!" name="content" id="content" autocomplete="off"
+        rows="6"></textarea>
+      <span id="error-span"></span>
+      <div class="file-upload">
+        <input type="file" accept="image/png, image/jpeg, image/jpg" placeholder="Enter Post Content" name="postImage"
+          id="input-file" autocomplete="off" />
+        <label for="input-file" id="uploadpic">
+          <i class='bx bx-md bx-tada bxs-image-add' id="upload-icon"></i> <span>Add Photo</span>
+        </label>
+      </div>
+      <img class="image-preview" src="" alt="" />
+      <input class="post-submit-btn" type="submit" value="Post" id="post-submit-btn" />
+    </form>
+  </div>
+</div>

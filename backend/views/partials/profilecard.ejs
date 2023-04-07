@@ -1,0 +1,55 @@
+<div class="profileCard">
+    <div class="nameAndDp">
+        <div class="profileDetails">
+            <h1 class="fullName">
+                <%=user.firstname%>
+                    <%=user.lastname%>
+            </h1>
+        </div>
+        <div>
+            <img src="<%=profilePic%>" alt="" class="profilePic">
+        </div>
+    </div>
+    <div class="bioAndConnections">
+        <div class="connections">
+            <a href="<%= user._id !== activeUser._id ? '/followers/'+user._id : '/followers' %>">
+            <div class="followers">
+                
+                <p>
+                    <%=user.followers.length%>
+                </p>
+                <h3>Followers</h3>
+            </div>
+        </a>
+        <a href="<%= user._id !== activeUser._id ? '/following/'+user._id : '/following' %>">
+            <div class="followings">
+                <p>
+                    <%=user.following.length%>
+                </p>
+                <h3>Following</h3>
+            </div>
+        </a>
+            <a href="/points">
+                <div class="points">
+                    <p>
+                        <%=user.points%>
+                    </p>
+                    <h3>Points</h3>
+                </div>
+            </a>
+        </div>
+        <% if(user._id !== activeUser._id ){ %>
+            <div class="follow" data-profileId="<%= user._id %>">
+                <a href="/profile/follow/<%=user._id%>"><input type="button" value="<%= !user.followers.includes(activeUser._id) ? 'Follow': 'Unfollow'  %>"></a>
+            </div>
+        <% } %>
+        <div class="bioAndUsername">
+            <p class="profile-bio">
+                <%=user.bio%>
+            </p>
+            <p class="profile-username">
+                <%=user.username%>
+            </p>
+        </div>
+    </div>
+</div>

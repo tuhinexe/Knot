@@ -1,0 +1,100 @@
+.get-points {
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.happy-gif,
+.sad-gif,
+.dance-gif {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 0.5rem;
+  transition: 1.5s ease-in-out;
+}
+.dance-gif {
+  transition: 3s ease-in-out;
+}
+.happy-gif:hover {
+  transform: scale(2.5);
+  z-index: 30;
+}
+.sad-gif:hover,
+.dance-gif:hover {
+  transform: scale(2.5) rotateY(180deg);
+  z-index: 30;
+}
+.sad-gif,
+.dance-gif {
+  transform: rotateY(180deg);
+}
+.dance-gif:hover {
+  margin-right: 30rem;
+}
+.points-right {
+  text-align: right;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.points-left {
+  text-align: left;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.points-left img {
+  transform: rotateY(180deg);
+  transition: 1.5s ease-in-out;
+}
+.points-right img {
+  transition: 1.5s ease-in-out;
+}
+.points-left img:hover {
+  margin-right: 6rem;
+}
+.points-right img:hover {
+  margin-left: 6rem;
+}
+
+.star-gif {
+  max-height: 3rem;
+  max-width: 3rem;
+  margin-right: 0.5rem;
+}
+.li-content {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+  background-color: var(--secondary-body-color);
+}
+.points-gain {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+  font-weight: lighter;
+}
+
+@media screen and (max-width: 768px) {
+  .happy-gif {
+    transform: scale(2.5);
+    margin-right: 1rem;
+  }
+  .dance-gif,
+  .sad-gif {
+    margin-right: 1rem;
+    transform: rotateY(180deg) scale(2.5);
+
+  }
+  .dance-gif:active,.sad-gif:active{
+  margin-right: 30rem;
+  }
+}

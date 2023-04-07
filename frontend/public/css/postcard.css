@@ -1,0 +1,473 @@
+@import "global.css";
+
+a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+.post-section,
+.poll-section,
+.challenges-section {
+  padding-top: 5rem;
+}
+.posts,
+.polls,
+.challenges,
+.edit-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#comment{
+  resize: none;
+}
+.hide {
+  display: none;
+}
+.pointer-events {
+  pointer-events: none;
+}
+.post-container,
+.poll-container,
+.each-challenge-container,
+.edit-profile-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--secondary-body-color);
+  width: 35%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 1rem;
+  color: var(--secondary-color);
+  font-family: var(--regular);
+}
+.share-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-creator {
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.delete-icon,
+.poll-delete-icon,
+.challenge-delete-icon,
+.comment-delete-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: var(--primary-color);
+  margin-left: auto;
+}
+.post-creator-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.follow-count{
+  font-size: 4.2rem;
+}
+.follow-text{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.profile-name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:0.5rem;
+}
+.followers-following{
+  display: flex;
+  gap:3rem;
+}
+.followers-following-text{
+  font-size: 1rem;
+  margin-left: 2px;
+}
+.post-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.6rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  width: 100%;
+  gap: 0.8rem;
+  font-size: large;
+}
+.shared-content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--body-color);
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  gap: 1rem;
+  color: var(--secondary-color);
+  font-family: var(--regular);
+}
+.shared-post-content{
+  background-color: var(--secondary-body-color);
+}
+.post-content p,
+.post-content a {
+  min-width: 100%;
+}
+.poll-options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.6rem;
+  border-radius: 10px;
+  width: 100%;
+  gap: 0.8rem;
+  font-size: large;
+}
+.poll-title {
+  margin-left: 5px;
+}
+.post-image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  margin-inline: auto;
+}
+.post-creator-name small {
+  color: var(--dark-color);
+}
+.interaction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+.like,
+.comment,
+.share,
+.dislike {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: small;
+}
+.interaction-icons {
+  font-size: 0.5rem;
+}
+
+.post-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.interaction i,
+.interaction span {
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Voted Options in Polls */
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--body-color);
+  border-radius: 10px;
+
+  cursor: pointer;
+  position: relative;
+}
+.option p,
+.option span {
+  padding: 5px 12px;
+  z-index: 10;
+}
+.option p {
+  width: 100%;
+}
+.option span {
+  padding-left: 0;
+  text-align: right;
+}
+
+/* edit profile */
+.edit-profile-form,
+.create-challenge-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+.edit-profile-form input,
+.create-challenge-form input,
+.create-challenge-form textarea,#uploadpic {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: var(--body-color);
+  color: var(--secondary-color);
+  font-family: var(--regular);
+}
+
+.create-challenge-form input,
+.create-challenge-form textarea{
+  font-size: 0.9rem;
+}
+
+.edit-profile-form input::placeholder,
+.create-challenge-form input::placeholder,
+.create-challenge-form textarea::placeholder {
+  color: var(--dark-color);
+}
+.edit-profile-form input:focus {
+  border-inline: 1px solid var(--primary-color);
+}
+.edit-profile-submit,
+.challenge-submit-btn,
+.logout-btn {
+  cursor: pointer;
+  font-size: 1rem;
+}
+.edit-profile-submit:hover,
+.challenge-submit-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--body-color);
+}
+.edit-profile-submit{
+  color: var(--body-color) !important;
+  background-color: var(--primary-color) !important;
+}
+.edit-profile-submit:hover {
+  color: var(--body-color) !important;
+  background-color: rgb(163, 248, 163) !important;
+}
+.logout-form input{
+  color: var(--body-color);
+  background-color: #fc8799;
+  font-size: 1.1rem;
+}
+.logout-btn:hover {
+  color: var(--secondary-color);
+  background-color: #EB455F ;
+}
+
+.edit-profile-form + .edit-profile-form::before {
+  content: "";
+  display: block;
+  margin: 2rem auto; /* adjust the margin to control the thickness of the line */
+  width: 80%; /* adjust the width of the line */
+  border-top: 1px solid var(--primary-color); /* adjust the color of the line */
+
+}
+.file-upload input[type="file"],#input-file {
+  display: none;
+}
+
+.file-upload label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap:1rem;
+  
+}
+label#uploadpic{
+  width: 100%;
+  position: relative;
+}
+.file-upload{
+  width: 100%;
+}
+
+
+.label-input {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+.label-input label {
+  width: 30%;
+}
+.view-point-details{
+  padding: 0.2rem 0.5rem;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  width: 100%;
+}
+.view-point-details span a{
+  color: var(--dark-color);
+  padding-left: 0.5rem;
+  transition: 0.6s ease-in-out;
+  -webkit-text-decoration: underline wavy rgb(248, 183, 84);
+  text-decoration: underline wavy rgb(248, 183, 84);
+}
+.view-point-details span a:hover{
+  color: rgb(248, 183, 84);
+  padding-left: 2rem;
+  -webkit-text-decoration: underline wavy var(--primary-color);
+  text-decoration: underline wavy var(--primary-color);
+  
+}
+
+/* add buttons in timeline */
+.adding-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  /* gap: 1rem; */
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem 0;
+}
+
+.add-post-btn,
+.add-poll-btn,
+.add-challenge-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  background-color: var(--body-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.add-post-btn:hover, .add-poll-btn:hover, .add-challenge-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--body-color);
+}
+
+/* Media queries */
+@media screen and (max-width: 1120px) and (min-width: 768px) {
+  .post-section,
+  .poll-section,
+  .challenges-section {
+    padding-top: 5rem;
+  }
+  .like,
+  .comment,
+  .share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    resize: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .post-section,
+  .poll-section,
+  .challenge-section,
+  .ownPosts,
+  .logout-form {
+    padding-bottom: 5rem;
+  }
+  div.file-upload{
+    display: flex;
+    flex-direction: row;
+  }
+  label#uploadpic{
+    width: 100%;
+  }
+  .post-container,
+  .poll-container,
+  .each-challenge-container,
+  .edit-profile-container {
+    width: 100%;
+    padding: 1rem;
+  }
+  .post-content {
+    font-size: 0.95rem;
+  }
+  .interaction {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .follow-text{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .like,
+  .comment,
+  .share,
+  .dislike {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .post-section,
+  .poll-section,
+  .challenges-section {
+    padding-top: 0;
+  }
+  .posts,
+  .polls,
+  .challenges,
+  .edit-profile {
+    margin: 15px;
+  }
+  .label-input {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .add-button-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1400px) {
+  .post-container,
+  .poll-container,
+  .each-challenge-container,
+  .edit-profile-container {
+    width: 60%;
+  }
+  #uploadpic{
+    width: 100%;
+  }
+}

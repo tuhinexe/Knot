@@ -1,0 +1,9 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %> <%- include ('partials/nav',{profilePic:
+    pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+    <section class="post-section">
+      <%- include ('partials/createChallenges',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo:
+        pageInfo }) %>
+    </section>
+
+    <%- include ('partials/footer') %>

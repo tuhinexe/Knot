@@ -1,0 +1,23 @@
+<div class="posts">
+    <div class="post-container">
+        <div class="post-creator">
+            <img class="post-profile" src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>" alt="" />
+            <div class="post-creator-name">
+                <a href="/profile"><%- pageInfo.user.firstname==undefined ? creatorDetails.creator :
+                        pageInfo.user.firstname + ' ' + pageInfo.user.lastname %></a>
+            </div>
+        </div>
+        <div class="challenge-container">
+            <form class="create-challenge-form" action="/challenges/add" method="post">
+                <input type="text" name="content" placeholder="Enter Challenge Name.." id="title" autocomplete="off" required>
+                <textarea placeholder="Be creative with the description!" name="desc" autocomplete="off"
+                    rows="3"></textarea>
+                <div class="label-input">
+                    <label for="duration">Select Challenge Duration: </label>
+                    <input type="date" placeholder="Select Challenge Duration.." name="duration" id="date" required>
+                </div>
+                <input type="submit" class="challenge-submit-btn" value="Submit" id="">
+            </form>
+        </div>
+    </div>
+</div>

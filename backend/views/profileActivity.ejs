@@ -1,0 +1,146 @@
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
+        <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
+
+            <div class="profileNavigation">
+                <ul class="profileNav-items">
+                    <li class=""><a class=""
+                            href="<%= user._id === activeUser._id ? '/profile' : '/profile/'+user._id%>"><i
+                                class='bx bx-md bxs-customize'></i></a></li>
+                    <li class="navigation-active"><a class=""
+                            href="<%= user._id === activeUser._id ? '/profile/activity' : '/profile/activity/'+user._id%>"><i
+                                class='bx bx-md bxs-widget'></i></a>
+                    </li>
+                    <% if(user._id===activeUser._id){ %>
+                        <li class=""><a class="" href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+                        <% } %>
+                </ul>
+            </div>
+            <div class="own-activities">
+                
+                <% activities.map((activity,index)=>{ %>
+                    <% if (!activity.duration) { %>
+                        <div class="polls">
+                            <div class="poll-container">
+                                <div class="post-creator">
+                                    <img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt="">
+                                    <div class="post-creator-name">
+                                        <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- creatorDetails.creator %></a>
+                                        <small>
+                                            <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                                }).format((((activity.timestamp.valueOf()) - Date.now()) / (1000 * 60 *
+                                                60 * 24)).toFixed(),'day') %>
+                                        </small>
+                                    </div>
+                                    <% if(pageName==="profile-activities" ){ %>
+                                        <div class="poll-delete-icon">
+                                            <a href="/polls/delete/<%= activity._id %>">
+                                                <i class='bx bx-sm bx-trash'></i>
+                                            </a>
+                                        </div>
+                                        <% } %>
+
+                                </div>
+                                <p class="poll-title">
+                                    <%=activity.content%>
+                                    
+                                </p>
+                                <div class="poll-options" data-poll-id="<%=activity._id%>" data-total-votes="<%= totalVotes[index] %>">
+                                    <% activity.options.map(option=>{%>
+                                        <div class='option <%-option.voted_by.includes(activeUser._id)? "voted" : ""%>'
+                                            data-option-id="<%=option._id%>">
+                                            <div class="option-fill hide animate-fill" style="width: <%= ( option.voted_by.length * 100) / totalVotes[index] %>%;"></div>
+                                            <p>
+                                                <%=option.optionsName%>
+                                            </p>
+                                            <span class="hide">
+                                                <%=option.voted_by.length%>
+                                            </span>
+                                        </div>
+                                        <%})%>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <% } else{ %>
+
+                            <div class="challenges">
+                                <div class="each-challenge-container">
+                                    <div class="post-creator">
+                                        <img class="post-profile"
+                                            src="<%=activity.creatorId.profilePic_url || creatorDetails.profilePic_url  %>"
+                                            alt="">
+                                        <div class="post-creator-name">
+                                            <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- activity.creatorId.firstname ? activity.creatorId.firstname+" "+activity.creatorId.lastname : creatorDetails.creator %></a>
+                                        <small>
+                                            <%= new Intl.RelativeTimeFormat('en',{style: 'long'
+                                                }).format((((activity.timestamp.valueOf()) - Date.now()) / (1000 * 60 *
+                                                60 * 24)).toFixed(),'day') %>
+                                        </small>
+                                    </div>
+                                    <% if(activeUser._id.toString() == activity.creatorId){ %>
+                                        <div class="challenge-delete-icon">
+                                            <a href="/challenges/delete/<%= activity._id %>">
+                                                <i class='bx bx-sm bx-trash'></i>
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div>
+                                    <a class=" challenge-title" href="/challenges/<%=activity._id%>">
+                                                    <%=activity.content%>
+                                                        <% const remainingTime=new Date(activity.duration) - new Date();
+                                                            %>
+                                                            <% if (remainingTime> 0) { %>
+                                                                <% const remainingDays=Math.ceil(remainingTime / (1000 *
+                                                                    60 * 60 * 24)); %>
+                                                                    <% if (remainingDays> 1) { %>
+                                                                        <p class="small-duration">
+                                                                            <%= remainingDays %> days remaining
+                                                                        </p>
+                                                                        <% } else { %>
+                                                                            <p class="small-duration">1 day remaining
+                                                                            </p>
+                                                                            <% } %>
+                                                                                <% } else { %>
+                                                                                    <p
+                                                                                        class="small-duration duration-ended">
+                                                                                        Challenge has
+                                                                                        ended</p>
+                                                                                    <% } %>
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <p class="challenge-desc">
+                                                <a href="/challenges/<%=activity._id%>">
+                                                    <%=activity.description%>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div class="challenge-interaction">
+                                            <div class="current-participation"><i class='bx bx-male-female'></i>
+                                                <div class="count"> <a href="/challenges/<%=activity._id%>">
+                                                        <%= activity.participators.length%> Participants</div></a>
+                                            </div>
+                                            <% if (activity.participators.includes(activeUser._id)) { %>
+                                                <a href="challenges/participate/<%=activity._id%>" class="participate-btn participated"><i class='bx bx-sm bx-check'></i>Participated</a>
+                                                <% } else if(activity.creatorId._id==activeUser._id) { %>
+                                                    <div class=""></div>
+                                                    <% } else { %>
+                                                        <a href="challenges/participate/<%=activity._id%>" class="participate-btn"><i class='bx bxs-spa'></i>Participate</a>
+                                                        <% } %>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <% } %>
+                                    <% }) %>
+                            </div>
+
+
+            <%- include('partials/footer') %>

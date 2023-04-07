@@ -1,0 +1,19 @@
+<div class="posts">
+    <div class="post-container">
+        <div class="post-creator">
+            <img class="post-profile" src="<%= pageInfo.profilePic || creatorDetails.profilePic_url %>" alt="" />
+            <div class="post-creator-name">
+                <a href="/profile"><%- pageInfo.user.firstname==undefined ? creatorDetails.creator :
+                        pageInfo.user.firstname + ' ' + pageInfo.user.lastname %></a>
+            </div>
+        </div>
+        <div class="post-content">
+            feeling bored ? try clicking on these!
+        </div>
+        <div class="adding-buttons">
+            <a href="/post/add" class="add-post-btn" id="add-post-btn"><i class='bx bx-sm bx-plus'></i><div class="add-button-text">Add Post</div></a>
+            <a href="/challenges/add" class="add-challenge-btn" id="add-poll-btn"><i class='bx bx-sm bx-list-plus' ></i><div class="add-button-text">Add Challenge</div></a>
+            <a href="/polls/add" class="add-poll-btn" id="add-quiz-btn"><i class='bx bx-sm bx-target-lock'></i><div class="add-button-text">Add Polls</div></a>
+        </div>
+    </div>
+</div>

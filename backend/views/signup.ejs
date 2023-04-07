@@ -1,0 +1,65 @@
+<%- include ('partials/header', {pageTitle: pageTitle}) %>
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="/js/login.js" defer></script>
+</head>
+
+<body>
+    <div class="wrapper-stars">
+        <div id="stars" class="star"></div>
+        <div id="stars2" class="star"></div>
+        <div id="stars3" class="star"></div>
+    </div>
+    <div class="box">
+        <div class="container">
+
+            <div class="top">
+                <img src="/images/knot.png" class="logo" alt="Logo">
+                <header>Sign up to Knot</header>
+            </div>
+            <a href="auth/google">
+            <div class="alternates">
+                <button type="submit" id="google" class="submit hovereffect"><img id="google-logo" src="/images/google.png" alt=""> Sign up with
+                    Google</button>
+            </div>
+        </a>
+            <div class="insignin">
+                <label>Already user?<a href="/login"> Sign in here</a></label>
+                <label><a id="credentials" href="">Or, Sign up with Credentials.</a></label>
+
+            </div>
+
+            <div class="hiddenform hidden">
+                <form action="/signup" method="post">
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="First Name" name="firstname" id="" required>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="Last Name" name="lastname" id="" required>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="input" placeholder="Username" name="username" id="" required>
+                </div>
+                <div class="input-field">
+                    <input type="email" class="input" placeholder="Email Address" name="email" id="" required>
+                </div>
+                <div class="input-field">
+                    <input type="password" class="input" placeholder="Password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <img src="/images/closedeye.png" class="userpass_logo" id="eyeicon" alt="">
+                </div>
+
+                <div class="input-field">
+                    <input type="submit" class="signup hovereffect" value="Sign Up">
+                </div>
+            </form>
+            </div>
+
+        </div>
+    </div>
+
+    <% if (messages.error) { %>
+        <%- include('partials/flashModal', {messages: messages}) %>
+        <% } %>
+</body>
+<script src="/js/script.js"></script>
+
+</html>

@@ -1,0 +1,18 @@
+<%- include ('partials/header',{pageTitle: pageInfo.title}) %>
+<%- include ('partials/nav',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename }) %>
+
+
+
+<section class="post-section">
+    
+    <%- include ('partials/homePageAddButtons',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo: pageInfo }) %>
+
+    <% posts.map(post =>{ %>
+        <%- include ('partials/timeline',{post: post,user:pageInfo.user, userId: pageInfo.userId, pageName: pageInfo.pagename}) %>
+        
+    <% }) %>
+</section>
+<% if (messages.error) { %>
+    <%- include ('partials/flashModal.ejs',{messages: messages}) %>
+      <% }%>
+<%- include ('partials/footer') %>

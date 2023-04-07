@@ -1,0 +1,63 @@
+<%- include ('partials/header',{pageTitle: pageTitle}) %>
+    <%- include ('partials/nav',{profilePic: profilePicLoggedIn, pageName: "" }) %>
+        <%- include ('partials/profilecard',{user: user, activeUser: activeUser }) %>
+
+            <div class="profileNavigation">
+                <ul class="profileNav-items">
+                    <li class=""><a class="" href="/profile"><i class='bx bx-md bxs-customize'></i></a></li>
+                    <li class=""><a class="" href="/profile/activity"><i class='bx bx-md bxs-widget'></i></a></li>
+                    <li class="<%=pageName==='profile-edit' ? 'navigation-active' : ''%>"><a class=""
+                            href="/profile/update"><i class='bx bx-md bxs-edit'></i></a></li>
+                </ul>
+            </div>
+            <div class="edit-profile">
+                <div class="edit-profile-container">
+                    <form class="edit-profile-form" action="" method="">
+                        <div class="label-input">
+                            <label for="firstname">First Name:</label>
+                            <input type="text" class="input" placeholder="First Name" name="firstname"
+                                value="<%=existingdata.firstname%>" id="" required>
+                        </div>
+                        <div class="label-input">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" class="input" placeholder="Last Name" name="lastname"
+                                value="<%=existingdata.lastname%>" id="" required>
+                        </div>
+                        <div class="label-input file-upload">
+                            <input type="file" class="input" placeholder="Last Name" accept="image/png,image/jpeg" name="profilePic"  id="update-profile-pic" autocomplete="off">
+                            <label for="update-profile-pic" id="uploadpic">
+                                <i class='bx bx-md bx-tada bxs-image-add' id="upload-icon"></i> <span>Make sure you look good.</span> 
+                            </label>
+                        </div>
+                        <div class="label-input">
+                            <img class="input" src="" alt="" id="profilePicPreview">
+                        </div>
+                        <p class="view-point-details">50 points required to update your profile picture. <span><a href="/points">know why !!</a></span></p>
+                        <div class="label-input">
+                            <label for="username">Username:</label>
+                            <input type="text" class="input" placeholder="Username" name="username"
+                                value="<%=existingdata.username%>" id="">
+                        </div>
+                        <div class="label-input">
+                            <label for="bio">Bio:</label>
+                            <input type="text" class="input" placeholder="enter your bio.."
+                                value="<%=existingdata.bio%>" id="" name="bio">
+                        </div>
+                        <div class="label-input">
+                            <label for="dob">Date of birth:</label>
+                            <input type="date" class="input" placeholder="Date of birth" name="dob"
+                                value="<%=existingdata.date_of_birth%>" id="">
+                        </div>
+                        <input type="submit" class="edit-profile-submit" value="Update Now" id="updateProfileBtn">
+                    </form>
+                    <form action="/logout" method="post" class="edit-profile-form logout-form">
+                        <input type="submit" class="logout-btn" value="Logout" id="">
+                    </form>
+
+                </div>
+            </div>
+            <% if (messages.error) { %>
+                <%- include ('partials/flashModal',{messages: messages}) %>
+                <% } else if(messages.success){ %>
+                    <%- include ('partials/flashModal',{messages: messages}) %>
+                <% } %>

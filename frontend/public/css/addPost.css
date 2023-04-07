@@ -1,0 +1,74 @@
+.submit-post,
+.submit-comment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+.submit-post input,
+.submit-post textarea,
+.submit-comment textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: var(--regular);
+  background-color: var(--body-color);
+  color: var(--secondary-color);
+}
+.submit-post textarea{
+    height: 4rem;
+}
+#content {
+  font-size: 1rem;
+  resize: none;
+}
+.post-submit-btn,
+#comment-btn {
+  font-size: large;
+  width: 30%;
+  margin-bottom: 10px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: var(--regular);
+  background-color: var(--secondary-color);
+  color: var(--body-color);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+#comment-btn {
+  width:15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-bottom: 0;
+}
+.comment-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.post-submit-btn{
+    width: 100%;
+}
+.post-submit-btn:disabled{
+    cursor: not-allowed;
+}
+.post-submit-btn:hover,
+.comment-btn:hover {
+  /* some cool hover effect */
+  background-color: var(--primary-color);
+  color: var(--body-color);
+  transform: rotateZ(2deg);
+}
