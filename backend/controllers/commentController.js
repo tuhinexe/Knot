@@ -13,7 +13,8 @@ const addCommentController= async (req,res) =>{
       await addComment(commentDetails,postId)
       res.redirect(`/post/${postId}`)
     } catch(err){
-      console.log(err)
+      req.flash("error","cannot add comment, something went wrong")
+      res.redirect(`/post/${postId}`)
     }
 }
 
@@ -24,7 +25,8 @@ const deleteCommentController = async (req,res) =>{
         await deleteComment(commentId,postId)
         res.redirect(`/post/${postId}`)
     } catch(err){
-        console.log(err)
+        req.flash("error","cannot delete comment, something went wrong")
+        res.redirect(`/post/${postId}`)
     }
 }
 

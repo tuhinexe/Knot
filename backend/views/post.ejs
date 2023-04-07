@@ -90,5 +90,7 @@
 </div>
  
 </section>
-
+<% if (messages.error) { %>
+    <%- include ('partials/flashModal.ejs',{messages: messages}) %>
+      <% }%>
 <%- include ('partials/footer') %>

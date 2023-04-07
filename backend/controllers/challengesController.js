@@ -114,7 +114,8 @@ const deleteChallengeController = async(req, res)=>{
     await challengesAPI.deleteChallenge(challengeId, user);
     res.redirect("/profile/activity");
   } catch (err) {
-      res.redirect("/profile/activity");
+    req.flash("error", "failed to delete challenge");
+    res.redirect("/profile");
   }
 };
 

@@ -18,7 +18,7 @@ try{
         successRedirect: "/",
         successFlash: "Welcome to Knot!",
         failureRedirect: "/login",
-        failureFlash: true,
+        failureFlash: "Invalid username or password",
       })(req, res);
     }
   });
