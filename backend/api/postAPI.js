@@ -4,6 +4,12 @@ const deleteImage = require("./deleteImage");
 const userAPI = require("./userAPI");
 
 const fetchPosts = async () => {
+  // userModel.createIndexes({ firstname: "text", lastname: "text", username: "text" }).then(()=>{
+    //     console.log("Indexes created");
+    // }).catch((err)=>{
+    //     console.log("Error creating indexes");
+    // });
+    //this needs to be called after droping db
   const posts = await Post.find({})
     .sort({ createdAt: -1 })
     .populate("creator")

@@ -1,12 +1,6 @@
 const User = require("../models/Users");
 
 const searchProfile = async (searchTerm) => {
-    // User.createIndexes({ firstname: "text", lastname: "text", username: "text" }).then(()=>{
-    //     console.log("Indexes created");
-    // }).catch((err)=>{
-    //     console.log("Error creating indexes");
-    // });
-    //this needs to be called after droping db
     const users = await User.find(
       {
         $or: [
