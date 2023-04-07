@@ -31,7 +31,7 @@ const viewProfileRender = async (req, res) => {
 
 const viewActivityRender = async (req, res) => {
   try {
-    const userData = await findUser(req.user);
+    const userData = await userAPI.findUser(req.user);
     let profilePic = req.user.profilePic_url;
     const [activities, totalVotes] = await profileAPI.getActivities(req.user);
     const creatorDetails = {

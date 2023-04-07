@@ -30,12 +30,12 @@ const deletePost = async (postId,user) => {
         if(imageId !== null){
             await deleteImage(imageId);
         }
-        user.posts.pull(postId);
-        user.points -= 3;
-        await user.save();
+        const foundUser = await userModel.findById(user._id.toString());
+        foundUser.posts.pull(postId);
+        foundUser.points -= 3;
+        await foundUser.save();
     } else {
-        user.posts.pull(postId)
-        await user.save();
+        return;
     }
 }
 
