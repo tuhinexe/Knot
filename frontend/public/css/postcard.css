@@ -24,6 +24,9 @@ a {
   flex-direction: column;
   gap: 0.5rem;
 }
+#comment{
+  resize: none;
+}
 .hide {
   display: none;
 }
@@ -368,6 +371,7 @@ label#uploadpic{
     display: flex;
     justify-content: center;
     align-items: center;
+    resize: none;
   }
 }
 @media screen and (max-width: 768px) {
