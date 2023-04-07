@@ -12,6 +12,10 @@ const dataURLtoFile = (dataurl, filename) => {
 
 
 const compressImage = async (file) => {
+  //  check the file type
+  if (!file.type.includes("image")) {
+    return;
+  }
   const image = new Image();
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -46,6 +50,9 @@ const getImageUrl = async (imageFile) => {
 
   if(imageFile === "") return;
   const compressedImage = await compressImage(imageFile);
+  if(!compressedImage) {
+    return {url: null, publicId: null};
+  }
   const API_KEY = "196589649614855";
   const CLOUD_NAME = "dj8uufxkn";
   const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
@@ -72,7 +79,7 @@ const getImageUrl = async (imageFile) => {
       publicId: urlResponse.public_id,
     };
   } catch (err) {
-    console.log(err);
+    return {url: null, publicId: null};
   }
 };
 
