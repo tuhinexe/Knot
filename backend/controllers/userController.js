@@ -8,7 +8,7 @@ const initializeLogout = require("../config/logoutConfig");
 
 
 const signUpRender = (req, res) => {
-  res.render("signUp", {pageTitle: 'Knot - Sign Up', messages: req.flash()});
+  res.render("signup", {pageTitle: 'Knot - Sign Up', messages: req.flash()});
 };
 
 const signUpController = async (req, res) => {

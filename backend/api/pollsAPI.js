@@ -49,4 +49,5 @@ const fetchPolls = async () => {
     }
   }
   
+  
 module.exports = { voteCount, deletePoll, fetchPolls, getPolls };

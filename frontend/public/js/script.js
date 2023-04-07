@@ -10,8 +10,9 @@ togglewithCredentials && togglewithCredentials.addEventListener("click", functio
 })
 
 const challengeDateElem = document.querySelector("#date")
-
-// set the max date and min date of 7 days
-
 challengeDateElem &&  challengeDateElem.setAttribute("min", new Date().toISOString().split("T")[0])
+
+
+const dobElem = document.querySelector("#userDOB")
+dobElem && dobElem.setAttribute("max", new Date('01-01-2010').toISOString().split("T")[0])
 
