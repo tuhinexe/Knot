@@ -39,7 +39,7 @@
                 </form>
 
                 <div class="withcredentials">
-                    <label><a href="">Forgot password?</a></label>
+                    <label><a href="/forgotpassword">Forgot password?</a></label>
                     <label>New user?<a href="/signup"> Register Here</a></label>
                 </div>
                 <a href="auth/google">
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <% if (messages.error) { %>
+        <% if (messages.error || messages.warning) { %>
             <%- include('partials/flashModal', {message: messages}) %>
                 <% } %>
     </body>

@@ -53,11 +53,15 @@ const loginController = async (req, res) => {
 const logoutController = (req, res) => {
   initializeLogout(req, res);
 };
-
+const forgotPasswordController = (req, res) => {
+  req.flash("warning", "We are working on this feature.");
+  res.redirect("/login");
+};
 module.exports = {
   signUpController,
   signUpRender,
   loginController,
   loginRender,
-  logoutController
+  logoutController,
+  forgotPasswordController
 };

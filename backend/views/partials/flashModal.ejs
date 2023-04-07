@@ -3,14 +3,14 @@
       <div class="modal-content">
       
         <!-- Modal Header -->
-        <div class="modal-header" style="background-color: <%= messages.error && '#EB455F' %>;">
-          <h4 class="modal-title"><%= messages.success? 'Success': 'Error' %></h4>
-          <button type="button" onclick="dismissModal()" class="close" style="background-color: <%= messages.error && '#EB455F' %>;" data-dismiss="modal"><i class='bx bx-tada bx-sm bx-x'></i></button>
+        <div class="modal-header" style="background-color: <%= messages.error? '#EB455F' : messages.warning && '#FFD93D' %>;">
+          <h4 class="modal-title"><%= messages.success? 'Success': messages.warning? 'Warning' : 'Error' %></h4>
+          <button type="button" onclick="dismissModal()" class="close" style="background-color: <%= messages.error? '#EB455F' : messages.warning && '#FFD93D' %>;" data-dismiss="modal"><i class='bx bx-tada bx-sm bx-x'></i></button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          <%= messages.success? messages.success : messages.error %>
+          <%= messages.success? messages.success: messages.warning? messages.warning : messages.error %>
         </div>
         
       </div>

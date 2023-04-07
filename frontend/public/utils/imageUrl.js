@@ -13,34 +13,33 @@ const dataURLtoFile = (dataurl, filename) => {
 
 const compressImage = async (file) => {
   //  check the file type
-  if (!file.type.includes("image")) {
+  if ((file.type == "image/jpeg") || (file.type == "image/png") || (file.type == "image/jpg")) {
+    const image = new Image();
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    return new Promise((resolve, reject) => {
+      reader.onload = (e) => {
+        image.src = e.target.result;
+        image.onload = () => {
+          const width = image.width;
+          const height = image.height;
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(image, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
+          const compressedFile = dataURLtoFile(dataUrl, file.name);
+          resolve(compressedFile);
+        };
+      }
+      reader.onerror = (err) => {
+        reject(err);
+      };
+    });
+  } else {
     return;
   }
-  const image = new Image();
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  return new Promise((resolve, reject) => {
-    reader.onload = (e) => {
-      image.src = e.target.result;
-      image.onload = () => {
-        const width = image.width;
-        const height = image.height;
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(image, 0, 0, width, height);
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
-        const compressedFile = dataURLtoFile(dataUrl, file.name);
-        resolve(compressedFile);
-      };
-    }
-
-    reader.onerror = (err) => {
-      reject(err);
-    };
-  });
-
 };
 
 
@@ -48,10 +47,10 @@ const compressImage = async (file) => {
 
 const getImageUrl = async (imageFile) => {
 
-  if(imageFile === "") return;
+  if (imageFile === "") return;
   const compressedImage = await compressImage(imageFile);
-  if(!compressedImage) {
-    return {url: null, publicId: null};
+  if (!compressedImage) {
+    return { url: null, publicId: null };
   }
   const API_KEY = "196589649614855";
   const CLOUD_NAME = "dj8uufxkn";
@@ -64,7 +63,7 @@ const getImageUrl = async (imageFile) => {
     const signJson = await sign.json();
     const formData = new FormData();
     // compress the image using canvas
-  
+
     formData.append("file", compressedImage);
     formData.append("api_key", API_KEY);
     formData.append("signature", signJson.signature);
@@ -79,8 +78,8 @@ const getImageUrl = async (imageFile) => {
       publicId: urlResponse.public_id,
     };
   } catch (err) {
-    return {url: null, publicId: null};
+    return { url: null, publicId: null };
   }
 };
 
-export {getImageUrl};
+export { getImageUrl };

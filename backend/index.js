@@ -11,6 +11,7 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
+const forgotPasswordRouter = require("./routes/forgotpassword");
 const postRouter = require("./routes/post");
 const followersRouter = require("./routes/followers");
 const pollsRouter = require("./routes/polls");
@@ -49,6 +50,7 @@ app.use(passport.session());
 app.use("/signup", signUpRouter);
 app.use("/auth", authRouter);
 app.use("/login", loginRouter);
+app.use("/forgotpassword", forgotPasswordRouter);
 app.use(checkAuthorized);
 
 app.use("/", homeRouter)
