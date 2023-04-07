@@ -26,15 +26,16 @@ const deletePost = async (postId,user) => {
     const post = await Post.findById(postId);
     if(post.creator.toString() === user._id.toString()){
         await Post.findByIdAndDelete(postId);
-        const imageId = await Posts.findById(postId).select('imageId');
+        const imageId = await Post.findById(postId).select('imageId');
         if(imageId !== null){
             await deleteImage(imageId);
         }
-        const foundUser = await userModel.findById(user._id.toString());
-        foundUser.posts.pull(postId);
-        foundUser.points -= 3;
-        await foundUser.save();
-    } else {
+        return
+      } else {
+      const foundUser = await userModel.findById(user._id.toString());
+      foundUser.posts.pull(postId);
+      foundUser.points -= 3;
+      await foundUser.save();
         return;
     }
 }
