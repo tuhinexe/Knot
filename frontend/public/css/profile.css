@@ -93,13 +93,13 @@
   border-radius: 50%;
 }
 .bioAndConnections h3 {
-  font-family: var(--extra-light);
+  font-family: var(--light);
   font-size: clamp(1rem, 2.2vmin, 2rem);
   color: var(--dark-color);
   letter-spacing: 1px;
 }
 .bioAndConnections p {
-  font-family: var(--extra-light);
+  font-family: var(--light);
   font-size: clamp(0.8rem, 2vmin, 1.5rem);
   color: var(--light-color);
 }
