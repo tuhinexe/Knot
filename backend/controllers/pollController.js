@@ -24,6 +24,11 @@ const createPollsController = async (req, res) => {
     const id = req.user._id;
     const title = req.body.title;
     const [option1, option2, option3, option4] = req.body.option;
+    if(title.trim() === "" || option1.trim() === "" || option2.trim() === "" || option3.trim() === "" || option4.trim() === ""){
+        req.flash("error", "can't create poll with empty fields");
+        res.redirect("/");
+        return;
+    }
     const newPoll = new pollsModel({
         creatorId: id,
         content: title,

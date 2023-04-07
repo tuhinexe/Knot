@@ -101,7 +101,7 @@ const getSinglePostRender = async (req, res) => {
       pagename: "comment",
       profilePic: req.user.profilePic_url,
     };
-    res.render("post", { pageInfo: pageInfo, post: post, comments: comments });
+    res.render("post", { pageInfo: pageInfo, post: post, comments: comments, messages: req.flash() });
   } catch (err) {
     res.redirect("/");
   }

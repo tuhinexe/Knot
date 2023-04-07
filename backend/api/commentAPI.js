@@ -19,7 +19,7 @@ const addComment = async (commentDetails, postId) => {
         throw new Error(error);
       });
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 

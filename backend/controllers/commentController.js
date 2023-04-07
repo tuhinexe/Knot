@@ -7,6 +7,12 @@ const addCommentController= async (req,res) =>{
       commentor: req.user._id
     }
     const postId = req.params.postId
+
+    if(commentDetails.content.trim() === ""){
+      req.flash("error","cannot add empty comment")
+      res.redirect(`/post/${postId}`)
+      return
+    }
   
     try{
       await commentAPI.addComment(commentDetails,postId)
