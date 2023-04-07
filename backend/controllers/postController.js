@@ -1,9 +1,6 @@
-const findPosts = require("../api/getPosts");
-const likeCounter = require("../api/likeCounter");
-const addPost = require("../api/addPost");
-const sharePost = require("../api/sharePost");
-const deletePost = require("../api/deletePost");
-const User = require("../models/Users");
+
+const devAPI = require("../api/devAPI");
+const postAPI = require("../api/postAPI");
 const Posts = require("../models/Posts");
 
 const createPostRender = async (req, res) => {
@@ -28,7 +25,7 @@ const createPostController = async (req, res) => {
     profilePic: req.user.profilePic_url,
   };
   try {
-    await addPost(user, content, imageUrl, imageId);
+    await postAPI.addPost(user, content, imageUrl, imageId);
     res.json({ success: "post added successfully" });
   } catch (err) {
     req.flash("error", "please upload an image or write a post (supported formats: jpg, jpeg, png)");
@@ -43,7 +40,7 @@ const likeCountController = async (req, res) => {
     const currentLike = parseInt(req.body.upvotes);
     const currentDisLike = parseInt(req.body.downvotes);
     const userId = req.user._id;
-    await likeCounter.increaseLike(postId, currentLike, currentDisLike, userId);
+    await devAPI.increaseLike(postId, currentLike, currentDisLike, userId);
   } catch (err) {
     console.log(err);
   }
@@ -55,7 +52,7 @@ const dislikeCountController = async (req, res) => {
     const currentLike = parseInt(req.body.upvotes);
     const currentDisLike = parseInt(req.body.downvotes);
     const userId = req.user._id;
-    await likeCounter.decreaseLike(postId, currentLike, currentDisLike, userId);
+    await devAPI.decreaseLike(postId, currentLike, currentDisLike, userId);
   } catch (err) {
     console.log(err);
   }
@@ -67,7 +64,7 @@ const sharePostController = async (req, res) => {
     const postId = req.body.postId;
     const currentShare = parseInt(req.body.shares);
     const user = req.user;
-    await sharePost(postId, currentShare, user);
+    await postAPI.sharePost(postId, currentShare, user);
     res.redirect("/profile");
   } catch (err) {
     req.flash("error", "cannot share, something went wrong");
@@ -79,7 +76,7 @@ const deletePostController = async (req, res) => {
   const postId = req.params.postId;
   const user = req.user;
   try {
-    await deletePost(postId, user);
+    await postAPI.deletePost(postId, user);
     res.redirect("/profile");
   } catch (err) {
     req.flash("error", "cannot delete, something went wrong");

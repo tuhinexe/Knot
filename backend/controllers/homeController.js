@@ -1,4 +1,4 @@
-const getPosts = require("../api/fetchPosts");
+const postAPI = require('../api/postAPI');
 
 const feedController = async (req, res) => {
   const pageInfo = {
@@ -10,10 +10,10 @@ const feedController = async (req, res) => {
   };
 
   try {
-    const posts = await getPosts();
+    const posts = await postAPI.fetchPosts();
     res.render("home", { posts, pageInfo: pageInfo, messages: req.flash() });
   } catch (err) {
-    res.render("home", { posts: [] });
+    res.render("home", { posts: [], pageInfo: pageInfo, messages: req.flash() });
   }
 };
 

@@ -1,15 +1,12 @@
-const findUser = require("../api/findUser");
-const updateUser = require("../api/updateUser");
-const getPosts = require("../api/getPosts");
-const getActivities = require("../api/getActivities");
-const { followAndUnfollow } = require("../api/followAPI");
+const userAPI = require("../api/userAPI");
+const postAPI = require("../api/postAPI");
+const profileAPI = require("../api/profileAPI");
 const deleteImage = require("../api/deleteImage");
-const searchProfile = require("../api/searchProfile");
 
 const viewProfileRender = async (req, res) => {
-  const userData = await findUser(req.user);
+  const userData = await userAPI.findUser(req.user);
   let profilePic = req.user.profilePic_url;
-  let posts = await getPosts(req.user);
+  let posts = await postAPI.findPosts(req.user);
   for (let post of posts) {
     await post.populate("creator");
   }
@@ -36,7 +33,7 @@ const viewActivityRender = async (req, res) => {
   try {
     const userData = await findUser(req.user);
     let profilePic = req.user.profilePic_url;
-    const [activities, totalVotes] = await getActivities(req.user);
+    const [activities, totalVotes] = await profileAPI.getActivities(req.user);
     const creatorDetails = {
       creator: req.user.firstname + " " + req.user.lastname,
       profilePic_url: req.user.profilePic_url,
@@ -59,7 +56,7 @@ const viewActivityRender = async (req, res) => {
 };
 
 const editProfileRender = async (req, res) => {
-  const userData = await findUser(req.user);
+  const userData = await userAPI.findUser(req.user);
   let profilePic = req.user.profilePic_url;
   res.render("editProfile", {
     activeUser: userData,
@@ -151,7 +148,7 @@ const editProfileController = async (req, res) => {
     }
   }
   try {
-    await updateUser(id, postedData);
+    await userAPI.updateUser(id, postedData);
     req.flash("success", "Profile updated successfully");
     res.json({ success: "Profile updated successfully" });
   } catch (err) {
@@ -171,7 +168,7 @@ const singleProfileRender = async (req, res) => {
     const userData = await findUser(user);
     const activeUser = req.user;
     let profilePic = userData.profilePic_url;
-    let posts = await getPosts(user);
+    let posts = await postAPI.findPosts(user);
     for (let post of posts) {
       await post.populate("creator");
     }
@@ -206,7 +203,7 @@ const singleProfileActivityRender = async (req, res) => {
   }
   try {
     const userDataPromise = findUser(user);
-    const activitiesPromise = getActivities(user);
+    const activitiesPromise = profileAPI.getActivities(user);
     const [userData, [activities, totalVotes]] = await Promise.all([
       userDataPromise,
       activitiesPromise,
@@ -239,7 +236,7 @@ const followController = async (req, res) => {
   const followerId = req.user._id;
   const followingId = req.params.followingId;
   try {
-    await followAndUnfollow(followingId, followerId);
+    await profileAPI.followAndUnfollow(followingId, followerId);
     res.redirect("back");
   } catch (err) {
     req.flash("error", err.message);
@@ -282,7 +279,7 @@ const searchProfileController = async (req, res) => {
     return;
   }
   try {
-    const foundUser = await searchProfile(req.query.user);
+    const foundUser = await profileAPI.searchProfile(req.query.user);
     if (foundUser.length > 0) {
       res.render("followers", {
         pageTitle: "Knot - Search Profile",

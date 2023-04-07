@@ -1,5 +1,4 @@
-const findUser = require("../api/findUser");
-const challengesModel = require("../models/Challenges");
+
 const challengesAPI = require("../api/ChallengesAPI");
 
 const challengesRender = async (req, res) => {

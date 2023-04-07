@@ -1,5 +1,4 @@
-const addComment = require("../api/addComment")
-const deleteComment = require("../api/deleteComment")
+const commentAPI = require("../api/commentAPI")
 
 
 const addCommentController= async (req,res) =>{
@@ -10,7 +9,7 @@ const addCommentController= async (req,res) =>{
     const postId = req.params.postId
   
     try{
-      await addComment(commentDetails,postId)
+      await commentAPI.addComment(commentDetails,postId)
       res.redirect(`/post/${postId}`)
     } catch(err){
       req.flash("error","cannot add comment, something went wrong")
@@ -22,7 +21,7 @@ const deleteCommentController = async (req,res) =>{
     const commentId = req.body.commentId
     const postId = req.params.postId
     try{
-        await deleteComment(commentId,postId)
+        await commentAPI.deleteComment(commentId,postId)
         res.redirect(`/post/${postId}`)
     } catch(err){
         req.flash("error","cannot delete comment, something went wrong")

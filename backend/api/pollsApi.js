@@ -29,4 +29,24 @@ const deletePoll = async (pollId, user) => {
   }
 };
 
-module.exports = { voteCount, deletePoll };
+const fetchPolls = async () => {
+  const polls = await Polls.find({}).sort({timestamp: -1}).populate("creatorId").exec();
+  const totalVotes = polls.map(poll => {
+      return poll.options.reduce((acc, option) => {
+          return acc + option.voted_by.length;
+      }, 0);
+  });
+  return [polls, totalVotes];
+  }
+
+
+  async function getPolls(user) {
+    const userFound = await User.findById(user._id).populate("polls").exec();
+    if (userFound) {
+      return userFound.polls;
+    } else {
+      console.log("poll not found");
+    }
+  }
+  
+module.exports = { voteCount, deletePoll, fetchPolls, getPolls };
