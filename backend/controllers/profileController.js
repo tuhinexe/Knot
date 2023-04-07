@@ -75,13 +75,19 @@ const editProfileRender = async (req, res) => {
 const editProfileController = async (req, res) => {
   const id = req.user._id;
   try {
-    if (req.body.profilePicId && req.user.profilePicId !== "") {
+    if (req.body.profilePicId && req.user.profilePicId !== "" && !req.user.profilePicId) {
       await deleteImage(req.user.profilePicId);
     }
   } catch (err) {
     req.flash("error", err.message);
     res.json({ error: err.message });
   }
+  if(req.body.profilePic === null){
+    req.flash("error", "Please upload a valid profile picture");
+    res.json({ error: "Please upload a valid profile picture" });
+    return;
+  }
+
   const postedData = {
     points: req.user.points,
   };
@@ -104,7 +110,6 @@ const editProfileController = async (req, res) => {
     postedData.profilePic_url = req.body.profilePic;
     postedData.profilePicId = req.body.profilePicId;
   }
-
   if (
     !(req.user.username == postedData.username) &&
     postedData.username != undefined
@@ -125,7 +130,7 @@ const editProfileController = async (req, res) => {
   if (postedData.profilePic_url) {
     if (postedData.points < 50) {
       try {
-        if (req.body.profilePicId && req.user.profilePicId !== "") {
+        if (req.body.profilePicId) {
           await deleteImage(req.body.profilePicId);
           req.flash(
             "error",

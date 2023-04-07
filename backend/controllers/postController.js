@@ -9,25 +9,32 @@ const Posts = require("../models/Posts");
 const createPostRender = async (req, res) => {
   const pageInfo = {
     user: req.user,
-    title: 'Knot - New Post',
-    pagename : '',
+    title: "Knot - New Post",
+    pagename: "",
     profilePic: req.user.profilePic_url,
-}
-  res.render("addpost", {pageInfo: pageInfo});
+  };
+  res.render("addpost", { pageInfo: pageInfo, messages: req.flash() });
 };
 
 const createPostController = async (req, res) => {
   const user = req.user;
   const content = req.body.content;
   const imageUrl = req.body.imgUrl;
-  const imageId = req.body.uploadedImgId
+  const imageId = req.body.uploadedImgId;
+  const pageInfo = {
+    user: req.user,
+    title: "Knot - New Post",
+    pagename: "",
+    profilePic: req.user.profilePic_url,
+  };
   try {
-    await addPost(user, content, imageUrl, imageId,res);
+    await addPost(user, content, imageUrl, imageId);
+    res.json({ success: "post added successfully" });
   } catch (err) {
-    console.log(err);
+    req.flash("error", "please upload an image or write a post");
+    res.json({ error: err.message });
   }
 };
-
 
 const likeCountController = async (req, res) => {
   if (!req.body.upvotes) return res.status(401).send("Unauthorized");
@@ -67,7 +74,6 @@ const sharePostController = async (req, res) => {
   }
 };
 
-
 const deletePostController = async (req, res) => {
   const postId = req.params.postId;
   const user = req.user;
@@ -82,26 +88,25 @@ const deletePostController = async (req, res) => {
 // Single Post and Comments Controller
 
 const getSinglePostRender = async (req, res) => {
-try{
-  const postId = req.params.postId;
-  const post = await Posts.findById(postId).populate("creator").exec()
-  const stats = await post.stats.populate("comments")
-  const comments = []
-  for (let comment of stats.comments){
-    comments.push(await comment.populate("commentor"))
+  try {
+    const postId = req.params.postId;
+    const post = await Posts.findById(postId).populate("creator").exec();
+    const stats = await post.stats.populate("comments");
+    const comments = [];
+    for (let comment of stats.comments) {
+      comments.push(await comment.populate("commentor"));
+    }
+    const pageInfo = {
+      userId: req.user._id,
+      title: "Knot - Post",
+      pagename: "comment",
+      profilePic: req.user.profilePic_url,
+    };
+    res.render("post", { pageInfo: pageInfo, post: post, comments: comments });
+  } catch (err) {
+    res.redirect("/");
   }
-  const pageInfo = {
-    userId: req.user._id,
-    title: 'Knot - Post',
-    pagename : 'comment',
-    profilePic: req.user.profilePic_url,
-}
-  res.render("post", {pageInfo: pageInfo, post: post, comments: comments});
-} catch (err) {
-  res.redirect("/");
 };
-};
-
 
 module.exports = {
   createPostRender,

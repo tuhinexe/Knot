@@ -76,9 +76,13 @@ submitBtn &&
         },
         body: JSON.stringify(postInfo),
       });
-      if (response.redirected === true) {
-        location.href = response.url;
-        return;
+      if (response) {
+        const data = await response.json();
+        if (data.success) {
+          window.location.href = "/";
+        } else {
+          window.location.reload();
+        }
       }
     } catch (err) {
       console.log(err);

@@ -3,7 +3,11 @@
 
     <section class="post-section">
       <%- include ('partials/createPost',{profilePic: pageInfo.profilePic, pageName: pageInfo.pagename, pageInfo:
-        pageInfo }) %>
+        pageInfo, messages: messages}) %>
     </section>
 
-    <%- include ('partials/footer') %>
+
+          
+<% if (messages.error) { %>
+  <%- include ('partials/flashModal.ejs',{messages: messages}) %>
+    <% }%>

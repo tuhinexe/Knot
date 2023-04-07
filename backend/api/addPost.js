@@ -1,10 +1,9 @@
 const postModel = require("../models/Posts");
 const findUser = require("./findUser");
 
-const addPost = async (user, content, imageUrl,imageId,res) => {
+const addPost = async (user, content, imageUrl,imageId) => {
 if(!content && !imageUrl) {
-   res.redirect('back');
-   return;
+   throw new Error("Please upload an image or write a post");
 }
   const newPost = new postModel({
     content: content,
@@ -14,7 +13,7 @@ if(!content && !imageUrl) {
   });
   newPost.save((err, post) => {
     if (err) {
-      console.log(err);
+      throw new Error("something went wrong during saving");
     } else {
       try {
         findUser(user).then((user) => {
@@ -22,9 +21,9 @@ if(!content && !imageUrl) {
           user.points += 3;
           user.save((err, user) => {
             if (err) {
-              console.log(err);
+              throw new Error("something went wrong during saving");
             } else {
-              res.redirect("/")
+              return;
             }
           });
         });
