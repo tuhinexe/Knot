@@ -26,8 +26,7 @@
     height: 4rem;
 }
 #content {
-  /* text-align: left; */
-  font-size: small;
+  font-size: 1rem;
   resize: none;
 }
 .post-submit-btn,

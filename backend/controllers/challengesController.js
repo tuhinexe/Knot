@@ -108,7 +108,7 @@ const participateInChallengeRender = async(req, res)=>{
 
 const deleteChallengeController = async(req, res)=>{
   const challengeId = req.params.challengeId;
-  const user = req.user._id;
+  const user = req.user;
   try {
     await challengesAPI.deleteChallenge(challengeId, user);
     res.redirect("/profile/activity");

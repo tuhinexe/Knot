@@ -250,8 +250,17 @@ a {
 .edit-profile-form input:focus {
   border-inline: 1px solid var(--primary-color);
 }
+.edit-profile-submit{
+  color: var(--body-color) !important;
+  background-color: var(--primary-color) !important;
+}
+.edit-profile-submit:hover {
+  color: var(--primary-color) !important;
+  background-color: var(--body-color) !important;
+}
 .edit-profile-submit,
-.challenge-submit-btn {
+.challenge-submit-btn,
+.logout-btn {
   cursor: pointer;
   font-size: 1rem;
 }
@@ -260,9 +269,14 @@ a {
   background-color: var(--primary-color);
   color: var(--body-color);
 }
+.logout-form input{
+  color: var(--body-color);
+  background-color: #fc8799;
+  font-size: 1.1rem;
+}
 .logout-btn:hover {
   color: var(--secondary-color);
-  background-color: #EB455F;
+  background-color: #EB455F ;
 }
 
 .edit-profile-form + .edit-profile-form::before {
