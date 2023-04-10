@@ -33,7 +33,7 @@ To run Knot locally, follow these steps:
 1. Clone this repository to your local machine.
 Install Node.js and npm (Node Package Manager) on your machine.
 2. Open a terminal and navigate to the root directory of the repository.
-3. Run the command npm install to install the necessary dependencies.
+3. Run the command `npm install` to install the necessary dependencies.
 4. Create a .env file in the root directory and add the following environment variables:  
 `DB_URI =`  
 `CLIENT_ID = `  
@@ -44,7 +44,7 @@ Install Node.js and npm (Node Package Manager) on your machine.
 `CLOUD_NAME = `  
 `API_KEY = <cloudinary api key>`  
 `API_SECRET = <cloudinary secret>`
-5. Run the command npm start to start the server.
+5. Run the command `npm start` to start the server.
 6. Open a web browser and go to `http://localhost` to access the platform.
 
 # Contributions
