@@ -41,7 +41,7 @@ Install Node.js and npm (Node Package Manager) on your machine.
 `CALLBACK_URL = `  
 `SESSION_SECRET =   `   
 `COOKIE_KEY = `  
-`CLOUD_NAME = `  
+`CLOUD_NAME = <cloudinary name, client>`  
 `API_KEY = <cloudinary api key>`  
 `API_SECRET = <cloudinary secret>`
 5. Run the command `npm start` to start the server.
