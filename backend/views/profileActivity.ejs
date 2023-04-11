@@ -23,7 +23,7 @@
                         <div class="polls">
                             <div class="poll-container">
                                 <div class="post-creator">
-                                    <img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt="">
+                                    <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><img class="post-profile" src="<%=creatorDetails.profilePic_url %>" alt=""></a>
                                     <div class="post-creator-name">
                                         <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- creatorDetails.creator %></a>
                                         <small>
@@ -67,9 +67,9 @@
                             <div class="challenges">
                                 <div class="each-challenge-container">
                                     <div class="post-creator">
-                                        <img class="post-profile"
+                                        <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><img class="post-profile"
                                             src="<%=activity.creatorId.profilePic_url || creatorDetails.profilePic_url  %>"
-                                            alt="">
+                                            alt=""></a>
                                         <div class="post-creator-name">
                                             <a href="<%=activity.creatorId._id ? activity.creatorId._id : activity.creatorId%>"><%- activity.creatorId.firstname ? activity.creatorId.firstname+" "+activity.creatorId.lastname : creatorDetails.creator %></a>
                                         <small>

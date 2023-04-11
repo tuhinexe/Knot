@@ -109,6 +109,11 @@
   border-radius: 10px;
   background-color: var(--body-color);
 }
+.participant a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .participant-image {
   width: 2rem;
   height: 2rem;

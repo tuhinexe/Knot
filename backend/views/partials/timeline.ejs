@@ -12,7 +12,7 @@
             </div>
             <div class="shared-content">
                 <div class="post-creator">
-                    <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="" loading="lazy" decoding="async">
+                    <a href="/profile/<%= post.creator._id %>"><img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="" loading="lazy" decoding="async"></a>
                     <div class="post-creator-name">
                         <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                                 + post.creator.lastname %></a>
@@ -76,7 +76,7 @@
             </div>
             <div class="shared-content">
                 <div class="post-creator">
-                    <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+                    <a href="/profile/<%= post.creator._id %>"><img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt=""></a>
                     <div class="post-creator-name">
                         <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                                 + post.creator.lastname %></a>
@@ -130,7 +130,7 @@
     <% } else{ %>
         <div class="post-container">
             <div class="post-creator">
-                <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+                <a href="/profile/<%= post.creator._id %>"><img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt=""></a>
                 <div class="post-creator-name">
                     <a href="/profile/<%= post.creator._id %>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                             + post.creator.lastname %></a>
