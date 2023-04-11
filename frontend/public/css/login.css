@@ -12,7 +12,6 @@ a{
     margin-right: auto;
     height: 80px;
     width: 80px;
-
 }
 .star{
     position: absolute;
@@ -41,8 +40,6 @@ a{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
-    
 }
 span{
     color: #fff;
