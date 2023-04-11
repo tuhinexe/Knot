@@ -158,6 +158,11 @@ a {
 .post-creator-name small {
   color: var(--dark-color);
 }
+.post-creator a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .interaction {
   display: flex;
   justify-content: center;

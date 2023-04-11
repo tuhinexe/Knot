@@ -5,9 +5,9 @@
             <div class="challenges">
                 <div class="each-challenge-container">
                     <div class="post-creator">
-                        <img class="post-profile" src="<%= challenge.creatorId.profilePic_url %>" alt="">
+                        <a href="/profile/<%= challenge.creatorId._id %>"><img class="post-profile" src="<%= challenge.creatorId.profilePic_url %>" alt=""></a>
                         <div class="post-creator-name">
-                            <a href=""><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
+                            <a href="/profile/<%= challenge.creatorId._id %>"><%- challenge.creatorId.firstname==undefined ? challenge.creatorId :
                                     challenge.creatorId.firstname + ' ' + challenge.creatorId.lastname %></a>
                             <small>
                                 <%= new Intl.RelativeTimeFormat('en',{style: 'long'
@@ -68,7 +68,7 @@
                         <div class="participants-list-content">
                             <% challenge.participators.map(participator=>{ %>
                                 <div class="participant">
-                                    <img src="<%= participator.profilePic_url %>" alt="" class="participant-image">
+                                    <a href="/profile/<%=participator._id%>"><img src="<%= participator.profilePic_url %>" alt="" class="participant-image"></a>
                                     <div class="participant-name">
                                         <a href="/profile/<%=participator._id%>"><%- participator.firstname==undefined ?
                                                 participator : participator.firstname + ' ' + participator.lastname

@@ -7,7 +7,7 @@
 
     <div class="post-container">
         <div class="post-creator">
-            <img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt="">
+            <a href="/profile/<%=post.creator._id%>"><img class="post-profile" src="<%= post.creator.profilePic_url || creatorDetails.profilePic_url %>" alt=""></a>
             <div class="post-creator-name">
                 <a href="/profile/<%=post.creator._id%>"><%- post.creator.firstname==undefined ? creatorDetails.creator : post.creator.firstname + ' '
                         + post.creator.lastname %></a>
@@ -67,7 +67,7 @@
         <% comments.map((comment) =>{ %>
             <div class="post-container">
             <div class="post-creator">
-                <img class="post-profile" src="<%= comment.commentor.profilePic_url %>" alt="">
+                <a href="/profile/<%= comment.commentor._id %>"><img class="post-profile" src="<%= comment.commentor.profilePic_url %>" alt=""></a>
                 <div class="post-creator-name">
                     <a href="/profile/<%= comment.commentor._id %>"><%= comment.commentor.firstname+' '+ comment.commentor.lastname %></a>
                     <small>
