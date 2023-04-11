@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const fetch = require("node-fetch");
 const path = require("path");
 const flash = require("connect-flash");
 const app = express();
@@ -46,7 +47,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.get("/inactive", (req, res) => {
+  res.send("ok");
+});
 app.use("/signup", signUpRouter);
 app.use("/auth", authRouter);
 app.use("/login", loginRouter);
@@ -62,6 +65,15 @@ app.use("/polls", pollsRouter);
 app.use("/challenges", challengesRouter)
 app.use("/api/v1", devApiRouter);
 app.use("/points", pointsRouter);
+
+// https://knot-wbj8.onrender.com/challenges
+// not the prodest thing we have done but it is what it is
+// we are hosting this on render we are doing this cheap trick because we are not paying for the server and also we dont want the server to go to sleep 
+setInterval(function() {
+  // do something here
+  console.log('INTERVAL',new Date().toLocaleString());
+  fetch('https://knot-wbj8.onrender.com/inactive')
+}, 300000);
 
 //use wildcard to catch all routes
 app.get("*", (req, res) => {
