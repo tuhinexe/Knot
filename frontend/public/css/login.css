@@ -173,6 +173,13 @@ label a{
     cursor: pointer;
 }
 
+@media screen and (max-width: 786px) {
+    .media-screen{
+        position: absolute;
+        bottom: 5%;
+    }
+}
+
 #stars {
     width: 1px;
     height: 1px;
