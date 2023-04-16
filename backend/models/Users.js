@@ -7,13 +7,13 @@ let UserSchema = new mongoose.Schema(
     firstname: {
       type: String,
       required: true,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      match: [/^[a-zA-Z0-9]+$/, "not valid"],
       index: {type: "text"},
     },
     lastname: {
       type: String,
       required: true,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      match: [/^[a-zA-Z0-9]+$/, "not valid"],
       index: {type: "text"},
     },
     username: {
@@ -21,7 +21,7 @@ let UserSchema = new mongoose.Schema(
       lowercase: true,
       required: true,
       unique: true,
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+      match: [/^[a-zA-Z0-9]+$/, "not valid"],
       index: {type: "text"},
     },
     googleId: {
