@@ -18,9 +18,9 @@ const generateRandomUsername = async (user) => {
   let sanitizedUser = user.replace(/\./g, "");
   const uniqueUserName = await User.findOne({ username: sanitizedUser })
   if (!uniqueUserName) {
-    return user
+    return sanitizedUser
   }
-  const prefix = user
+  const prefix = sanitizedUser
   const suffix = Math.floor(Math.random() * 10000); 
   const username = `${prefix}${suffix}`;
   const foundUser = await User.findOne({ username });
