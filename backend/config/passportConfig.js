@@ -15,7 +15,8 @@ passport.deserializeUser((id, done) => {
 });
 
 const generateRandomUsername = async (user) => {
-  const uniqueUserName = await User.findOne({ username: user })
+  let sanitizedUser = user.replace(/\./g, "");
+  const uniqueUserName = await User.findOne({ username: sanitizedUser })
   if (!uniqueUserName) {
     return user
   }
@@ -41,8 +42,8 @@ passport.use(
       const userData = {
         googleId: profile.id,
         username: await generateRandomUsername(profile._json.email.split("@")[0]),
-        firstname: profile.name.givenName,
-        lastname: profile.name.familyName,
+        firstname: profile.name.givenName.replace(/[ .]/g, "") || "Knot",
+        lastname: profile.name.familyName.replace(/[ .]/g, "") || "Knot",
         email: profile._json.email,
         bio: "",
         profilePicId: "",
